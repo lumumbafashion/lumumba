@@ -4,10 +4,6 @@ class ApplicationController < ActionController::Base
   include ActionController::HttpAuthentication::Basic::ControllerMethods
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
-  def after_sign_in_path_for(resource)
-    user_path(resource.slug)
-  end
-
   def authenticate_admin!
     unless current_user.nil?
       unless current_user.is_admin?
@@ -19,6 +15,11 @@ class ApplicationController < ActionController::Base
 
   def not_found
     render file: Rails.root.join('public', '404.html'), layout: false, status: 404
+  end
+
+  private
+  def after_sign_in_path_for(resource)
+    session["user_return_to"] || user_path(resource.slug)
   end
 
 end

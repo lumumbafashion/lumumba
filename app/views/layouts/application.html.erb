@@ -93,7 +93,7 @@
                                </g>
                             </svg>
                          </div>
-                         <span class="nav__link-text">Competitions</span>
+                         <span class="nav__link-text">Competition</span>
                       </a>
                    </li>
                    <li class="nav__item">
@@ -178,19 +178,9 @@
        <!-- header finish -->
 
       <!-- Countdown start -->
-      <div class="countdown" >
-          <div class="countdown__wrapper" style="background-image: url(<%= asset_path 'countdown_bg.png' %>)">
-              <div class="countdown__title">
-                  <div class="countdown__timer">
-                      <div class="countdown__timer-value countdown__timer-value_h">00</div><div class="countdown__timer-value countdown__timer-value_m">20</div><div class="countdown__timer-value countdown__timer-value_s">49</div>
-                  </div>
-                  until competition ends
-              </div>
-              <div class="fade in alert-danger">
-                <p class="notice"><%= notice %></p>
-                <p class="notice"><%= alert %></p>
-              </div>
-          </div>
+      <div class="fade in">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
       </div>
       <!-- Countdown finish -->
        <div class="layout__content">
