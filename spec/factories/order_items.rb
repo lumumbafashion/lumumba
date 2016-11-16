@@ -4,6 +4,6 @@ FactoryGirl.define do
     size 'M'
     color 'blue'
     product
-    order
+    association :order, factory: :order, strategy: :build
   end
 end
