@@ -6,16 +6,14 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         flash['notice'] = 'Authenticated via facebook'
       end
       sign_in user
-      redirect_to controller: 'users', action: 'show', id: user.slug
+      redirect_to session["user_return_to"] || user_path(user.slug)
     else
       session['devise.facebook_data'] = request.env['omniauth.auth']
       redirect_to new_user_registration_url
     end
   end
-
   def failure
     redirect_to root_path
   end
-
   alias facebook all
 end
