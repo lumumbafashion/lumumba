@@ -22,12 +22,12 @@ class OrdersController < ApplicationController
   end
 
   def shipping
-    address = Address.find(params[:id])
-    order = current_user.orders.open.first
+    address = current_user.addresses.find(params[:id])
+    order = current_user.orders.find_by!(status: Order::OPEN)
     tax = calculate_tax(address, order)
     shipping_cost = calculate_shipping(address)
     save_order(order, tax, shipping_cost, address)
-    redirect_to request.referer
+    redirect_back(fallback_location: root_path)
   end
 
   def payment

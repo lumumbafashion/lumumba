@@ -124,4 +124,137 @@ RSpec.describe OrdersController, type: :controller do
 
   end
 
+  describe '#shipping' do
+
+    let(:address_params){ {id: address.id} }
+
+    def the_action
+      post :shipping, params: address_params
+    end
+
+    context "signed in" do
+
+      sign_as
+
+      let!(:address){ FactoryGirl.create :address, user: user }
+
+      context "when I have an open order" do
+
+        let!(:order){ FactoryGirl.create :order, user: user }
+        before { expect(user.orders.open.count).to eq 1 }
+
+        it "calculates vat, shipping_cost, shipping (id) and total amount for said order" do
+
+          expect {
+            the_action
+          }.to change {
+            order.reload.vat
+          }.and change {
+            order.reload.shipping_cost
+          }.and change {
+            order.reload.shipping
+          }.and change {
+            order.reload.total_amount
+          }
+
+        end
+
+      end
+
+      context "when I have an order, but it's not open" do
+
+        let!(:order){ FactoryGirl.create :order, user: user, status: SecureRandom.hex }
+        before { expect(user.orders.open.count).to eq 0 }
+
+        it "returns 404" do
+          the_action
+          controller_ok 404
+        end
+
+        it "doesn't change the order or the address" do
+          expect {
+            the_action
+          }.to_not change {
+            [
+              order.reload.attributes,
+              address.reload.attributes
+            ]
+          }
+        end
+
+      end
+
+      context "when I don't have an order" do
+
+        before { expect(user.orders.open.count).to eq 0 }
+
+        it "returns 404" do
+          the_action
+          controller_ok 404
+        end
+
+        it "changes no address or order" do
+          expect {
+            the_action
+          }.to_not change {
+            [
+              Order.pluck(:updated_at),
+              Address.pluck(:updated_at),
+            ]
+          }
+        end
+
+      end
+
+      context "when try calculate the shipping for order I don't own" do
+
+        let!(:order){ FactoryGirl.create :order }
+        before { expect(user.orders.open.count).to eq 0 }
+        before { expect(Order.open.count).to eq 1 }
+
+        it "returns 404" do
+          the_action
+          controller_ok 404
+        end
+
+        it "changes no address or order" do
+          expect {
+            the_action
+          }.to_not change {
+            [
+              Order.pluck(:updated_at),
+              Address.pluck(:updated_at),
+            ]
+          }
+        end
+
+      end
+
+    end
+
+    context "signed out" do
+
+      let!(:address){ FactoryGirl.create :address }
+
+      it "is forbidden" do
+        the_action
+        expect_unauthorized
+      end
+
+      it "changes no address or order" do
+        expect {
+          the_action
+        }.to_not change {
+          [
+            Order.pluck(:updated_at),
+            Address.pluck(:updated_at),
+          ]
+        }
+        expect_unauthorized
+      end
+
+    end
+
+  end
+
 end
