@@ -1,0 +1,205 @@
+body {
+  line-height: 1.5;
+  font-family: 'Avenir';
+  font-weight: normal;
+  color: rgba(0,0,0,0.87);
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+  color: white;
+  background: transparent;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: white;
+}
+
+.custom_nav {
+  background-color: transparent;
+  width: 100%;
+  top: 0;
+  position: absolute;
+  z-index: 10;
+  box-shadow: none;
+  border: 0;
+}
+
+.fixer {
+  position:fixed !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  z-index: 1000;
+}
+
+// .cart {
+//   color: white;
+//   font-size: 25px;
+//   margin-top: 11px;
+// }
+//
+// .cart-items-count {
+//   font-size: 10px;
+//   position: relative;
+//   top: -18px;
+//   right: 16px;
+//   background: transparent;
+//   color: orange;
+// }
+
+.home-container {
+  position: relative;
+  height: 0;
+  padding-bottom: 55%;
+  margin-top: -20px;
+}
+
+.homepage-image {
+  position: absolute;
+  // height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+}
+
+.homepage-image-overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.45)
+}
+.homepage-image-text {
+  position: absolute;
+  height: 70%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  text-align: center;
+  color: #fff !important;
+  margin-top: 10%;
+}
+
+.homepage-image-text h2 {
+  text-shadow: 2px 1px 1px black;
+  margin: 0;
+  padding: 25px 0 10px;
+  font-size: 4.5rem;
+}
+
+.homepage-image-text h5 {
+  font-size: 2rem;
+}
+
+.home-cta {
+  background: #FF6D00;
+  margin-top: 25px;
+  font-size: 2rem;
+  border-radius: 6px;
+  color: #333;
+}
+
+.homepage-image video {
+  width: 100%;
+  height: 100%;
+}
+
+.social-buttons {
+  margin-bottom: 0;
+}
+
+.list-inline {
+  padding-left: 0;
+  margin-left: -5px;
+  list-style: none;
+}
+
+.quicklinks {
+  margin-bottom: 0;
+  line-height: 40px;
+  text-transform: uppercase;
+  text-transform: none;
+}
+
+.competition {
+  background: #fff;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  position: relative;
+}
+
+.competition h2 {
+  font-size: 32px;
+  color: #fff;
+}
+
+.competition-overlay {
+  position: absolute;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  left: 25%;
+  top: 25%;
+  padding: 0 25px 25px 25px;
+  width: 50%;
+  text-align: center;
+}
+
+.become-designer-cta {
+  background: #FF6D00;
+  margin-top: 25px;
+  font-size: 2rem;
+  border-radius: 6px;
+  color: #333;
+}
+
+.competition-right {
+  background-color: white;
+  height: 436px;
+}
+
+.competition-left {
+  background-color: gray;
+  height: 436px
+}
+
+.social-media-links {
+  background: #fdcc52;
+  background: -webkit-linear-gradient(#fdcc52,#fdc539);
+  background: linear-gradient(#fdcc52,#fdc539);
+  text-align: center;
+  padding: 100px 0;
+}
+
+.list-social>li>a {
+  display: block;
+  height: 80px;
+  width: 80px;
+  line-height: 80px;
+  font-size: 40px;
+  border-radius: 100% !important;
+  color: #fff;
+}
+
+.social-twitter {
+  background-color: #1da1f2;
+  border-radius: 100%;
+  margin: 0 10px;
+}
+
+.social-facebook {
+  background-color: #3b5998;
+  border-radius: 100%;
+  margin: 0 10px;
+}
+
+.social-google-plus {
+  background-color: #dd4b39;
+  border-radius: 100%;
+  margin: 0 10px;
+}
+
+.footer {
+  background: #fff;
+  text-align: center;
+  padding-bottom: 20px;
+}

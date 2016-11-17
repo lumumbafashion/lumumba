@@ -1,85 +1,38 @@
-<section id="sign-in" >
+<%= render "layouts/homepage_image"%>
 
-  <div class="image column" style="background-image: url(<%= asset_path 'home.jpg' %>)">
-    <div class="columns__content">
-        <h1 class="">Diverse Multicultural Fashion </h1>
-        <h1 class="">Wear the World.</h1>
+<!-- <section class="competition-wrapper"> -->
+  <!-- <div class="container">
+
+
+  </div> -->
+  <div class="row competition">
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 competition-overlay">
+      <h2>The Competition is Live Now</h2>
+      <div class="call-to-action__text">Want to join the Lumumba tribe? Get inspired by the Banjara and create a street fashion outfit for the competition.</div>
+      <button class="btn btn-large become-designer-cta">Become a Designer</button>
+    </div>
+    <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 competition-left">
+      <%= image_tag("themes/banjara26.png", size: "655x436")%>
+    </div>
+    <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 competition-right">
+      <%= image_tag("themes/banjara21.png", size: "655x436")%>
     </div>
   </div>
 
-  <div class="form column" style="background-image: url(<%= asset_path 'home_bg.png' %>)">
-    <div class="columns__content">
-      <!-- Section tittle -->
-        <h2 class="">Join Lumumba</h1>
 
-      <!-- End Section tittle -->
-      <!-- START Botones sociales -->
-      <a href="/users/auth/facebook">
-        <div class="button-social facebook">
-        <i class="fa fa-facebook" aria-hidden="true"></i> <spam class="social-text">Sign up using Facebook</spam>
-      </div>
-      </a>
-      <a href="/">
-      <div class="button-social twitter">
-        <i class="fa fa-twitter" aria-hidden="true"></i> <spam class="social-text">Sign up using Twitter</spam>
-      </div>
-      </a>
-      <a href="/">
-      <div class="button-social google">
-        <i class="fa fa-google-plus" aria-hidden="true"></i> <spam class="social-text">Sign up using Google+</spam>
-      </div>
-      </a>
-      <!-- END Botones sociales -->
-        <p class="page-description_social">By signing up you agree to the <a href="#"> Terms of Services</a> and <a href="#">Privacy Policy</a> </p>
-    </div>
-  </div>
-</section>
-
-<section id="collection" style="background-image: url(<%= asset_path 'latest_bg.png' %>)">
-<div class="latest__wrapper">
-  <div class="logos">
-    <div class="right">
-      <%= image_tag "lumumbalogo_white2.png", class: "img_responsive" %>
-
-    </div>
-    <div class="left">
-      <%= image_tag "masabalogo_white.png", class: "img_responsive" %>
-
-    </div>
-
-
-
-  </div>
-  <div class="latest__title">Masaba x Lumumba</div>
-  <div class="latest__tile-list">
-      <figure class="latest__tile">
-        <div class="wrapper__image">
-          <div class="latest__image" style="background-image: url(<%= asset_path '_MG_6406.jpg' %>) "></div>
-          <figcaption class="latest__caption"><a class="latest__link" href="product.html">Shana M. - Olive blouse shirt</a></figcaption>
-        </div>
-      </figure>
-      <figure class="latest__tile">
-        <div class="wrapper__image">
-          <div class="latest__image second" style="background-image: url(<%= asset_path '_MG_6465.jpg' %>)" ></div>
-          <figcaption class="latest__caption"><a class="latest__link" href="product.html">Carolyn J. - Cashmere sweater</a></figcaption>
-        </div>
-      </figure>
-  </div>
-  <div class="bottom">
-    <a class="latest__link button" href="<%= products_path %>">See more products</a>
-  </div>
-
+<div class="contact social-media-links">
+  <div class="container">
+    <h2 style="color: #fff; font-size: 34px;">We <i class="fa fa-heart" style="color: #dd4b39"></i> new friends!</h2>
+    <ul class="list-inline list-social">
+        <li class="social-twitter">
+            <a href="#"><i class="fa fa-twitter"></i></a>
+        </li>
+        <li class="social-facebook">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+        </li>
+        <li class="social-google-plus">
+            <a href="#"><i class="fa fa-google-plus"></i></a>
+        </li>
+    </ul>
 </div>
-</section>
-
-<section id="competition" style="background-image: url(<%= asset_path 'countdown_bg.png' %>)">
-  <div class="call-to-action">
-    <div class="call-to-action__wrapper">
-        <div class="call-to-action__title">The Competition is Live Now.</div>
-        <div class="call-to-action__text">Want to join the Lumumba tribe? Get inspired by the Banjara and create a street fashion outfit for the competition.</div>
-        <a href="/designs" class="button ">
-            <div class="button__text">Become a Designer</div>
-        </a>
-    </div>
-  </div>
-</section>
+</div>
