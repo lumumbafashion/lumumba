@@ -177,12 +177,16 @@
        </header>
        <!-- header finish -->
 
-      <!-- Countdown start -->
-      <div class="fade in">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-      </div>
-      <!-- Countdown finish -->
+       <% flash.each_with_index do |(type, content), index| %>
+         <% messages = Array(content) %>
+         <% messages.each do |message| %>
+           <div class="fade in alert <%= alert_class_for(type) %>" style="<%= 'margin-bottom: 70px' if index == flash.to_a.size - 1 %>">
+             <button class='close' data-dismiss="alert">x</button>
+             <%= message %>
+           </div>
+         <% end %>
+       <% end %>
+
        <div class="layout__content">
           <!-- Dummy start -->
           <%= yield %>

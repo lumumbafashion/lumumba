@@ -16,22 +16,17 @@ class OrderItemsController < ApplicationController
 
   def destroy
     order_item = OrderItem.find(params[:id])
-    if current_user.id == order_item.order.user.id
+    if order_item.order.user_id.present? && (current_user.id == order_item.order.user_id)
       begin
-        ActiveRecord::Base.transaction do
-          order = current_user.orders.find_by!(id: order_item.order_id)
-          order.sub_total -= (order_item.get_product.price * order_item.quantity)
-          order.save!
-          order_item.destroy!
-          flash['notice'] = 'Item successfully deleted from Cart.'
-        end
+        order_item.remove_from_cart!
+        flash['notice'] = 'Item successfully deleted from Cart.'
       rescue
         flash['notice'] = 'Sorry, we encountered an error while deleting the item from the Cart.'
       end
     else
       flash['notice'] = 'You do not have the permission to delete this item.'
     end
-    redirect_to request.referer
+    redirect_back(fallback_location: root_path)
   end
 
   private

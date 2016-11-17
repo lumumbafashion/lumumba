@@ -47,10 +47,10 @@
                         </div><br>
                         <div class="container">
                           <% order.order_items.each do |item| %>
-                            <p>Item Name: <%= item.get_product.name %></p>
+                            <p>Item Name: <%= item.product.name %></p>
                             <p>Quantity: <%= item.quantity %></p>
                             <p>Color: <%= item.color %></p>
-                            <p>Price: € <%= item.get_product.price %></p>
+                            <p>Price: € <%= item.product.price %></p>
                           <% end %>
                         </div><br>
                         <div class="container">
