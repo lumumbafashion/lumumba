@@ -347,4 +347,172 @@ RSpec.describe OrdersController, type: :controller do
 
   end
 
+  describe '#checkout' do
+
+    let(:payment_method_nonce){ SecureRandom.hex }
+    let(:order_params){
+      {
+        order: order.id,
+        payment_method_nonce: payment_method_nonce
+      }
+    }
+
+    context "signed in" do
+
+      sign_as
+
+      describe "paying an open order I own" do
+
+        let(:order){ FactoryGirl.create :order, user: user }
+        let(:total_amount_formatted){ SecureRandom.hex }
+        let(:result){ double }
+
+        let(:transaction_id) { SecureRandom.hex }
+        let(:payment_method) { SecureRandom.hex }
+        let(:transaction_status) { SecureRandom.hex }
+        let(:transaction) do
+          double({
+            id: transaction_id,
+            credit_card_details: double(card_type: payment_method),
+            status: transaction_status
+          })
+        end
+
+        before do
+          expect(order).to receive(:total_amount_formatted).and_return(total_amount_formatted)
+          expect(controller).to receive(:the_checkout_order).and_return(order)
+          expect(Braintree::Transaction).to receive(:sale).with({
+            amount: total_amount_formatted,
+            payment_method_nonce: payment_method_nonce,
+            options: {
+              submit_for_settlement: true
+            }
+          }).and_return(result)
+        end
+
+        context "when the Braintree result is a `success?`" do
+
+          before do
+            expect(result).to receive(:success?).and_return true
+            expect(result).to receive(:transaction).at_least(3).times.and_return transaction
+          end
+
+          it "updates the order" do
+
+            expect {
+              post :checkout, params: order_params
+            }.to change {
+              order.reload.transaction_id
+            }.to(transaction_id).and change {
+              order.reload.payment_method
+            }.to(payment_method).and change {
+              order.reload.status
+            }.to(transaction_status)
+
+          end
+
+        end
+
+        context "when the Braintree result is not a `success?`, but it returns a `transaction`" do
+
+          before do
+            expect(result).to receive(:success?).and_return false
+            expect(result).to receive(:transaction).at_least(3).times.and_return transaction
+          end
+
+          it "updates the order" do
+
+            expect {
+              post :checkout, params: order_params
+            }.to change {
+              order.reload.transaction_id
+            }.to(transaction_id).and change {
+              order.reload.payment_method
+            }.to(payment_method).and change {
+              order.reload.status
+            }.to(transaction_status)
+
+          end
+
+        end
+
+        context "when the Braintree result is unsuccessful" do
+
+          before do
+            expect(result).to receive(:success?).and_return false
+            expect(result).to receive(:transaction).and_return false
+            expect(result).to receive(:errors).and_return []
+          end
+
+          it "doesn't update the order" do
+            expect {
+              post :checkout, params: order_params
+            }.to_not change {
+              order.reload.attributes.sort
+            }
+            controller_ok(302)
+          end
+
+          it "redirects to the payment path of the order" do
+            post :checkout, params: order_params
+            expect(response).to redirect_to(payment_path(order.id))
+          end
+
+        end
+
+      end
+
+      describe "attempting to pay an order I own, in an status other than '#{Order::OPEN}'" do
+
+        let(:order){ FactoryGirl.create :order, user: user, status: SecureRandom.hex  }
+
+        it "doesn't update the order" do
+          expect {
+            post :checkout, params: order_params
+          }.to_not change {
+            order.reload.attributes.sort
+          }
+          controller_ok(404)
+        end
+
+      end
+
+      describe "attempting to pay an order I don't own" do
+
+        let(:order){ FactoryGirl.create :order }
+
+        it "doesn't update the order" do
+          expect {
+            post :checkout, params: order_params
+          }.to_not change {
+            order.reload.attributes.sort
+          }
+          controller_ok(404)
+        end
+
+      end
+
+    end
+
+    context "signed out" do
+
+      describe "attempting make pay any order" do
+
+        let(:order){ FactoryGirl.create :order }
+
+        it "doesn't update the order" do
+          expect {
+            post :checkout, params: order_params
+          }.to_not change {
+            order.reload.attributes.sort
+          }
+          expect_unauthorized
+        end
+
+      end
+
+    end
+
+  end
+
 end
