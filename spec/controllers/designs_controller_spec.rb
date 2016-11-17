@@ -227,9 +227,9 @@ RSpec.describe DesignsController, type: :controller do
 
           let!(:design){ FactoryGirl.create(:design) }
 
-          it "redirects me somewhere else" do
+          it "returns 404" do
             get :edit, params: design_params
-            controller_ok 302
+            controller_ok 404
           end
 
         end

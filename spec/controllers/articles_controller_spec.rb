@@ -208,9 +208,9 @@ RSpec.describe ArticlesController, type: :controller do
 
         let!(:article){ FactoryGirl.create(:article) }
 
-        it "redirects me somewhere else" do
+        it "returns 404" do
           get :edit, params: article_params
-          controller_ok 302
+          controller_ok 404
         end
 
       end

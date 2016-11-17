@@ -31,7 +31,7 @@ class DesignsController < ApplicationController
   end
 
   def update
-    @design = Design.where(user: current_user).find(params[:id])
+    @design = current_user.designs.find(params[:id])
     if @design.update(design_params)
       redirect_to @design
     else
@@ -40,7 +40,7 @@ class DesignsController < ApplicationController
   end
 
   def edit
-    @design = Design.find(params[:id])
+    @design = current_user.designs.find(params[:id])
     unless @design.user == current_user
       redirect_to @design
     end
@@ -58,7 +58,7 @@ class DesignsController < ApplicationController
   end
 
   def destroy
-    @design = Design.find(params[:id])
+    @design = current_user.designs.find(params[:id])
     if current_user == @design.user
       @design.destroy
       flash['notice'] = 'Successfully deleted.'

@@ -43,7 +43,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article = Article.where(user: current_user.id).find(params[:id])
+    @article = current_user.articles.find(params[:id])
 
     if @article.update(article_params)
       flash[:notice] = 'Post successfully updated.'
@@ -54,7 +54,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
+    @article = current_user.articles.find(params[:id])
     unless current_user == @article.user
       redirect_to @article
       return
@@ -62,12 +62,12 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    article = Article.find(params[:id])
+    article = current_user.articles.find(params[:id])
     if article.user == current_user
       article.destroy
       flash['notice'] = 'Successfully deleted this post.'
     else
-      flash['notice'] = 'You do not hae the permission to delete this post'
+      flash['notice'] = 'You do not have the permission to delete this post'
     end
     redirect_to articles_path
   end

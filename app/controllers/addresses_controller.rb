@@ -43,12 +43,12 @@ class AddressesController < ApplicationController
   end
 
   def destroy
-    address = Address.find(params[:id])
-    if current_user.id == address.user.id
+    address = current_user.addresses.find(params[:id])
+    if address.user_id.present? && (current_user.id == address.user_id)
       address.destroy
-      flash['notice'] = 'successfully deleted this post'
+      flash['notice'] = 'successfully deleted this address'
     else
-      flash['notice'] = 'You do not hae the permission to delete this post'
+      flash['notice'] = 'You do not have permission to delete this address'
     end
     redirect_to addresses_path
   end
