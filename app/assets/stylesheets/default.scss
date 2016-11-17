@@ -24,32 +24,107 @@ body {
   border: 0;
 }
 
+.navbar-custom {
+  margin-top: 30px;
+}
+
+.badge {
+  padding: 0;
+}
+
+.menu-icon {
+  font-size: 25px;
+  background: transparent;
+}
+
+.menu-icon-competition {
+  position: relative;
+  top: -25px;
+  right: 50px;
+}
+
+.menu-icon-theme {
+  position: relative;
+  top: -25px;
+  right: 37px;
+}
+
+.menu-icon-leaderboard {
+  position: relative;
+  top: -25px;
+  right: 55px;
+}
+
+.menu-icon-shop {
+  position: relative;
+  top: -25px;
+  right: 30px;
+}
+
+.menu-icon-blog {
+  position: relative;
+  top: -25px;
+  right: 28px;
+}
+.menu-icon-cart {
+  position: relative;
+  top: -25px;
+  right: 28px;
+}
+.menu-icon-profile {
+  position: relative;
+  top: -25px;
+  right: 34px;
+}
+.menu-icon-logout {
+  position: relative;
+  top: -25px;
+  right: 34px;
+}
+
 .fixer {
   position:fixed !important;
   background-color: rgba(0, 0, 0, 0.8) !important;
   z-index: 1000;
 }
 
-// .cart {
-//   color: white;
-//   font-size: 25px;
-//   margin-top: 11px;
-// }
-//
-// .cart-items-count {
-//   font-size: 10px;
-//   position: relative;
-//   top: -18px;
-//   right: 16px;
-//   background: transparent;
-//   color: orange;
-// }
-
 .home-container {
   position: relative;
   height: 0;
   padding-bottom: 55%;
   margin-top: -20px;
+}
+
+// Phones
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+  .homepage-image-text h2 {
+      font-size: 3.5rem;
+    }
+
+  .homepage-image-text h5 {
+    font-size: 1.5rem;
+  }
+
+  .home-cta {
+    font-size: 1.5rem;
+    margin-top: 6px;
+  }
+
+  .competition h2 {
+    font-size: 15px !important;
+  }
+
+  .become-designer-cta{
+    font-size: 1.5rem !important;
+  }
+
+  .menu-icon {
+    display: none;
+  }
 }
 
 .homepage-image {
@@ -82,11 +157,12 @@ body {
 .homepage-image-text h2 {
   text-shadow: 2px 1px 1px black;
   margin: 0;
-  padding: 25px 0 10px;
+  padding-bottom: 10px;
   font-size: 4.5rem;
 }
 
 .homepage-image-text h5 {
+  padding: 25px 0 10px;
   font-size: 2rem;
 }
 
@@ -95,7 +171,7 @@ body {
   margin-top: 25px;
   font-size: 2rem;
   border-radius: 6px;
-  color: #333;
+  color: #fff;
 }
 
 .homepage-image video {
@@ -124,12 +200,11 @@ body {
   background: #fff;
   padding-bottom: 30px;
   padding-top: 30px;
-  position: relative;
   height: 20%;
 }
 
 .competition h2 {
-  font-size: 32px;
+  font-size: 20px;
   color: #fff;
 }
 
@@ -150,17 +225,17 @@ body {
   margin-top: 25px;
   font-size: 2rem;
   border-radius: 6px;
-  color: #333;
+  color: #fff;
 }
 
 .competition-right {
-  background-color: white;
   height: 100%;
+  position: relative;
 }
 
 .competition-left {
-  background-color: gray;
   height: 100%;
+  position: relative;
 }
 
 .competition-left img {
@@ -210,16 +285,17 @@ body {
 }
 
 .footer {
-  // background: #fff;
+  background: #000000;
   text-align: center;
   padding-bottom: 20px;
   min-height: 30px;
-  background-color: #15224f;
 }
 
+
 .copyright {
-    color: #CCBEB8;
-    line-height: 30px;
-    min-height: 30px;
-    padding: 7px 0;
+  color: #CCBEB8;
+  line-height: 30px;
+  min-height: 30px;
+  padding: 7px 0;
+  font-size: 11px;
 }

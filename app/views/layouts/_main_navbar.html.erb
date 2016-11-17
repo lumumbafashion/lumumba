@@ -14,18 +14,19 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse navbar-custom" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Competition</a></li>
-        <li><a href="#">Themes</a></li>
-        <li><a href="#">Leader Board</a></li>
-        <li><a href="#">Shop</a></li>
+        <li class="active"><a href="#">Competition<span class="badge menu-icon menu-icon-competition"><i class="fa fa-trophy" aria-hidden="true"></i></span></a></li>
+        <li><a href="#">Themes<span class="badge menu-icon menu-icon-theme"><i class="fa fa-flag" aria-hidden="true"></i></span></a></li>
+        <li><a href="#">Leader Board<span class="badge menu-icon menu-icon-leaderboard"><i class="fa fa-star" aria-hidden="true"></i></span></a></li>
+        <li><a href="#">Shop<span class="badge menu-icon menu-icon-shop"><i class="fa fa-shopping-basket" aria-hidden="true"></i></span></a></li>
+        <li><a href="#">Blog<span class="badge menu-icon menu-icon-blog"><i class="fa fa-th" aria-hidden="true"></i></span></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-        <li><a href="#"><i class="fa fa-shopping-cart cart" aria-hidden="true"></i><span class="label label-default cart-items-count">8</span></a></li>
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Logout</a></li>
+        <li><a href="#">Cart<span class="badge menu-icon menu-icon-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span></a></li>
+        <li><a href="#">Profile<span class="badge menu-icon menu-icon-profile"><i class="fa fa-user" aria-hidden="true"></i></span></a></li>
+        <li><a href="#">Logout<span class="badge menu-icon menu-icon-logout"><i class="fa fa-sign-out" aria-hidden="true"></i></span></a></li>
         <% else %>
         <li><a href="#">Login</a></li>
         <li><a href="#">Sign Up</a></li>
