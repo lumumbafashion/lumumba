@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
 
   def payment
     @order = current_user.orders.friendly.find(params[:id])
-    @address = Address.find(@order.shipping)
+    @address = current_user.addresses.find(@order.shipping)
     @token = Braintree::ClientToken.generate
   end
 

@@ -257,4 +257,94 @@ RSpec.describe OrdersController, type: :controller do
 
   end
 
+  describe '#payment' do
+
+    def the_action
+      post :payment, params: {id: order.id}
+    end
+
+    context "signed in" do
+
+      sign_as
+
+      let!(:address){ FactoryGirl.create :address, user: user }
+
+      describe "when I own an open order, with a shipping address" do
+
+        let!(:order){ FactoryGirl.create :order, user: user, shipping: address.id }
+        before { expect(user.orders.open.count).to eq 1 }
+
+        it "loads correctly" do
+          expect(Braintree::ClientToken).to receive(:generate).and_return(SecureRandom.hex)
+          the_action
+          controller_ok
+        end
+
+      end
+
+      describe "when I own an open order, with a shipping address, in any status" do
+
+        let!(:order){ FactoryGirl.create :order, user: user, shipping: address.id, status: SecureRandom.hex() }
+        before { expect(user.orders.open.count).to eq 0 }
+        before { expect(user.orders.count).to eq 1 }
+
+        it "loads correctly" do
+          expect(Braintree::ClientToken).to receive(:generate).and_return(SecureRandom.hex)
+          the_action
+          controller_ok
+        end
+
+      end
+
+      describe "when I own an open order, without a shipping address" do
+
+        let!(:order){ FactoryGirl.create :order, user: user }
+        before { expect(user.orders.open.count).to eq 1 }
+
+        it "returns 404" do
+          the_action
+          controller_ok 404
+        end
+
+      end
+
+      describe "when I own an open order, without a shipping address, in any status" do
+
+        let!(:order){ FactoryGirl.create :order, user: user, status: SecureRandom.hex() }
+        before { expect(user.orders.open.count).to eq 0 }
+        before { expect(user.orders.count).to eq 1 }
+
+        it "returns 404" do
+          the_action
+          controller_ok 404
+        end
+
+      end
+
+      describe "attempting to pay an Order I don't own" do
+
+        let!(:order){ FactoryGirl.create :order }
+
+        it "returns 404" do
+          the_action
+          controller_ok 404
+        end
+
+      end
+
+    end
+
+    context "signed out" do
+
+      let!(:order){ FactoryGirl.create :order }
+
+      it "is unauthorized" do
+        the_action
+        expect_unauthorized
+      end
+
+    end
+
+  end
+
 end
