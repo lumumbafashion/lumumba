@@ -4,6 +4,7 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.contact_us.subject
   #
+  layout 'mailer'
   def contact_us(message)
     @message = message
 

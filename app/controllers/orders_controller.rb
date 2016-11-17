@@ -33,7 +33,12 @@ class OrdersController < ApplicationController
   def payment
     @order = current_user.orders.friendly.find(params[:id])
     @address = current_user.addresses.find(@order.shipping)
-    @token = Braintree::ClientToken.generate
+    if @address.present?
+      @token = Braintree::ClientToken.generate
+    else
+      flash["error"] = "You need to select a valid shipping address"
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def checkout
