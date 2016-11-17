@@ -18,7 +18,7 @@
     <!-- Cart Item -->
     <div class="wrapper">
         <div class="cart_item_l">
-          <p class="cart_p"><b><%= item.get_product.name %></b><br><%= item.color %> </p>
+          <p class="cart_p"><b><%= item.product.name %></b><br><%= item.color %> </p>
         </div>
         <div class="cart_item_cl">
           <center>
@@ -28,9 +28,9 @@
         </div>
         <div class="cart_item_r" >
           <p class="cart_pr">
-            <b>€ <%= item.get_product.price %></b>
+            <b>€ <%= item.product.price %></b>
             <br>
-            <%= link_to "Remove item", product_order_item_path(item.get_product, item), :method=> :delete %>
+            <%= link_to "Remove item", product_order_item_path(item.product, item), :method=> :delete %>
           </p>
         </div>
     </div>
