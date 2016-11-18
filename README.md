@@ -1,6 +1,6 @@
 # LUMUMBA FASHION
 
-Lumumba is a digital clothing platform, we produce urban clothing based on traditional fabrics and cultures found across the world. We open ourselves to our customers so they can interact, design and model for the brand. 
+Lumumba is a digital clothing platform, we produce urban clothing based on traditional fabrics and cultures found across the world. We open ourselves to our customers so they can interact, design and model for the brand.
 
 We crowdsource designs through culture-themed competitions. Sustainable and transparent sourcing and production.
 
@@ -18,7 +18,7 @@ We crowdsource designs through culture-themed competitions. Sustainable and tran
 Once you have those two, you can then run your command line and navigate into the project's folder and then run:
 
 * Run `bundle install` to install all other dependencies
- 
+
 
     ***Note*** some gems might cause issues while installing, so for unix/linux users try `sudo gem install <gem_name>`
 * Run `rails db:migrate` or `rake db:migrate`
@@ -33,7 +33,7 @@ Due to the use of the `figaro gem` for environment variables used in omniauth th
 * Contact the administrator to download the application.yml file [here](www.facebook.com/kenigbolo.meyastephen)
 * Put the downloaded `application.yml` file into the `config` folder
 
-You can then run `rails s` or `rails server` and visit the page on the browser by typing `localhost:3000`. (*you can add the flag `-p <port_number>` to specify a different port number, e.i. `rails s -p 8000`*) 
+You can then run `rails s` or `rails server` and visit the page on the browser by typing `localhost:3000`. (*you can add the flag `-p <port_number>` to specify a different port number, e.i. `rails s -p 8000`*)
 
 ##Running The Specs
 After all the setting up as mentioned above, you can run the tests. The tests are driven by rspec, capybara and selenium. You can get them fired up by running the following command from the terminal.
@@ -53,10 +53,7 @@ or
 * Blog
 
 ##Database
-* Development Environment
-    Uses Sqlite
-* Production && Staging environment
-    Uses Postgres
+  Uses Postgres in all environments
 
 ##License
 
