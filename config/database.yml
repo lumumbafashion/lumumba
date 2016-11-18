@@ -1,21 +1,26 @@
 default: &default
+  database: <%= "lumumba_#{ENV['RAILS_ENV'] || ENV['RACK_ENV'] || Rails.env}" %>
   adapter: postgresql
   pool: 5
   timeout: 5000
   encoding: unicode
+  port: 5432
 
 development:
   <<: *default
-  database: lumumba_development
 
 test:
   <<: *default
-  database: lumumba_test
+
+rds: &rds
+  user: root
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOST'] %>
 
 production:
   <<: *default
-  database: lumumba_production
+  <<: *rds
 
 staging:
   <<: *default
-  database: lumumba_staging
+  <<: *rds
