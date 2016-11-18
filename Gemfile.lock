@@ -168,6 +168,7 @@ GEM
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
     oj (2.17.5)
+    okcomputer (1.13.0)
     omniauth (1.3.1)
       hashie (>= 1.2, < 4)
       rack (>= 1.0, < 3)
@@ -368,6 +369,7 @@ DEPENDENCIES
   letter_opener
   listen (~> 3.0.5)
   oj (~> 2.12)
+  okcomputer (~> 1.13)
   omniauth (~> 1.3)
   omniauth-facebook (~> 4)
   pg (= 0.18.1)

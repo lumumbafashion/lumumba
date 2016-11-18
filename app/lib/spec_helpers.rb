@@ -13,6 +13,11 @@ module SpecHelpers
     expect(response.body).to be_present
   end
 
+  def page_ok status=200, feature=false
+    expect(page.status_code).to be status unless feature
+    expect(page.html).to be_present
+  end
+
   def sign_as user_options=nil
 
     let(:user){ FactoryGirl.create(:user, *user_options) }
