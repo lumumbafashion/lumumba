@@ -299,11 +299,19 @@ RSpec.describe OrdersController, type: :controller do
       describe "when I own an open order, without a shipping address" do
 
         let!(:order){ FactoryGirl.create :order, user: user }
+        before { expect(order.shipping).to be_nil }
         before { expect(user.orders.open.count).to eq 1 }
 
-        it "returns 404" do
+        it "returns 302" do
           the_action
-          controller_ok 404
+          controller_ok 302
+          expect(response).to redirect_to(root_path)
+          expect(flash[:error]).to include("You need to select a valid shipping address")
+        end
+
+        it "doesn't call Braintree::ClientToken.generate" do
+          expect(Braintree::ClientToken).to_not receive(:generate)
+          the_action
         end
 
       end
@@ -311,12 +319,20 @@ RSpec.describe OrdersController, type: :controller do
       describe "when I own an open order, without a shipping address, in any status" do
 
         let!(:order){ FactoryGirl.create :order, user: user, status: SecureRandom.hex() }
+        before { expect(order.shipping).to be_nil }
         before { expect(user.orders.open.count).to eq 0 }
         before { expect(user.orders.count).to eq 1 }
 
-        it "returns 404" do
+        it "returns 302" do
           the_action
-          controller_ok 404
+          controller_ok 302
+          expect(response).to redirect_to(root_path)
+          expect(flash[:error]).to include("You need to select a valid shipping address")
+        end
+
+        it "doesn't call Braintree::ClientToken.generate" do
+          expect(Braintree::ClientToken).to_not receive(:generate)
+          the_action
         end
 
       end
