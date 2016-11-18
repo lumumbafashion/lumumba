@@ -29,4 +29,8 @@ class Order < ApplicationRecord
     self.status == OPEN
   end
 
+  def total_amount_formatted
+    total_amount.round(2).to_s
+  end
+
 end

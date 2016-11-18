@@ -37,11 +37,11 @@ class OrdersController < ApplicationController
   end
 
   def checkout
-    order = Order.friendly.find(params[:order])
+    order = the_checkout_order
     nonce = params[:payment_method_nonce]
 
     result = Braintree::Transaction.sale(
-      amount: order.total_amount.round(2).to_s,
+      amount: order.total_amount_formatted,
       payment_method_nonce: nonce,
       options: {
         submit_for_settlement: true
@@ -93,6 +93,10 @@ class OrdersController < ApplicationController
     order.shipping = address.id.to_i
     order.total_amount = order.sub_total + order.shipping_cost + order.vat
     order.save!
+  end
+
+  def the_checkout_order
+    current_user.orders.open.friendly.find(params[:order])
   end
 
 end
