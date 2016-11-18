@@ -1,5 +1,4 @@
 # Load the Rails application.
-require 'carrierwave/orm/activerecord' unless ENV['RAILS_ENV'] == 'test'
 require_relative 'application'
 
 # Initialize the Rails application.
