@@ -10,7 +10,6 @@ gem 'cloudinary', '~> 1.2'
 gem 'coffee-rails', '~> 4.2' # Use CoffeeScript for .coffee assets and views
 gem 'country_select', '~> 2.5'
 gem 'devise', '~> 4.2' # Use devise gem for user authentication
-gem 'figaro', '~> 1.1' # Use figaro gem for environment variables
 gem 'friendly_id', '~> 5.1' # Use friendly_id for user profile urls
 gem 'jquery-rails', '~> 4.2' # Use jquery as the JavaScript library
 gem 'kaminari', '~> 0.17' # Gem for Rails 3+, Sinatra, and Merb Pagination
@@ -26,10 +25,6 @@ gem 'simple_form', '~> 3.3' # Use simple form as default for forms
 gem 'turbolinks', '~> 5' # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby] # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'uglifier', '~> 3' # Use Uglifier as compressor for JavaScript assets
-
-group :production, :staging do
-  gem 'rails_12factor' # NOTE: not needed in Rails 5, apparently
-end
 
 group :development, :test do
   gem 'byebug', platform: :mri
