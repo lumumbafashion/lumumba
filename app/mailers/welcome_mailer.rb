@@ -4,6 +4,7 @@ class WelcomeMailer < ApplicationMailer
   #
   #   en.welcome_mailer.signup_confirmation.subject
   #
+  layout 'mailer'
   def signup_confirmation(user)
     @user = user
 
