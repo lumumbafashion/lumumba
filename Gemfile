@@ -40,11 +40,7 @@ end
 
 group :development do
   gem 'letter_opener'
-  gem 'listen', '~> 3.0.5'
   gem 'rubocop'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'spring'
-  gem 'sqlite3' # Use sqlite3 as the database for Active Record [Development Environment]
   gem 'web-console'
 end
 
