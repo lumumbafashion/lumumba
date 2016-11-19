@@ -67,15 +67,12 @@ class ConsolidatedInitialMigrations < ActiveRecord::Migration[5.0]
       t.string :image_desc, null: false
       t.string :first_garment_model_design
       t.string :first_garment_print_design, null: false
-      t.string :first_garment_technical_design
       t.string :first_garment_desc, null: false
       t.string :second_garment_model_design
       t.string :second_garment_print_design, null: false
-      t.string :second_garment_technical_design
       t.string :second_garment_desc, null: false
       t.string :third_garment_model_design
       t.string :third_garment_print_design, null: false
-      t.string :third_garment_technical_design
       t.boolean :for_competition, null: false
       t.boolean :competition, null: false
       t.references :user, foreign_key: true

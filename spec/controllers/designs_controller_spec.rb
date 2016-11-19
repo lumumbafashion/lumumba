@@ -104,10 +104,6 @@ RSpec.describe DesignsController, type: :controller do
             second_garment_print_design: fixture_file_upload('blank.png', 'image/png'),
             third_garment_print_design: fixture_file_upload('blank.png', 'image/png'),
 
-            first_garment_technical_design: fixture_file_upload('blank.png', 'image/png'),
-            second_garment_technical_design: fixture_file_upload('blank.png', 'image/png'),
-            third_garment_technical_design: fixture_file_upload('blank.png', 'image/png'),
-
             first_garment_model_design: fixture_file_upload('blank.png', 'image/png'),
             second_garment_model_design: fixture_file_upload('blank.png', 'image/png'),
             third_garment_model_design: fixture_file_upload('blank.png', 'image/png')

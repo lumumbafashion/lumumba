@@ -41,24 +41,21 @@ ActiveRecord::Schema.define(version: 20161119181159) do
   end
 
   create_table "designs", force: :cascade do |t|
-    t.string   "image",                           null: false
-    t.string   "image_desc",                      null: false
+    t.string   "image",                       null: false
+    t.string   "image_desc",                  null: false
     t.string   "first_garment_model_design"
-    t.string   "first_garment_print_design",      null: false
-    t.string   "first_garment_technical_design"
-    t.string   "first_garment_desc",              null: false
+    t.string   "first_garment_print_design",  null: false
+    t.string   "first_garment_desc",          null: false
     t.string   "second_garment_model_design"
-    t.string   "second_garment_print_design",     null: false
-    t.string   "second_garment_technical_design"
-    t.string   "second_garment_desc",             null: false
+    t.string   "second_garment_print_design", null: false
+    t.string   "second_garment_desc",         null: false
     t.string   "third_garment_model_design"
-    t.string   "third_garment_print_design",      null: false
-    t.string   "third_garment_technical_design"
-    t.boolean  "for_competition",                 null: false
-    t.boolean  "competition",                     null: false
+    t.string   "third_garment_print_design",  null: false
+    t.boolean  "for_competition",             null: false
+    t.boolean  "competition",                 null: false
     t.integer  "user_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "third_garment_desc"
     t.string   "first_garment_design"
     t.string   "second_garment_design"

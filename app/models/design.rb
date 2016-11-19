@@ -17,10 +17,6 @@ class Design < ApplicationRecord
   mount_uploader :second_garment_print_design, ImageUploader
   mount_uploader :third_garment_print_design, ImageUploader
 
-  mount_uploader :first_garment_technical_design, ImageUploader
-  mount_uploader :second_garment_technical_design, ImageUploader
-  mount_uploader :third_garment_technical_design, ImageUploader
-
   validates :user, presence: true
 
   # image validations:
