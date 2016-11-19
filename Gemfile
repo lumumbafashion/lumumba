@@ -26,10 +26,13 @@ gem 'turbolinks', '~> 5' # Turbolinks makes navigating your web application fast
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby] # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'uglifier', '~> 3' # Use Uglifier as compressor for JavaScript assets
 
-group :development, :test do
-  gem 'byebug', platform: :mri
+group :staging, :development, :test do
   gem "factory_girl_rails"
   gem 'pry-rails'
+end
+
+group :development, :test do
+  gem 'byebug', platform: :mri
 end
 
 group :development do
