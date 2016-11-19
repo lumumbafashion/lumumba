@@ -97,7 +97,6 @@ ActiveRecord::Schema.define(version: 20161119181159) do
   create_table "order_items", force: :cascade do |t|
     t.integer  "quantity",   null: false
     t.string   "size",       null: false
-    t.string   "color",      null: false
     t.integer  "product_id"
     t.integer  "order_id"
     t.datetime "created_at", null: false

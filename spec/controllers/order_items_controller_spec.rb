@@ -11,8 +11,7 @@ RSpec.describe OrderItemsController, type: :controller do
         product_id: product.id,
         order_item: {
           quantity: reference_order_item.quantity,
-          size: reference_order_item.size,
-          color: reference_order_item.color
+          size: reference_order_item.size
         }
       }
     }
@@ -38,7 +37,6 @@ RSpec.describe OrderItemsController, type: :controller do
 
           expect(oi.quantity).to eq(reference_order_item.quantity)
           expect(oi.size).to eq(reference_order_item.size)
-          expect(oi.color).to eq(reference_order_item.color)
 
         end
 

@@ -158,7 +158,6 @@ class ConsolidatedInitialMigrations < ActiveRecord::Migration[5.0]
     create_table :order_items do |t|
       t.integer :quantity, null: false
       t.string :size, null: false
-      t.string :color, null: false
       t.references :product, foreign_key: true
       t.references :order, foreign_key: true
       t.timestamps null: false

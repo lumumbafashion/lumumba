@@ -40,11 +40,6 @@
                     </ul>
                   </div>
                 <% end %>
-                <dl class="product__param-list"><dt class="product__param-title">Color</dt>
-                  <dd class="product__param-value colors">
-                    <%= f.collection_radio_buttons :color, [['red', 'Red'] ,['blue', 'Blue']], :first, :last, label: 'select a color please', class: 'product__input'%>
-                  </dd>
-                <br>
                 <dt class="product__param-title">Size</dt>
                   <dd class="product__param-value sizes">
                     <%= f.collection_radio_buttons :size, [['S', 'S'] ,['M', 'M'], ['L', 'L'], ['XL', 'XL']], :first, :last%>
