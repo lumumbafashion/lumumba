@@ -35,6 +35,7 @@ end
 group :development do
   gem 'letter_opener'
   gem 'rubocop'
+  gem 'thin'
   gem 'web-console'
 end
 
