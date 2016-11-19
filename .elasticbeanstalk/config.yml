@@ -1,0 +1,22 @@
+branch-defaults:
+  EB:
+    environment: lumumba-staging
+  master:
+    environment: lumumba-staging
+  develop:
+    environment: lumumba-staging
+  staging:
+    environment: lumumba-staging
+  production:
+    environment: lumumba-staging
+environment-defaults:
+  lumumba-staging:
+    branch: null
+    repository: null
+global:
+  application_name: lumumba-staging
+  default_ec2_keyname: null
+  default_platform: 64bit Amazon Linux 2016.09 v2.2.0 running Ruby 2.3 (Puma)
+  default_region: eu-west-1
+  profile: null
+  sc: git
