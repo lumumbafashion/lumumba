@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-//====== styles for Search input field & search view ======//
+// ====== styles for Search input field & search view ======//
 .bar {
   border-bottom:1px solid gray;
   height:50px;
@@ -263,4 +263,183 @@ form:focus {
 
     }
   }
+}
+
+
+.profile {
+  text-align: center;
+  & input[type=file] {
+    display: inline-block;
+  }
+}
+
+.profile-top {
+  padding: 0 25px;
+}
+
+.profile-details {
+  text-align: center;
+}
+
+.account-avatar-photo {
+  display: block;
+  margin: auto;
+  height: 15em;
+  border-radius: 50%;
+  background-image: url(default-user.png);
+  margin: auto;
+  width: 100%;
+  background-size: contain;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.account-avatar {
+  margin-top: 40px;
+   width: 250px;
+   text-align: center;
+   display: inline-block;
+   border-radius: 50%;
+   height: 250px;
+   overflow: hidden;
+}
+
+#design-info {
+  padding: 0 20px
+}
+
+.login-wrapper {
+  background-color: orange;
+  min-height: 84vh;
+  margin-top: -20px;
+  padding-top: 20%
+}
+
+.login {
+  max-width: 430px;
+  margin: 0 auto 20px;
+  background-color: #fff;
+  position: relative;
+  border-radius: 8px;
+}
+
+.signup {
+  margin-top: -150px;
+}
+
+.login h3 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.social-buttons {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.btn-social {
+    background: #159bc0;
+    border: none;
+    color: #fff;
+    padding: 6px 15px;
+    font-weight: normal;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .btn-google {
+    background: #d73d32;
+  }
+
+  .btn-facebook {
+    background: #3b5998;
+  }
+
+  .btn-twitter {
+    background: #00ACED;
+  }
+
+  a.btn-social .fa, .btn-social .fa {
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    padding-right: 8px;
+  }
+
+.btn-text {
+    padding-left: 10px;
+    display: inline-block;
+    text-align: center;
+}
+
+.divider {
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.or-text {
+    position: relative;
+    position: absolute;
+    top: -12px;
+    padding: 0 10px;
+    background: #fff;
+    display: inline-block;
+    left: 50%;
+    margin-left: -21px;
+}
+
+form#new_user {
+    width: 85%;
+    margin: 0 auto 30px;
+}
+
+.form-fotter {
+  padding: 20px;
+  display: block;
+  font-size: 17px;
+  color: #878797;
+  font-weight: 100;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  text-align: center;
+}
+
+.login-utility {
+  text-align: center;
+  display: block;
+  margin-top: -30px;
+}
+
+.signup-utility {
+  margin-bottom: 40px;
 }

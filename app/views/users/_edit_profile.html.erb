@@ -41,7 +41,7 @@
       <%= f.label :gender, class: "form__label form__label_required" %><br />
       <%= f.select :gender, options_for_select(User::GENDERS), autofocus: true, class: "button button_blue" %>
     </p>
-  </div><br />  
+  </div><br />
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -100,6 +100,6 @@
   <p></p>
 
   <div class="actions">
-    <%= f.submit "Save", class: "button button_blue" %>
+    <%= f.submit "Update Profile", class: "btn btn-large btn-primary" %>
   </div><br />
 <% end %>

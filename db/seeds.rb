@@ -1,10 +1,46 @@
 if Rails.env.development?
 
-  10.times { FactoryGirl.create :article }
-  10.times { FactoryGirl.create :product }
+  # OrderItem.destroy_all
+  # Order.destroy_all
+  # Design.destroy_all
+  # Product.destroy_all
+  # Article.destroy_all
+  # User.destroy_all
+  #
+  # FactoryGirl.create :user, email: 'vemv@vemv.net', password: 'p', password_confirmation: 'p'
+  # user = User.last
+  #
+  # img = "http://wpthemes.icynets.com/centilium/wp-content/uploads/sites/4/2014/09/Fashion-Top-Models-0017.jpg"
+  # 10.times { FactoryGirl.create :article }
+  # 10.times { FactoryGirl.create :product }
+  # 10.times do
+  #    FactoryGirl.create(:design,
+  #     user_id: user.id
+  #   )
+  # end
+  #
+  #   10.times { FactoryGirl.create(:order, user_id: user.id)}
 
-  FactoryGirl.create :user, email: 'vemv@vemv.net', password: 'p', password_confirmation: 'p'
+  user = User.find_by(email: "vemv@vemv.net")
 
+    products = Product.all
+
+    orders = Order.all.each do |order|
+      order.user_id = user.id
+      order.save
+    end
+
+    OrderItem.destroy_all
+
+    20.times do
+      FactoryGirl.create(:order_item, product: products[rand(2..8)], order: orders[rand(2..8)] )
+    end
+    puts "User #{User.count}"
+    puts "Articles #{Article.count}"
+    puts "Products #{Product.count}"
+    puts "Designs #{Design.count}"
+    puts "Order #{Order.count}"
+    puts "Order Items #{OrderItem.count}"
 end
 
 countries = [['BE',	0.21],
