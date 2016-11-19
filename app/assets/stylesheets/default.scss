@@ -5,6 +5,11 @@ body {
   color: rgba(0,0,0,0.87);
 }
 
+.default-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
   color: white;
   background: transparent;

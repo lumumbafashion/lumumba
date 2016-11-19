@@ -206,3 +206,31 @@
     }
   }
 }
+
+.carousel-custom {
+  top: 25%;
+  bottom: unset;
+  background: rgba(0, 0, 0 , 0.1);
+}
+
+.product-detail {
+  margin-bottom: 35px;
+}
+
+.product-title {
+  float: left;
+}
+
+.product-price {
+  float: right;
+}
+
+.product {
+  &:hover {
+    // background-color: black;
+  }
+}
+
+.cart-button {
+  position: relative;
+}
