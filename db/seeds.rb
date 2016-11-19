@@ -1,7 +1,7 @@
 if Rails.env.in?(%w(development staging))
-  10.times { FactoryGirl.create :article }
-  10.times { FactoryGirl.create :product }
-  10.times { FactoryGirl.create :design }
+  5.times { FactoryGirl.create :article }
+  5.times { FactoryGirl.create :product }
+  5.times { FactoryGirl.create :design }
 end
 
 if Rails.env.development?

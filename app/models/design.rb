@@ -35,14 +35,6 @@ class Design < ApplicationRecord
   validates :second_garment_print_design, presence: true
   validates :third_garment_print_design, presence: true
 
-  validates :first_garment_model_design, presence: true
-  validates :second_garment_model_design, presence: true
-  validates :third_garment_model_design, presence: true
-
-  validates :first_garment_technical_design, presence: true
-  validates :second_garment_technical_design, presence: true
-  validates :third_garment_technical_design, presence: true
-
   # description validations:
 
   validates :image_desc, presence: true
