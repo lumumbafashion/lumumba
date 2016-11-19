@@ -19,7 +19,6 @@ gem 'okcomputer', '~> 1.13'
 gem 'omniauth-facebook', '~> 4'
 gem 'omniauth', '~> 1.3' # Use omniauth for oauth
 gem 'pg', '0.18.1' # Use pg as the database for Active Record [Production Environment]
-gem 'puma', '~> 3.6' # Use Puma as the app server
 gem 'rails_admin', '~> 1.1' # gem for administration
 gem 'rollbar', '~> 2.13'
 gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
