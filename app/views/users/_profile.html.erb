@@ -1,30 +1,25 @@
-<div class="columns__content">
-   <h3 class="title_h3">My profile</h3>
-   <!-- Account settings start -->
-   <div class="account">
-     <div class="">
-        <div class="account__avatar">
+<div class="profile">
+  <div class="row">
+    <h3>My profile</h3>
+  </div>
 
-          <% if @user.image_status == "upload" %>
-             <div class="account__avatar-photo" style="background-image: url(<%= asset_path @user.avatar_url %>);"></div>
-          <% elsif @user.image != nil%>
-            <%= image_tag @user.image, class: "account__avatar-photo" %>
-          <% else %>
-            <div class="account__avatar-photo" ></div>
-          <% end %>
-          <br>
-        </div>
-        <div class="account__avatar-edit" id="edit-image">Upload Image</div>
-         <!-- Image Upload-->
-         <div id="upload-image">
-            <%= render "image_upload" %>
-         </div>
-         <!-- End Image Upload -->
-      </div>
-      	<!-- Account settings start -->
-	 	   <%= render "edit_profile" %>
+  <div class="profile-details">
+    <div class="row account-avatar">
+      <% if @user.image != "upload" %>
+      <%= image_tag @user.image, class: "account-avatar-photo" %>
+      <% elsif @user.status == "upload" %>
+      <%= image_tag @user.image, class: "account-avatar-photo" %>
+      <% else %>
+      <div class="account-avatar-photo" ></div>
+      <% end %>
+    </div>
 
-      </form>
-   </div>
-   <!-- Account settings finish -->
+    <div class="row image-upload">
+      <%= render "image_upload" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <%= render "edit_profile" %>
+  </div>
 </div>

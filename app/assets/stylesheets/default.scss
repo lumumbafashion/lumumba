@@ -23,12 +23,20 @@ body {
 
 .custom_nav {
   background-color: transparent;
-  width: 100%;
   top: 0;
   position: absolute;
-  z-index: 10;
+}
+
+.landing {
+  width: 100%;
   box-shadow: none;
+  z-index: 10;
   border: 0;
+}
+
+.static-nav {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  z-index: 1000;
 }
 
 .navbar-custom {

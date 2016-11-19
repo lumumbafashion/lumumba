@@ -28,21 +28,21 @@
     <%= f.label :state, "State/Province/County" %><br />
     <%= f.text_field :state, class: "form__input",placeholder: "Enter a State/Province/County" %>
   </p> <br>
-  
+
   <p class="form__group">
     <%= f.label :country, "Country" %><br />
     <%= f.country_select :country, priority: %w(ES US CA), prompt: 'Please select a Country' %>
-  </p> <br> 
+  </p> <br>
 
   <p class="form__group">
     <%= f.label :zip_code, "Zip/Postal code " %><br>
     <%= f.text_field :zip_code, class: "form__input", placeholder: "Enter a Zip/Postal code"%>
   </p><br>
-  
+
   <p class="form__group">
-    <%= f.submit "Update Shipping Address", class: "button button_blue"%>
+    <%= f.submit "Update Shipping Address", class: "btn btn-large btn-primary"%>
   </p>
 <% end %>
 
 <br>
-<%= link_to 'Back', addresses_path, class: "button button_blue" %>
+<%= link_to 'Back', addresses_path, class: "btn btn-large btn-primary", style: "margin-bottom: 20px"%>
