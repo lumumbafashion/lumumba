@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require cloudinary
 // require cloudinary/processing // Optional - client side processing (resizing and validation)
 //= require_tree .
