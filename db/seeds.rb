@@ -1,10 +1,11 @@
+if Rails.env.in?(%w(development staging))
+  5.times { FactoryGirl.create :article }
+  5.times { FactoryGirl.create :product }
+  5.times { FactoryGirl.create :design }
+end
+
 if Rails.env.development?
-
-  10.times { FactoryGirl.create :article }
-  10.times { FactoryGirl.create :product }
-
   FactoryGirl.create :user, email: 'vemv@vemv.net', password: 'p', password_confirmation: 'p'
-
 end
 
 countries = [['BE',	0.21],

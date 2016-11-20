@@ -15,7 +15,6 @@ describe 'Adding an item to cart', js: true do
 
       # these two are not ideal (because of the `visible: false`), but otherwise I cannot get it to work locally AND in Codeship
       find('#order_item_size_l', visible: false).click
-      find('#order_item_color_blue', visible: false).click
 
       find("#order_item_quantity option[value='#{3}']").select_option
 
@@ -27,7 +26,6 @@ describe 'Adding an item to cart', js: true do
       }.by(1)
 
       order_item = OrderItem.last
-      expect(order_item.color).to eq 'blue'
       expect(order_item.size).to eq 'L'
       expect(order_item.quantity).to eq 3
 
