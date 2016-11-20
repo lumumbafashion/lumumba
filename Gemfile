@@ -10,7 +10,6 @@ gem 'cloudinary', '~> 1.2'
 gem 'coffee-rails', '~> 4.2' # Use CoffeeScript for .coffee assets and views
 gem 'country_select', '~> 2.5'
 gem 'devise', '~> 4.2' # Use devise gem for user authentication
-gem 'figaro', '~> 1.1' # Use figaro gem for environment variables
 gem 'friendly_id', '~> 5.1' # Use friendly_id for user profile urls
 gem 'jquery-rails', '~> 4.2' # Use jquery as the JavaScript library
 gem 'kaminari', '~> 0.17' # Gem for Rails 3+, Sinatra, and Merb Pagination
@@ -19,28 +18,27 @@ gem 'okcomputer', '~> 1.13'
 gem 'omniauth-facebook', '~> 4'
 gem 'omniauth', '~> 1.3' # Use omniauth for oauth
 gem 'pg', '0.18.1' # Use pg as the database for Active Record [Production Environment]
-gem 'puma', '~> 3.6' # Use Puma as the app server
 gem 'rails_admin', '~> 1.1' # gem for administration
 gem 'rollbar', '~> 2.13'
 gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
 gem 'simple_form', '~> 3.3' # Use simple form as default for forms
-gem 'turbolinks', '~> 5' # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby] # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'uglifier', '~> 3' # Use Uglifier as compressor for JavaScript assets
 
-group :production, :staging do
-  gem 'rails_12factor' # NOTE: not needed in Rails 5, apparently
+group :staging, :development, :test do
+  gem "factory_girl_rails"
+  gem 'pry-rails'
 end
 
 group :development, :test do
   gem 'byebug', platform: :mri
-  gem "factory_girl_rails"
-  gem 'pry-rails'
 end
 
 group :development do
   gem 'letter_opener'
   gem 'rubocop'
+  gem 'sql-logging'
+  gem 'thin'
   gem 'web-console'
 end
 
