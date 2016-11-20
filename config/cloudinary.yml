@@ -1,25 +1,19 @@
 ---
+default: &default
+  cloud_name: ENV['CLOUDINARY_CLOUD_NAME']
+  api_key:  ENV['CLOUDINARY_API_KEY']
+  api_secret: ENV['CLOUDINARY_API_SECRET']
+  enhance_image_tag: true
+  static_image_support: true
+
 development:
-  cloud_name: dg7gyrbqf
-  api_key: '173961342875833'
-  api_secret: ZRQwr-T2SF1ZzfwSbwBOQCTcMqE
-  enhance_image_tag: true
-  static_image_support: true
-production:
-  cloud_name: dg7gyrbqf
-  api_key: '173961342875833'
-  api_secret: ZRQwr-T2SF1ZzfwSbwBOQCTcMqE
-  enhance_image_tag: true
-  static_image_support: true
+  <<: *default
+
 test:
-  cloud_name: dg7gyrbqf
-  api_key: '173961342875833'
-  api_secret: ZRQwr-T2SF1ZzfwSbwBOQCTcMqE
-  enhance_image_tag: true
-  static_image_support: true
+  <<: *default
+
 staging:
-  cloud_name: dg7gyrbqf
-  api_key: '173961342875833'
-  api_secret: ZRQwr-T2SF1ZzfwSbwBOQCTcMqE
-  enhance_image_tag: true
-  static_image_support: true
+  <<: *default
+
+production:
+  <<: *default
