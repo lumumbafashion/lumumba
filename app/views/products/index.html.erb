@@ -2,23 +2,27 @@
   <div class="row winners">
     <%= render "latest_products"%>
   </div>
+  <div class="row">
+    <h1 style="text-align: center;">Shop Now</h1>
+  </div>
   <div class="row products">
-    <h1 class="title_h1">Shop Now</h1>
     <div class="row">
     <% @products.each do |product| %>
       <div class="col-sm-6 col-md-4 product">
-        <div class="thumbnail">
+        <div class="thumbnail thumbnail-custom">
           <img src="<%= asset_path product.main_image_url(:product) %>" alt="" />
           <div class="caption">
             <div class="product-detail">
               <span class="product-title">
-                <h5><%= product.name[1...10] %></h5>
+                <a href="/products/<%= product.id %>">
+                  <h5><%= product.name[1...10] %></h5>
+                </a>
               </span>
               <span class="product-price">
                 € <%= product.price %>
               </span>
             </div>
-            <a href="#" class="btn btn-primary cart-button" role="button">ADD TO CART</a>
+            <a href="/products/<%= product.id %>" class="btn btn-primary cart-button" role="button">ADD TO CART</a>
       </div>
     </div>
   </div>

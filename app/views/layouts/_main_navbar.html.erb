@@ -28,8 +28,8 @@
         <li><a href="<%= user_path current_user.slug%>">Profile<span class="badge menu-icon menu-icon-profile"><i class="fa fa-user" aria-hidden="true"></i></span></a></li>
         <li><a href="<%= destroy_user_session_path %>">Logout<span class="badge menu-icon menu-icon-logout"><i class="fa fa-sign-out" aria-hidden="true"></i></span></a></li>
         <% else %>
-        <li><a href="#">Login</a></li>
-        <li><a href="#">Sign Up</a></li>
+        <li><a href="<%= new_user_session_path %>">Login</a></li>
+        <li><a href="<%= new_user_registration_path %>">Sign Up</a></li>
         <% end %>
       </ul>
     </div>

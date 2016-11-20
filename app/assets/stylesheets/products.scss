@@ -213,6 +213,10 @@
   background: rgba(0, 0, 0 , 0.1);
 }
 
+.products {
+  margin-top: 35px;
+}
+
 .product-detail {
   margin-bottom: 35px;
 }
@@ -229,6 +233,10 @@
   &:hover {
     // background-color: black;
   }
+}
+
+.thumbnail-custom>img {
+    width: 100%;
 }
 
 .cart-button {
