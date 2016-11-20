@@ -25,7 +25,7 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
         <li><a href="/orders">Cart<span class="badge menu-icon menu-icon-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span></a></li>
-        <li><a href="<%= user_path current_user.slug%>">Profile<span class="badge menu-icon menu-icon-profile"><i class="fa fa-user" aria-hidden="true"></i></span></a></li>
+        <li><a href="<%= user_path current_user.slug %>">Profile<span class="badge menu-icon menu-icon-profile"><i class="fa fa-user" aria-hidden="true"></i></span></a></li>
         <li><a href="<%= destroy_user_session_path %>">Logout<span class="badge menu-icon menu-icon-logout"><i class="fa fa-sign-out" aria-hidden="true"></i></span></a></li>
         <% else %>
         <li><a href="<%= new_user_session_path %>">Login</a></li>
