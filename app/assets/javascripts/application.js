@@ -27,16 +27,20 @@ $(document).ready(function(){
 
   $('#edit-image').on('click', function(event) {
     $('#upload-image').toggle('show');
-  });  
+  });
 
   $('#new-form').on('click', function(event) {
     $('#new_address_form').toggle('show');
-  });  
+  });
 
 	$('#new-form-display').click(function() {
 	  $('#small-description').hide();
 	  $('#hidden-design-form').show();
-	});	
+	});
+
+	var clock = $('.clock').FlipClock(3600 * 24 * 3, {
+	clockFace: 'DailyCounter',
+	countdown: true
+	});
 
 });
-

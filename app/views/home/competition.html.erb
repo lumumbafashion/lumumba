@@ -1,29 +1,6 @@
-<!-- Latest start -->
-<section class="latest">
-<div class="latest__wrapper">
-  <div class="latest__title">Latest Competition Designs</div>
-  <div class="latest__tile-list">
-      <figure class="latest__tile">
-        <div class="wrapper__image">
-          <!-- <%= image_tag "_MG_6406.jpg", class: "latest__image" %> -->
-          <div class="latest__image"  style="background-image: url(<%= asset_path '_MG_6406.jpg' %>) "></div>
-          <figcaption class="latest__caption"><a class="latest__link" href="">Shana M. - Olive blouse shirt</a></figcaption>
-        </div>
-      </figure>
-      <figure class="latest__tile">
-        <div class="wrapper__image">
-          <!-- <%= image_tag "_MG_6465.jpg", class: "latest__image second" %> -->
-          <div class="latest__image second" style="background-image: url(<%= asset_path '_MG_6465.jpg' %>)" ></div>
-          <figcaption class="latest__caption"><a class="latest__link" href="">Carolyn J. - Cashmere sweater</a></figcaption>
-        </div>
-      </figure>
-  </div>
 
-</div>
-</section>
-<!-- Latest finish -->
 <!-- Call to action start -->
-<div class="call-to-action">
+<!-- <div class="call-to-action">
     <div class="call-to-action__wrapper">
         <div class="call-to-action__title">Join the competition and become a Lumumba designer</div>
         <div class="call-to-action__text">If you win, your designs will become a Lumumba clothing collection. You create amazing designs, we take care of the rest</div>
@@ -31,9 +8,9 @@
             <div class="button__text">Join the competition</div>
         </a>
     </div>
-</div>
+</div> -->
 <!-- Call to action finish -->
-<div class="contestants">
+<!-- <div class="contestants">
     <div class="contestants__wrapper">
         <ul class="contestants__list">
             <% @designs.each do |design| %>
@@ -67,4 +44,36 @@
             <% end %>
         </ul>
     </div>
+</div> -->
+
+<div class="default-container">
+
+  <%= render "home/countdown_timer" %>
+
+  <div class="row contestants">
+    <% @designs.each do |design| %>
+    <div class="col-sm-6 col-md-4 product">
+      <div class="thumbnail">
+        <img src="<%= asset_path design.image_url(:product) %>" alt="" />
+        <div class="caption">
+          <div class="product-detail">
+            <span class="product-title">
+              <a href="<%= user_path design.user.slug %>">
+                <%= design.user.first_name%> <%= design.user.last_name%>
+              </a>
+            </span>
+            <span class="product-price">
+              <%= link_to like_design_path(design), method: :put do %>
+                <i class="fa fa-heart" aria-hidden="true"></i>
+              <% end %>
+            </span>
+          </div>
+            <div class="cart-button">
+              <%= design.get_upvotes.size %>
+            </div>
+    </div>
+  </div>
+  </div>
+  <% end %>
+  </div>
 </div>
