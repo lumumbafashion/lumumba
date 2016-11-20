@@ -13,6 +13,9 @@
     <% else %>
       <div id="addresses">
         <% @addresses.each.with_index do |address, index| %>
+          <% if @order.shipping == address.id %>
+            <strong>This is the currently selected address:</strong>
+          <% end %>
           <% if index > 0 %> <hr/> <% end %>
           <p id="fontSize" > Street: <%= address.street_address %> </p>
           <p id="fontSize" > City: <%= address.city %> </p>
@@ -20,7 +23,7 @@
           <p id="fontSize" > Zip Code: <%= address.zip_code %> </p>
           <p id="fontSize" > Country: <%= address.country %> </p>
           <% if @order.shipping != address.id %>
-            <%= link_to "Select Shipping Address", shipping_path(address.id), method: :post, class: 'btn btn-lg button_orange button_principal' %>
+            <%= link_to "Select this shipping address", shipping_path(address.id), method: :post, class: 'btn btn-lg btn-info button_principal' %>
           <% end %>
         <% end %>
 
@@ -72,7 +75,7 @@
     <hr id="hrC">
 
     <div class="cart_item_lc">
-      <p class="cart_p"><b>Including VAT</b><br>Total:</p>
+      <p class="cart_p"><b>VAT</b><br>Total:</p>
     </div>
     <div class="cart_item_rc" >
       <p class="cart_pr floatright">

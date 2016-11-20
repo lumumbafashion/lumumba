@@ -38,11 +38,10 @@
     <%= f.label :zip_code, "Zip/Postal Code" %><br>
     <%= f.text_field :zip_code, class: "form__input", placeholder: "Enter a Zip/Postal Code"%>
   </p><br>
-  
+
   <p class="form__group">
     <%= f.submit "Add Shipping Address", class: "button button_blue"%>
   </p>
 <% end %>
 
 <br>
-<%= link_to 'Back', request.referer, class: "button button_blue" %>
