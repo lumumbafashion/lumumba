@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
     @order = current_user.orders.friendly.find(params[:id])
     @address = current_user.addresses.find_by(id: @order.shipping)
     if @address.present?
-      @token = Braintree::ClientToken.generate
+      @token = get_generated_token
     else
       flash[:error] = "You need to select a valid shipping address."
       redirect_back(fallback_location: root_path)
@@ -102,6 +102,14 @@ class OrdersController < ApplicationController
 
   def the_checkout_order
     current_user.orders.open.friendly.find(params[:order])
+  end
+
+  def get_generated_token
+    if Rails.env.development?
+      SecureRandom.hex
+    else
+      Braintree::ClientToken.generate
+    end
   end
 
 end
