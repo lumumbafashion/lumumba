@@ -7,6 +7,8 @@ FactoryGirl.define do
     password { SecureRandom.hex }
     gender { User::GENDERS.sample }
     confirmed_at { Time.now + 5.seconds }
+    image { SpecHelpers.any_image }
+    avatar { SpecHelpers.any_image }
 
     trait :admin do
       admin true
