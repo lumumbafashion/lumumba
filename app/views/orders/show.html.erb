@@ -12,13 +12,14 @@
       <%= render 'addresses/new_address_form' %>
     <% else %>
       <div id="addresses">
-        <% @addresses.each do |address| %>
+        <% @addresses.each.with_index do |address, index| %>
+          <% if index > 0 %> <hr/> <% end %>
           <p id="fontSize" > Street: <%= address.street_address %> </p>
           <p id="fontSize" > City: <%= address.city %> </p>
           <p id="fontSize" > State: <%= address.state %> </p>
           <p id="fontSize" > Zip Code: <%= address.zip_code %> </p>
           <p id="fontSize" > Country: <%= address.country %> </p>
-          <% if @order.shipping == nil %>
+          <% if @order.shipping != address.id %>
             <%= link_to "Select Shipping Address", shipping_path(address.id), method: :post, class: 'btn btn-lg button_orange button_principal' %>
           <% end %>
         <% end %>
