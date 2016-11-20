@@ -1,7 +1,8 @@
+<div class="default-container">
 <% if @order.nil? %>
   <p id="fontSize" > You have no existing items for this order </p>
 <% else %>
-  <div class="wrapper">
+  <div class="row" style="margin: 0 25px 25px 25px">
     <div class="width-70">
       <div style="margin-top:40px;"></div>
       <div style="margin-top:60px;"></div>
@@ -60,13 +61,14 @@
           <form id="checkout" method="post" action="/checkout">
             <div id="payment-form"></div>
             <input id="order" name="order" type="tel" value="<%= @order.slug %>" hidden="true">
-            <input type="submit" value="Pay € <%= @order.total_amount %>" class="button button_orange button_principal">
+            <input type="submit" value="Pay € <%= @order.total_amount %>" class="btn btn-lg button_orange button_principal">
           </form>
         <% end %>
       </div>
     </div>
   </div>
 <% end %>
+</div>
 
 
 <script src="https://js.braintreegateway.com/js/braintree-2.27.0.min.js"></script>
