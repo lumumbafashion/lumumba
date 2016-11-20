@@ -1,11 +1,17 @@
+<div class="default-container">
 <%if @order != nil %>
   <% if @order.order_items.empty? %>
-    <p id="fontSize" >You have no items in your cart </p>
+  <div class="order-empty">
+    <p>You have no items in your cart</p>
+  </div>
   <% else %>
   <!-- Cart title section-->
-  <div class="wrapper">
+  <div class="row" style="margin: 0 25px">
     <h1 class="title_h1_cart">Shopping basket</h1>
-    <a href="/orders/<%= @order.id %>" id="floatRight" class="button button_orange">
+  </div>
+
+  <div class="row">
+    <a href="/orders/<%= @order.id %>" id="floatRight" class="btn btn-lg button_orange">
       <div class="button__text">Proceed to Checkout</div>
     </a>
   </div>
@@ -55,13 +61,14 @@
   <div class="clearfix"></div>
   <div id="marginBottom40"></div>
   <!-- Button Section -->
-  <div class="wrapper">
-    <a href="/orders/<%= @order.slug %>" id="floatRight" class="button button_orange">
+  <div class="row" style="margin-bottom: 30px;">
+    <a href="/orders/<%= @order.slug %>" id="floatRight" class="btn btn-lg button_orange">
       <div class="button__text">Proceed to Checkout</div>
     </a>
   </div>
   <!-- End Button Section -->
   <% end %>
 <% else %>
-  <p id="fontSize" >You have no items in your cart </p>
+  <p id="fontSize" class="order-empty">You have no items in your cart </p>
 <% end %>
+</div>

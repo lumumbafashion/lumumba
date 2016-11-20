@@ -1,7 +1,8 @@
-<% if @order.nil? %>
-  <p id="fontSize" > You have no existing items for this order </p>
+<div class="default-container">
+  <% if @order.nil? %>
+  <p id="fontSize" class="order-empty"> You have no existing items for this order </p>
 <% else %>
-<div class="wrapper">
+<div class="row" style="margin: 0 35px">
   <div class="width-70">
     <h1 class="title_h1_checkout">Delivery address</h1>
     <p id="fontSize" >Please select a delivery address below </p>
@@ -18,14 +19,14 @@
           <p id="fontSize" > Zip Code: <%= address.zip_code %> </p>
           <p id="fontSize" > Country: <%= address.country %> </p>
           <% if @order.shipping == nil %>
-            <%= link_to "Select Shipping Address", shipping_path(address.id), method: :post, class: 'button button_orange button_principal' %>
+            <%= link_to "Select Shipping Address", shipping_path(address.id), method: :post, class: 'btn btn-lg button_orange button_principal' %>
           <% end %>
         <% end %>
 
         <div class="clearfix"></div>
         <hr id="hrC">
 
-        <a class="button button_orange button_principal" id="new-form">
+        <a class="btn btn-lg button_orange button_principal" id="new-form">
           <div class="button__text">Add Address</div>
         </a>
       </div>
@@ -83,7 +84,7 @@
 
     <% if @order.shipping != nil %>
     <div style="margin-top:60px;"></div><br>
-    <a href="payment/<%= @order.slug %>" class="button button_orange button_principal">
+    <a href="payment/<%= @order.slug %>" class="btn btn-lg button_orange button_principal">
       <div class="button__text">Checkout</div>
     </a>
     <% end %>
@@ -91,3 +92,4 @@
 
 </div>
 <% end %>
+</div>

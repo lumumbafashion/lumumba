@@ -313,7 +313,16 @@ form:focus {
   background-color: orange;
   min-height: 84vh;
   margin-top: -20px;
-  padding-top: 20%
+  padding-top: 3%;
+  padding-bottom: 2%;
+}
+
+.signup-wrapper {
+  background-color: orange;
+  min-height: 84vh;
+  padding-top: 20%;
+  margin-top: -150px;
+
 }
 
 .login {
@@ -325,7 +334,6 @@ form:focus {
 }
 
 .signup {
-  margin-top: -150px;
 }
 
 .login h3 {
