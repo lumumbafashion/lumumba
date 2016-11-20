@@ -13,14 +13,16 @@
         <p id="fontSize" >Your order overview</p>
 
         <% @order.order_items.each do |item| %>
-          <div class="cart_item_rc" >
-            <p class="cart_pr floatright"><b>€ <%= item.product.price %></b><br>Size: <%= item.size %></p>
+        <div class="row">
+          <div class="col-md-6" >
+            <p class="cart_pr floatright"><b>€ <%= item.product.price %></b><br>Size: <%= item.size %></p><br />
           </div>
-          <div class="cart_item_lc">
+          <div class="col-md-6">
             <p class="cart_p"><b>Quantity: <%= item.quantity %></b><br></p>
           </div>
+        </div>
 
-          <div class="clearfix"></div>
+          <!-- <div class="clearfix"></div> -->
           <hr id="hrC">
         <% end %>
 

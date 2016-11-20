@@ -22,14 +22,17 @@
 
   <% @order.order_items.each do |item| %>
     <!-- Cart Item -->
-    <div class="wrapper">
-        <div class="cart_item_cl">
+    <div class="row">
+      <div class="col-md-6">
+       <p class="cart_p"><b><%= item.product.name %></b></p>
+      </div>
+        <div class="col-md-4">
           <center>
             <input class="input_cart" type="text" placeholder="Qty: <%= item.quantity %>" disabled="true">
             <input class="input_cart" type="text" placeholder="Size: <%= item.size %>" disabled="true">
           </center>
         </div>
-        <div class="cart_item_r" >
+        <div class="col-md-2" >
           <p class="cart_pr">
             <b>€ <%= item.product.price %></b>
             <br>
