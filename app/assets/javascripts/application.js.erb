@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require cloudinary
-// require cloudinary/processing // Optional - client side processing (resizing and validation)
+<% if LumumbaProd::Application.should_use_cloudinary? %>
+	<% require_asset 'cloudinary' %>
+	<% require_asset 'cloudinary/processing' # resizing and validation %>
+<% end %>
 //= require_tree .
 
 $(document).ready(function(){

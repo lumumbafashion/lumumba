@@ -6,7 +6,6 @@ gem 'acts_as_votable', '~> 0.10.0' # Voteable Gem
 gem 'braintree', '~> 2.68'
 gem 'carmen-rails', '~> 1.0'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0' # Add carriewave gem to upload pictures to user profile
-gem 'cloudinary', '~> 1.2'
 gem 'coffee-rails', '~> 4.2' # Use CoffeeScript for .coffee assets and views
 gem 'country_select', '~> 2.5'
 gem 'devise', '~> 4.2' # Use devise gem for user authentication
@@ -24,6 +23,10 @@ gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
 gem 'simple_form', '~> 3.3' # Use simple form as default for forms
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby] # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'uglifier', '~> 3' # Use Uglifier as compressor for JavaScript assets
+
+group :staging, :production do
+  gem 'cloudinary', '~> 1.2'
+end
 
 group :staging, :development, :test do
   gem "factory_girl_rails"

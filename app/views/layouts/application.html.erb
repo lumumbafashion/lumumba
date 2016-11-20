@@ -29,7 +29,7 @@
 
   <body class="">
     <div class="">
-    <%= cloudinary_js_config %>
+    <%= cloudinary_js_config if LumumbaProd::Application.should_use_cloudinary? %>
     <%= render "layouts/main_navbar" %>
        <% flash.each_with_index do |(type, content), index| %>
          <% messages = Array(content) %>
