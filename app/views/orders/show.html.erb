@@ -5,18 +5,21 @@
 <div class="row" style="margin: 0 35px">
   <div class="width-70">
     <h1 class="title_h1_checkout">Delivery address</h1>
-    <p id="fontSize" >Please select a delivery address below </p>
+    <% if @order.shipping.blank? %>
+      <p id="fontSize" >Please select a delivery address below: </p>
+    <% end %>
     <div style="margin-top:40px;"></div>
     <% if @addresses.empty? %>
-      <!-- Render create new address form -->
       <%= render 'addresses/new_address_form' %>
     <% else %>
       <div id="addresses">
         <% @addresses.each.with_index do |address, index| %>
-          <% if @order.shipping == address.id %>
-            <strong>This is the currently selected address:</strong>
-          <% end %>
           <% if index > 0 %> <hr/> <% end %>
+          <% if @order.shipping == address.id %>
+            <p>
+              <strong>This is the currently selected address:</strong>
+            </p>
+          <% end %>
           <p id="fontSize" > Street: <%= address.street_address %> </p>
           <p id="fontSize" > City: <%= address.city %> </p>
           <p id="fontSize" > State: <%= address.state %> </p>
