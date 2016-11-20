@@ -685,8 +685,7 @@
     background-color: #E3762B;
     color: #fff; }
     .button_orange:hover {
-      border: 1px solid #E3762B;
-      color: #E3762B; }
+      color: #000; }
 //
 // .select-element.select-open {
 //   z-index: 2; }
@@ -1805,31 +1804,31 @@
 //     .contact__form {
 //       margin-right: 0; } }
 //
-// .contact__info {
-//   -webkit-box-flex: 1;
-//       -ms-flex: 1 1 30%;
-//           flex: 1 1 30%; }
-//
-// .contact__header {
-//   margin-top: 40px;
-//   text-transform: uppercase;
-//   letter-spacing: .1em; }
-//
-// .contact__header:first-child {
-//   margin-top: 0; }
-//
-// .contact__text {
-//   margin-top: 10px;
-//   font-style: normal; }
-//
-// .contact__social {
-//   margin-top: 10px; }
-//
-// .contact__social-link {
-//   margin-right: 20px;
-//   padding: 2px;
-//   font-size: 18px; }
-//
+.contact__info {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 30%;
+          flex: 1 1 30%; }
+
+.contact__header {
+  margin-top: 40px;
+  text-transform: uppercase;
+  letter-spacing: .1em; }
+
+.contact__header:first-child {
+  margin-top: 0; }
+
+.contact__text {
+  margin-top: 10px;
+  font-style: normal; }
+
+.contact__social {
+  margin-top: 10px; }
+
+.contact__social-link {
+  margin-right: 20px;
+  padding: 2px;
+  font-size: 18px; }
+
 // .checkers {
 //   margin: 80px 0;
 //   position: relative; }

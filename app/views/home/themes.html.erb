@@ -1,76 +1,71 @@
 <div class="default-container">
-<div class="row">
-
+<div class="row" style="margin-bottom: 35px;">
   <div class="row theme-first-row">
-    <div class="col-md-2">
-
-    </div>
-
-    <div class="col-md-4">
-      <div class="media theme-item-body">
-        <div class="">
+    <div class="col-md-5">
+      <div class="media">
+        <div class="media-left">
           <a href="#">
-            <%= image_tag "themes/2.jpg", class: "media-object" %>
+            <%= image_tag "themes/2.jpg", class: "media-object", size: "175x175"%>
           </a>
         </div>
-        <div class="media-body theme-item-desc">
-          <h4 class="media-heading">History</h4>
+        <div class="media-body">
+          <h4 class="media-heading"><a href="/themes">History</a></h4>
           Discover the history of the Banjara. Where do they come from? How is it to live like a nomad?
       </div>
     </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-2">
+
+    </div>
+
+    <div class="col-md-5">
       <div class="media theme-item-body">
-        <div class="">
+        <div class="media-left">
           <a href="#">
-            <%= image_tag "themes/interesting.png", class: "media-object", size: "350x350" %>
+            <%= image_tag "themes/interesting.png", class: "media-object", size: "175x175" %>
           </a>
         </div>
         <div class="media-body theme-item-desc">
-          <h4 class="media-heading">Fun Facts</h4>
+          <h4 class="media-heading"><a href="/themes">Fun Facts</a></h4>
         Fun facts of Banjara culture. Did you know about the mysterious Bhaul? The magic, the dance and more.
       </div>
     </div>
     </div>
-
-    <div class="col-md-2">
-
-    </div>
   </div>
 
   <div class="row theme-second-row">
-    <div class="col-md-4">
+    <div class="col-md-5">
       <div class="media theme-item-body">
-        <div class="">
+        <div class="media-left">
           <a href="#">
-            <%= image_tag "themes/3.jpg", class: "media-object" %>
+            <%= image_tag "themes/3.jpg", class: "media-object", size: "175x175" %>
           </a>
         </div>
         <div class="media-body theme-item-desc">
-          <h4 class="media-heading">Clothing</h4>
+          <h4 class="media-heading"><a href="/themes">Clothing</a></h4>
           Banjara clothing is heavy, complex and colourful. It is their way to connect with the gods and keep bad omens away.
       </div>
     </div>
     </div>
-    <div class="col-md-4 theme-center">
+    <div class="col-md-2 theme-center">
       <div class="media">
         <div class="media-left">
           <a href="#">
-            <%= image_tag "themes/2.jpg", class: "media-object" %>
+            <%= image_tag "themes/2.jpg", class: "media-object", size: "175x175" %>
           </a>
         </div>
     </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
       <div class="media theme-item-body">
-        <div class="">
+        <div class="media-left">
           <a href="#">
-            <%= image_tag "themes/5.jpg", class: "media-object" %>
+            <%= image_tag "themes/5.jpg", class: "media-object", size: "175x175" %>
           </a>
         </div>
         <div class="media-body theme-item-desc">
-          <h4 class="media-heading">Tattoos</h4>
+          <h4 class="media-heading"><a href="/themes">Tattoos</a></h4>
           Did you know the Banjara have a long tradition of tattoos? It's a fascinating read.
       </div>
     </div>
@@ -78,45 +73,43 @@
   </div>
 
   <div class="row theme-third-row">
+    <div class="col-md-5">
+      <div class="media theme-item-body">
+        <div class="media-left">
+          <a href="#">
+            <%= image_tag "themes/6.jpg", class: "media-object", size: "175x175" %>
+          </a>
+        </div>
+        <div class="media-body theme-item-desc">
+          <h4 class="media-heading"><a href="/themes">Jewelry</a></h4>
+          As you might seen by the pictures, the Banjara people love turning simple objects like coins into elaborate jewelry.
+      </div>
+      </div>
+    </div>
+
     <div class="col-md-2">
 
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-5">
       <div class="media theme-item-body">
-        <div class="">
+        <div class="media-left">
           <a href="#">
-            <%= image_tag "themes/6.jpg", class: "media-object" %>
+            <%= image_tag "themes/7.jpg", class: "media-object", size: "175x175" %>
           </a>
         </div>
         <div class="media-body theme-item-desc">
-          <h4 class="media-heading">Jewelry</h4>
-          As you might seen by the pictures, the Banjara people love turning simple objects like coins into elaborate jewelry.
-      </div>
-    </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="media theme-item-body">
-        <div class="">
-          <a href="#">
-            <%= image_tag "themes/7.jpg", class: "media-object" %>
-          </a>
-        </div>
-        <div class="theme-item-desc">
-          <h4 class="media-heading">Embroidery</h4>
+          <h4 class="media-heading"><a href="/themes">Embroidery</a></h4>
           For the Banjaras, clothing can't be perfect as only the gods are perfect. Discover more here.
       </div>
     </div>
     </div>
-
-    <div class="col-md-2">
-
-    </div>
-
   </div>
 </div>
 
-<%= render "home/countdown_timer" %>
+<div style="margin-bottom: 35px;"
+  <%= render "home/countdown_timer" %>
+</div>
+
 
 </div>

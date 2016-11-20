@@ -269,17 +269,17 @@ section#competition {
     border-radius: 100%;
 }
 
-.theme-item-body img {
-    width: 100%;
-}
-
-.theme-item-desc {
-  position: relative;
-  bottom: 85px;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 10px 15px;
-}
+// .theme-item-body img {
+//     // width: 100%;
+// }
+//
+// .theme-item-desc {
+//   position: relative;
+//   bottom: 85px;
+//   background: rgba(0, 0, 0, 0.8);
+//   color: white;
+//   padding: 10px 15px;
+// }
 
 .countdown h5 {
   font-size: 25px;
@@ -316,3 +316,11 @@ section#competition {
       font-size: 15px;
     }
    }
+
+
+
+//Contact
+.contact-top {
+  text-align: center;
+  margin: 0px 25px 35px 25px;
+}
