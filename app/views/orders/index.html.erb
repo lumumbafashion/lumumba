@@ -23,9 +23,6 @@
   <% @order.order_items.each do |item| %>
     <!-- Cart Item -->
     <div class="wrapper">
-        <div class="cart_item_l">
-          <p class="cart_p"><b><%= item.product.name %></b><br><%= item.color %> </p>
-        </div>
         <div class="cart_item_cl">
           <center>
             <input class="input_cart" type="text" placeholder="Qty: <%= item.quantity %>" disabled="true">

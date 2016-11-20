@@ -65,9 +65,6 @@
     <div style="margin-top:20px;"></div>
     <p id="fontSize" >Your order overview</p>
     <% @order.order_items.each do |item| %>
-    <div class="cart_item_lc">
-      <p class="cart_p"><b><%= item.product.name %></b><br>Color: <%= item.color %></p>
-    </div>
     <div class="cart_item_rc" >
       <p class="cart_pr floatright"><b><%= item.product.price %></b><br>Size: <%= item.size %></p>
     </div>
