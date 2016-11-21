@@ -22,28 +22,28 @@
 $(document).ready(function(){
 	$('#new_address_form').hide();
 	$('#upload-image').hide();
-  $('#model-design-view').hide();
+	$('#model-design-view').hide();
 
-  $('#hideshow').on('click', function(event) {
-    $('#model-design-view').toggle('show');
-  });
+	$('#hideshow').on('click', function(event) {
+		$('#model-design-view').toggle('show');
+	});
 
-  $('#edit-image').on('click', function(event) {
-    $('#upload-image').toggle('show');
-  });
+	$('#edit-image').on('click', function(event) {
+		$('#upload-image').toggle('show');
+	});
 
-  $('#new-form').on('click', function(event) {
-    $('#new_address_form').toggle('show');
-  });
+	$('#new-form').on('click', function(event) {
+		$('#new_address_form').toggle('show');
+	});
 
 	$('#new-form-display').click(function() {
-	  $('#small-description').hide();
-	  $('#hidden-design-form').show();
+		$('#small-description').hide();
+		$('#hidden-design-form').show();
 	});
 
 	var clock = $('.clock').FlipClock(3600 * 24 * 10, {
-	clockFace: 'DailyCounter',
-	countdown: true
+		clockFace: 'DailyCounter',
+		countdown: true
 	});
 
 });
@@ -63,22 +63,22 @@ $(document).ready(function(){
 })
 
 $(document).ready(function(){
-  var $navBar = $('.landing');
-  var $navBar2 = $('.scroller');
+	var $navBar = $('.landing');
+	var $navBar2 = $('.scroller');
 
-  $(window).scroll(function () {
-   // get scroll position from top of the page
-   var scrollPos = $(this).scrollTop();
-   if (scrollPos >= 80) {
-     $navBar.addClass('fixer');
-     $navBar2.addClass('scroll-fix');
-     $('.before-scroll').show();
-     $('.alert-scroll-under').hide();
-   } else {
-     $navBar.removeClass('fixer');
-     $('.before-scroll').hide();
-     $('.alert-scroll-under').show();
-     $navBar2.removeClass('scroll-fix');
-   }
- });
+	$(window).scroll(function () {
+		// get scroll position from top of the page
+		var scrollPos = $(this).scrollTop();
+		if (scrollPos >= 80) {
+			$navBar.addClass('fixer');
+			$navBar2.addClass('scroll-fix');
+			$('.before-scroll').show();
+			$('.alert-scroll-under').hide();
+		} else {
+			$navBar.removeClass('fixer');
+			$('.before-scroll').hide();
+			$('.alert-scroll-under').show();
+			$navBar2.removeClass('scroll-fix');
+		}
+	});
 });
