@@ -458,11 +458,7 @@ form#new_user {
 .countdown-wrapper {
   position: relative;
   height: 400px;
-}
-
-.countdown-wrapper img {
-  height: 100%;
-  width: 100%;
+  background: rgb(243, 173, 0);
 }
 
 .countdown {
@@ -472,7 +468,7 @@ form#new_user {
   left: 0px;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(243, 173, 0, 0.8);
   text-align: center;
   color: white;
 }
