@@ -7,7 +7,7 @@
       <input id='lumumba-token-hidden-input' name="stripe_token" hidden="true">
     </form>
     <button class="btn btn-lg btn-primary button_principal button_become_right" id='lumumba-payment-cta'>
-      Pay €<%= @order.total_amount %>
+      Pay € <%= number_with_precision(@order.total_amount, precision: 2) %>
     </button>
   </div>
 <% end %>
