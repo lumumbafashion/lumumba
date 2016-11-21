@@ -5,13 +5,15 @@
 
   <div class="profile-details">
     <div class="row account-avatar">
-      <% if @user.image != "upload" %>
-      <%= image_tag @user.image, class: "account-avatar-photo" %>
-      <% elsif @user.status == "upload" %>
-      <%= image_tag @user.image, class: "account-avatar-photo" %>
-      <% else %>
-      <div class="account-avatar-photo" ></div>
-      <% end %>
+      <div class="col-xs-12">
+        <% if @user.image != "upload" %>
+        <%= image_tag @user.image, class: "account-avatar-photo" %>
+        <% elsif @user.status == "upload" %>
+        <%= image_tag @user.image, class: "account-avatar-photo" %>
+        <% else %>
+        <div class="account-avatar-photo" ></div>
+        <% end %>
+      </div>
     </div>
 
     <div class="row image-upload">
