@@ -81,8 +81,8 @@
         <p class="cart_p"><b>VAT</b><br>Total:</p>
       </div>
 
-
       <% unless @order.total_amount.blank? || @order.total_amount.zero? %>
+
         <div class="cart_item_rc" >
           <p class="cart_pr floatright">
             <b>€ <%= @order.vat %> </b>
@@ -92,14 +92,12 @@
         </div>
 
       <% end %>
-      <div class="clearfix"></div>
-
 
       <% if @order.shipping != nil %>
+      <div style="margin-top:60px;"></div><br>
       <a href="payment/<%= @order.slug %>" class="btn btn-lg button_orange button_principal">
         <div class="button__text">Checkout</div>
       </a>
-      <div style="margin-top:60px;"></div><br>
       <% end %>
     </div>
 

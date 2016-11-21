@@ -5,6 +5,7 @@ class OrderItem < ApplicationRecord
 
   validates :order, presence: true
   validates :product, presence: true
+  validates :size, presence: true
 
   def remove_from_cart!
     ActiveRecord::Base.transaction do
