@@ -55,14 +55,18 @@
           </p>
         </div>
 
-        <% if @order.shipping != nil %>
-          <div style="margin-top:60px;"></div><br>
+        <div class="row">
+          <% if @order.shipping != nil %>
+          <div class="col-md-12">
+            <div style="margin-top:60px;"></div><br>
           <form id="checkout" method="post" action="/checkout">
             <div id="payment-form"></div>
             <input id="order" name="order" type="tel" value="<%= @order.slug %>" hidden="true">
-            <input type="submit" value="Pay € <%= @order.total_amount %>" class="btn btn-lg button_orange button_principal">
+            <input type="submit" value="Pay € <%= @order.total_amount %>" class="btn btn-lg button_orange button_principal button_become_left">
           </form>
-        <% end %>
+        </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
