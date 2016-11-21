@@ -81,8 +81,8 @@
         <p class="cart_p"><b>VAT</b><br>Total:</p>
       </div>
 
-      <% unless @order.total_amount.zero? %>
-        
+      <% unless @order.total_amount.blank? || @order.total_amount.zero? %>
+
         <div class="cart_item_rc" >
           <p class="cart_pr floatright">
             <b>€ <%= @order.vat %> </b>
