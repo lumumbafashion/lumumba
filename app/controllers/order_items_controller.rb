@@ -41,15 +41,15 @@ class OrderItemsController < ApplicationController
         item.save!
         order.save!
       end
-      flash[:notice_html_safe] = true
-      flash[:notice] = "Item successfully added to #{view_context.content_tag(:b){ view_context.link_to("Cart", orders_path) }}."
+      flash[:success_html_safe] = true
+      flash[:success] = "Item successfully added to #{view_context.content_tag(:b){ view_context.link_to("Cart", orders_path) }}."
     rescue => e
       Rollbar.warn e
       Rails.logger.warn e
       if item.size.blank?
-        flash['notice'] = 'Please select a size for your clothing purchase!'
+        flash['warning'] = 'Please select a size for your clothing purchase!'
       else
-        flash['notice'] = 'The item could not be added to your cart. Please try again!'
+        flash['error'] = 'The item could not be added to your cart. Please try again!'
       end
     end
   end
