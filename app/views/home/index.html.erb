@@ -1,18 +1,13 @@
 <%= render "layouts/homepage_image"%>
 
-<div class="row competition" id="competition">
-  <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 competition-left">
-    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 competition-overlay">
-      <h2>Beautiful designs inspired by cultures from around the world</h2>
-      <a href="/products" class="btn btn-lg become-designer-cta button_orange">Shop Now</a>
-    </div>
-    <%= image_tag("home_left.jpg")%>
+<div class="row shop-now" id="shop_now">
+  <div class="shop-now-text">
+    <h5>Street fashion inspired by cultures from around the world. Modern apparel that connects to identities, diversity and traditions.</h5>
+    <a href="/products" class="btn btn-lg become-designer-cta button_orange">Shop Now</a>
   </div>
-  <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 competition-right">
-    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 competition-overlay">
-      <h2>Become a Lumumba designer. Inspire yourself and win the design competition.</h2>
-      <a href="/competition" class="btn btn-lg become-designer-cta button_orange">Join Competition</a>
-    </div>
-    <%= image_tag("homepage_right.jpg")%>
-  </div>
+  <%= image_tag "provagris.jpg"%>
+</div>
+
+<div class="row shop-now">
+  <%= render "countdown_timer"%>
 </div>

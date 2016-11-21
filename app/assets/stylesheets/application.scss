@@ -933,20 +933,24 @@ body {
 }
 
 // Phones
-@media only screen
-  and (min-device-width: 320px)
-  and (max-device-width: 480px)
-  and (max-device-height: 640px)
-  and (-webkit-min-device-pixel-ratio: 2) {
+@media screen
+  and (min-width: 320px)
+  and (max-width: 732px){
   .navbar-brand > img {
     margin: -61px -34px -42px !important;
   }
+
+  .home-container {
+    margin-top: 0px;
+    margin-bottom: 20px
+  }
+
   .homepage-image-text h2 {
-      font-size: 3.5rem;
+      font-size: 2.5rem !important;
     }
 
   .homepage-image-text h5 {
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
   }
 
   .home-cta {
@@ -1089,6 +1093,43 @@ body {
 .competition-left img {
   width: 100%;
   height: 100%;
+}
+
+.shop-now {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.shop-now img {
+  width: 100%;
+  height: 446px;
+  @media screen and (max-width: 412px){
+    height: 220px;
+  }
+}
+
+.shop-now-text {
+  position: absolute;
+  background: rgba(0,0,0,0.5);
+  right: 5%;
+  width: 44%;
+  margin-top: 5%;
+  padding: 25px;
+  text-align: center;
+  @media screen and (max-width: 412px){
+    width: 50%;
+    padding: 5px;
+    right: 2;
+  }
+}
+
+
+.shop-now-text h5 {
+  font-size: 20px;
+  color: white;
+  @media screen and (max-width: 412px){
+    font-size: 13px;
+  }
 }
 
 .competition-right img {

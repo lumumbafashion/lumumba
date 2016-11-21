@@ -290,6 +290,10 @@ section#competition {
 .clock-wrapper {
   position: relative;
   left: 22%;
+  @media screen and (max-width: 412px){
+    display: none;
+  }
+
 }
 
 
@@ -300,7 +304,7 @@ section#competition {
   margin-bottom: 20px;
 }
 
-  @media (min-width: 320px ) and (max-width: 640px ) {
+  @media (min-width: 412px ) and (max-width: 732px ) {
     .flip-clock-wrapper ul {
       width: 44px;
       height: 67px
@@ -311,7 +315,7 @@ section#competition {
     }
 
     .clock-wrapper {
-      left: 7%;
+      left: 10%;
     }
 
     .competition-desc-text {
