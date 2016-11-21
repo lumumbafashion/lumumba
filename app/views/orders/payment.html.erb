@@ -1,83 +1,92 @@
 <div class="default-container">
   <% if @order.nil? %>
-  <p id="fontSize" > You have no existing items for this order </p>
+    <p id="fontSize" > You have no existing items for this order </p>
   <% else %>
-  <div class="row" style="margin: 0 25px 25px 25px">
-    <div class="width-70">
-      <div style="margin-top:40px;"></div>
-      <div style="margin-top:60px;"></div>
+    <div class="row" style="margin: 0 25px 25px 25px">
+      <div class="width-70">
+        <div style="margin-top:40px;"></div>
+        <div style="margin-top:60px;"></div>
 
-      <div>
-        <h1 class="title_h1_checkout">Shopping cart</h1>
-        <div style="margin-top:20px;"></div>
-        <p id="fontSize" >Your order overview</p>
+        <div>
+          <h1 class="title_h1_checkout">Shopping cart</h1>
+          <div style="margin-top:20px;"></div>
+          <p id="fontSize" >Your order overview</p>
 
-        <% @order.order_items.each do |item| %>
-        <div class="row">
-          <div class="col-md-6" >
-            <p class="cart_pr floatright"><b>€ <%= item.product.price %></b><br>Size: <%= item.size %></p><br />
-          </div>
-          <div class="col-md-6">
-            <p class="cart_p"><b>Quantity: <%= item.quantity %></b><br></p>
-          </div>
-        </div>
+          <% @order.order_items.each do |item| %>
+            <div class="row">
+              <div class="col-md-6" >
+                <p class="cart_pr floatright"><b>€ <%= item.product.price %></b><br>Size: <%= item.size %></p><br />
+              </div>
+              <div class="col-md-6">
+                <p class="cart_p"><b>Quantity: <%= item.quantity %></b><br></p>
+              </div>
+            </div>
 
-        <!-- <div class="clearfix"></div> -->
-        <hr id="hrC">
-        <% end %>
-
-        <div class="cart_item_lc">
-          <p class="cart_p"><b>Subtotal:</b></p>
-        </div>
-        <div class="cart_item_rc" >
-          <p class="cart_pr floatright"><b>€ <%= @order.sub_total %></b></p>
-        </div>
-
-        <div class="clearfix"></div>
-        <hr id="hrC">
-
-        <div class="cart_item_lc">
-          <p class="cart_p">Shipping Costs:</p>
-        </div>
-        <div class="cart_item_rc" >
-          <p class="cart_pr floatright"><b>€ <%= @order.shipping_cost %></b></p>
-        </div>
-
-        <div class="clearfix"></div>
-        <hr id="hrC">
-
-        <div class="cart_item_lc">
-          <p class="cart_p"><b>VAT</b><br>Total:</p>
-        </div>
-        <div class="cart_item_rc" >
-          <p class="cart_pr floatright">
-            <b>€ <%= @order.vat %> </b><br>€ <%= number_with_precision(@order.total_amount, precision: 2) %>
-          </p>
-        </div>
-
-        <div class="row">
-          <% if @order.shipping != nil %>
-          <div class="col-md-12">
-            <div style="margin-top:60px;"></div><br>
-            <form id="checkout" method="post" action="/checkout">
-              <div id="payment-form"></div>
-              <input id="order" name="order" type="tel" value="<%= @order.slug %>" hidden="true">
-              <input type="submit" value="Pay € <%= @order.total_amount %>" class="btn btn-lg button_orange button_principal button_become_left">
-            </form>
-          </div>
+            <!-- <div class="clearfix"></div> -->
+            <hr id="hrC">
           <% end %>
+
+          <div class="cart_item_lc">
+            <p class="cart_p"><b>Subtotal:</b></p>
+          </div>
+          <div class="cart_item_rc" >
+            <p class="cart_pr floatright"><b>€ <%= @order.sub_total %></b></p>
+          </div>
+
+          <div class="clearfix"></div>
+          <hr id="hrC">
+
+          <div class="cart_item_lc">
+            <p class="cart_p">Shipping Costs:</p>
+          </div>
+          <div class="cart_item_rc" >
+            <p class="cart_pr floatright"><b>€ <%= @order.shipping_cost %></b></p>
+          </div>
+
+          <div class="clearfix"></div>
+          <hr id="hrC">
+
+          <div class="cart_item_lc">
+            <p class="cart_p"><b>VAT</b><br>Total:</p>
+          </div>
+          <div class="cart_item_rc" >
+            <p class="cart_pr floatright">
+              <b>€ <%= @order.vat %> </b><br>€ <%= number_with_precision(@order.total_amount, precision: 2) %>
+            </p>
+          </div>
+
+          <div class="row">
+            <% if @order.shipping != nil %>
+              <div class="col-md-12">
+                <div style="margin-top:60px;"></div><br>
+                <form id="checkout" class='lumumba-payment-form' method="post" action="<%= checkout_path %>">
+                  <div id="payment-form">
+                  </div>
+                  <input id="order" class='lumumba-token-hidden-input' name="order" value="<%= @order.slug %>" hidden="true">
+                  <input id='lumumba-token-hidden-input' name="stripe_token" hidden="true">
+                </form>
+                <button class="btn btn-lg button_orange button_principal button_become_left" id='lumumba-payment-cta'>
+                  Pay €<%= @order.total_amount %>
+                </button>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+
+    <% if true %>
+      <%= render partial: 'layouts/stripe_checkout', locals: {the_image_path: nil, the_button_selector: '#lumumba-payment-cta', the_form_selector: '#payment-form', the_popup_title: "Pay €#{@order.total_amount_formatted}", the_description: @order.description, the_order: @order} %>
+    <% else %>
+
+      <script src="https://js.braintreegateway.com/js/braintree-2.27.0.min.js"></script>
+      <script>
+      var client_token = "<%= @token %>";
+      braintree.setup(client_token, "dropin", {
+        container: "payment-form"
+      });
+      </script>
+    <% end %>
+
   <% end %>
 </div>
-
-
-<script src="https://js.braintreegateway.com/js/braintree-2.27.0.min.js"></script>
-<script>
-var client_token = "<%= @token %>";
-braintree.setup(client_token, "dropin", {
-  container: "payment-form"
-});
-</script>
