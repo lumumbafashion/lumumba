@@ -1146,3 +1146,11 @@ body {
   padding: 7px 0;
   font-size: 11px;
 }
+
+.homepage-error {
+  position: absolute;
+  top: 80px;
+  background: transparent;
+  z-index: 54;
+  width: 100%;
+}

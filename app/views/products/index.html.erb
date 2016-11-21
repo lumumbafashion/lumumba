@@ -2,10 +2,7 @@
   <div class="row winners">
     <%= render "latest_products"%>
   </div>
-  <div class="row">
-    <h1 style="text-align: center;">Shop Now</h1>
-  </div>
-  <div class="row products">
+  <div class="row products" id="products" style="margin-top: 75px;">
     <div class="row">
       <% @products.each do |product| %>
       <div class="col-sm-6 col-md-4 product">
