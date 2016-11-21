@@ -1,80 +1,62 @@
-<div id="product_show">
-  <!-- Breadcrumbs start -->
-  <div class="breadcrumbs">
+<div class="default-container">
+  <div id="product_show">
+    <!-- Breadcrumbs start -->
+    <div class="breadcrumbs">
       <div class="breadcrumbs__wrapper">
-          <ul class="breadcrumbs__list">
-              <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="javascript:;">Lumumba</a></li>
-              <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="javascript:;">Shop</a></li>
-              <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="javascript:;">Dresses</a></li>
-              <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="javascript:;"><%= @product.name %></a></li>
-          </ul>
+        <ul class="breadcrumbs__list">
+          <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="javascript:;">Lumumba</a></li>
+          <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="javascript:;">Shop</a></li>
+          <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="javascript:;">Dresses</a></li>
+          <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="javascript:;"><%= @product.name %></a></li>
+        </ul>
       </div>
-  </div>
-  <!-- Breadcrumbs finish -->
-  <!-- Product start -->
-  <div class="product">
+    </div>
+    <!-- Breadcrumbs finish -->
+    <!-- Product start -->
+    <div class="product">
       <div class="product__wrapper">
-          <div class="product__gallery">
-              <ul class="product__preview-list">
-                  <li class="product__preview-item" style="background-image: url(<%= asset_path  @product.first_thumbnail_url %>);"></li>
-                  <li class="product__preview-item" style="background-image: url(<%= asset_path @product.second_thumbnail_url %>);"></li>
-                  <li class="product__preview-item" style="background-image: url(<%=  asset_path @product.third_thumbnail_url %>);"></li>
-              </ul>
-              <div class="product__photo-wrapper" style="background-image: url(<%= asset_path @product.main_image_url %>);"></div>
-          </div>
-          <div class="product__info">
-              <div class="product__title"><%= @product.name %></div>
-              <div class="product__price">€ <%= @product.price %></div>
-              <!-- Test form for payment integration -->
-              <%= simple_form_for @order_item, url: product_order_items_path(@product), html: {class: "form "} do |f| %>
-                <% if @order_item.errors.any? %>
-                  <div class="alert fade in alert-danger">
-                    <h2>
-                      <%= pluralize(@order_item.errors.count, "error") %> prohibited
-                      this item from being added to the cart:
-                    </h2>
-                    <ul>
-                      <% @order_item.errors.full_messages.each do |msg| %>
-                        <li><%= msg %></li>
-                      <% end %>
-                    </ul>
-                  </div>
-                <% end %>
-                <dt class="product__param-title">Size</dt>
-                  <dd class="product__param-value sizes">
-                    <%= f.collection_radio_buttons :size, [['S', 'S'] ,['M', 'M'], ['L', 'L'], ['XL', 'XL']], :first, :last%>
-                  </dd>
-                <br>
-                <%= f.input :quantity, label: 'Select an amount' do %>
-                  <%= f.select :quantity, (1..5).each{ |quant| [quant]  },  { :class => 'form__select' }%>
-                <% end %>
-                <%= f.button :submit, class: 'button button_blue', value: 'Add to Cart' %>
-              <% end %>
-              <div class="product__desc-title">Description</div>
-              <p class="product__desc"> <%= @product.description %></p>
-      </div>
-  </div>
-  <!-- Product finish -->
-
-  <!-- Recommended products start -->
-  <hr>
-  <h2>Customers also bought</h2>
-  <div class="catalog">
-      <div class="catalog__wrapper">
-          <ul class="catalog__list">
-              <li class="catalog__item">
-                  <div class="catalog__to-cart">
-                      <svg width="18" height="17" viewBox="0 0 18 17" xmlns="http://www.w3.org/2000/svg">
-                          <title>Group 2</title>
-                          <g stroke="currentColor" fill="none" fill-rule="evenodd">
-                              <path d="M1 5h15.994L13.94 15.747H4.054zM12.632 4.816C12.632 2.708 10.922 1 8.816 1 6.708 1 5 2.708 5 4.816" />
-                          </g>
-                      </svg>
-                  </div>
-                  <a class="catalog__link" href="javascript:;"><img class="catalog__photo" src="<%= '/static/uploads/catalog_1.jpg?v=1466944291438' unless Rails.env.test? %>"> <span class="catalog__name">Maxi Dress - True Black</span> <span class="catalog__price">$49.95</span></a>
-              </li>
+        <div class="product__gallery">
+          <ul class="product__preview-list">
+            <li class="product__preview-item" style="background-image: url(<%= asset_path  @product.first_thumbnail_url %>);"></li>
+            <li class="product__preview-item" style="background-image: url(<%= asset_path @product.second_thumbnail_url %>);"></li>
+            <li class="product__preview-item" style="background-image: url(<%=  asset_path @product.third_thumbnail_url %>);"></li>
           </ul>
+          <div class="product__photo-wrapper" style="background-image: url(<%= asset_path @product.main_image_url %>);"></div>
+        </div>
+        <div class="product__info">
+          <div class="product__title"><%= @product.name %></div>
+          <div class="product__price">€ <%= @product.price %></div>
+          <!-- Test form for payment integration -->
+          <%= simple_form_for @order_item, url: product_order_items_path(@product), html: {class: "form "} do |f| %>
+          <% if @order_item.errors.any? %>
+          <div class="alert fade in alert-danger">
+            <h2>
+              <%= pluralize(@order_item.errors.count, "error") %> prohibited
+              this item from being added to the cart:
+            </h2>
+            <ul>
+              <% @order_item.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+          <% end %>
+          <dl class="product__param-list">
+          <dt class="product__param-title">Size</dt>
+          <dd class="product__param-value sizes">
+            <%= f.collection_radio_buttons :size, [['S', 'S'] ,['M', 'M'], ['L', 'L'], ['XL', 'XL']], :first, :last%>
+          </dd>
+          <br>
+          <%= f.input :quantity, label: 'Select an amount' do %>
+          <%= f.select :quantity, (1..5).each{ |quant| [quant]  },  { :class => 'form__select' }%>
+          <% end %>
+          <%= f.button :submit, class: 'button button_blue', value: 'Add to Cart' %>
+          <% end %>
+          <div class="product__desc-title">Description</div>
+          <p class="product__desc"> <%= @product.description %></p>
+        </div>
       </div>
+      <!-- Product finish -->
+    </div>
+
   </div>
-  <!-- Recommended products finish -->
-</div>

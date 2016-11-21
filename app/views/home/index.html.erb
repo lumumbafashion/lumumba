@@ -1,85 +1,18 @@
-<section id="sign-in" >
+<%= render "layouts/homepage_image"%>
 
-  <div class="image column" style="background-image: url(<%= asset_path 'home.jpg' %>)">
-    <div class="columns__content">
-        <h1 class="">Diverse Multicultural Fashion </h1>
-        <h1 class="">Wear the World.</h1>
+<div class="row competition" id="competition">
+  <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 competition-left">
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 competition-overlay">
+      <h2>Beautiful designs inspired by cultures from around the world</h2>
+      <a href="/products" class="btn btn-lg become-designer-cta button_orange">Shop Now</a>
     </div>
+    <%= image_tag("home_left.jpg")%>
   </div>
-
-  <div class="form column" style="background-image: url(<%= asset_path 'home_bg.png' %>)">
-    <div class="columns__content">
-      <!-- Section tittle -->
-        <h2 class="">Join Lumumba</h1>
-
-      <!-- End Section tittle -->
-      <!-- START Botones sociales -->
-      <a href="/users/auth/facebook">
-        <div class="button-social facebook">
-        <i class="fa fa-facebook" aria-hidden="true"></i> <spam class="social-text">Sign up using Facebook</spam>
-      </div>
-      </a>
-      <a href="/">
-      <div class="button-social twitter">
-        <i class="fa fa-twitter" aria-hidden="true"></i> <spam class="social-text">Sign up using Twitter</spam>
-      </div>
-      </a>
-      <a href="/">
-      <div class="button-social google">
-        <i class="fa fa-google-plus" aria-hidden="true"></i> <spam class="social-text">Sign up using Google+</spam>
-      </div>
-      </a>
-      <!-- END Botones sociales -->
-        <p class="page-description_social">By signing up you agree to the <a href="#"> Terms of Services</a> and <a href="#">Privacy Policy</a> </p>
+  <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 competition-right">
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 competition-overlay">
+      <h2>Become a Lumumba designer. Inspire yourself and win the design competition.</h2>
+      <a href="/competition" class="btn btn-lg become-designer-cta button_orange">Join Competition</a>
     </div>
+    <%= image_tag("homepage_right.jpg")%>
   </div>
-</section>
-
-<section id="collection" style="background-image: url(<%= asset_path 'latest_bg.png' %>)">
-<div class="latest__wrapper">
-  <div class="logos">
-    <div class="right">
-      <%= image_tag "lumumbalogo_white2.png", class: "img_responsive" %>
-
-    </div>
-    <div class="left">
-      <%= image_tag "masabalogo_white.png", class: "img_responsive" %>
-
-    </div>
-
-
-
-  </div>
-  <div class="latest__title">Masaba x Lumumba</div>
-  <div class="latest__tile-list">
-      <figure class="latest__tile">
-        <div class="wrapper__image">
-          <div class="latest__image" style="background-image: url(<%= asset_path '_MG_6406.jpg' %>) "></div>
-          <figcaption class="latest__caption"><a class="latest__link" href="product.html">Shana M. - Olive blouse shirt</a></figcaption>
-        </div>
-      </figure>
-      <figure class="latest__tile">
-        <div class="wrapper__image">
-          <div class="latest__image second" style="background-image: url(<%= asset_path '_MG_6465.jpg' %>)" ></div>
-          <figcaption class="latest__caption"><a class="latest__link" href="product.html">Carolyn J. - Cashmere sweater</a></figcaption>
-        </div>
-      </figure>
-  </div>
-  <div class="bottom">
-    <a class="latest__link button" href="<%= products_path %>">See more products</a>
-  </div>
-
 </div>
-</section>
-
-<section id="competition" style="background-image: url(<%= asset_path 'countdown_bg.png' %>)">
-  <div class="call-to-action">
-    <div class="call-to-action__wrapper">
-        <div class="call-to-action__title">The Competition is Live Now.</div>
-        <div class="call-to-action__text">Want to join the Lumumba tribe? Get inspired by the Banjara and create a street fashion outfit for the competition.</div>
-        <a href="/designs" class="button ">
-            <div class="button__text">Become a Designer</div>
-        </a>
-    </div>
-  </div>
-</section>

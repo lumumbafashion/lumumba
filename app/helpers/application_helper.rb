@@ -6,6 +6,12 @@ module ApplicationHelper
     end
   end
 
+  def design_user_image
+    if image = @design.try(:user).try(:image)
+      asset_path(image)
+    end
+  end
+
   def alert_class_for(flash_type)
     {
       success: 'alert-success',

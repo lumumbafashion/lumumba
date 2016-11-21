@@ -1,67 +1,61 @@
-<%if @order != nil %>
-  <% if @order.order_items.empty? %>
-    <p id="fontSize" >You have no items in your cart </p>
-  <% else %>
-  <!-- Cart title section-->
-  <div class="wrapper">
-    <h1 class="title_h1_cart">Shopping basket</h1>
-    <a href="/orders/<%= @order.id %>" id="floatRight" class="button button_orange">
-      <div class="button__text">Proceed to Checkout</div>
-    </a>
-  </div>
+<div class="default-container">
+  <% if @order.present? %>
+    <% if @order.order_items.empty? %>
+      <div class="order-empty">
+        <p>You have no items in your cart</p>
+      </div>
+    <% else %>
+      <div class="row" style="margin: 0 25px">
+        <h1 class="title_h1_cart">Shopping basket</h1>
+      </div>
 
-  <!-- Cart end title section -->
+      <div id="marginBottom40"></div>
 
-  <div id="marginBottom40"></div>
-
-  <% @order.order_items.each do |item| %>
-    <!-- Cart Item -->
-    <div class="wrapper">
-        <div class="cart_item_l">
-          <p class="cart_p"><b><%= item.product.name %></b><br><%= item.color %> </p>
+      <% @order.order_items.each do |item| %>
+        <div class="row">
+          <div class="col-md-6">
+            <p class="cart_p"><b><%= item.product.name %></b></p>
+          </div>
+          <div class="col-md-4">
+            <center>
+              <input class="input_cart" type="text" placeholder="Qty: <%= item.quantity %>" disabled="true">
+              <input class="input_cart" type="text" placeholder="Size: <%= item.size %>" disabled="true">
+            </center>
+          </div>
+          <div class="col-md-2" >
+            <p class="cart_pr">
+              <b>€ <%= item.product.price %></b>
+              <br>
+              <%= link_to "Remove item", product_order_item_path(item.product, item), :method=> :delete %>
+            </p>
+          </div>
         </div>
-        <div class="cart_item_cl">
-          <center>
-            <input class="input_cart" type="text" placeholder="Qty: <%= item.quantity %>" disabled="true">
-            <input class="input_cart" type="text" placeholder="Size: <%= item.size %>" disabled="true">
-          </center>
-        </div>
-        <div class="cart_item_r" >
-          <p class="cart_pr">
-            <b>€ <%= item.product.price %></b>
-            <br>
-            <%= link_to "Remove item", product_order_item_path(item.product, item), :method=> :delete %>
-          </p>
-        </div>
-    </div>
-    <!-- End Cart Item -->
 
-    <!-- Divider -->
-    <div class="clearfix"></div><hr>
-    <!-- End Divider -->
-  <% end %>
+        <div class="clearfix"></div><hr>
+      <% end %>
 
-  <!-- Resume Section -->
-  <div class="wrapper">
-      <div class="line_total">
-        <p id="floatLeft"><b>Subtotal:</b></p>
-        <p id="floatRight"><b>€ <%= @order.sub_total %></b></p>
+      <!-- Resume Section -->
+      <div class="wrapper">
+        <div class="line_total">
+          <p id="floatLeft"><b>Subtotal:</b></p>
+          <p id="floatRight"><b>€ <%= @order.sub_total %></b></p>
+        </div>
+
+        <div class="clearfix"></div>
+        <div id="marginBottom40"></div>
       </div>
 
       <div class="clearfix"></div>
       <div id="marginBottom40"></div>
-  </div>
 
-  <div class="clearfix"></div>
-  <div id="marginBottom40"></div>
-  <!-- Button Section -->
-  <div class="wrapper">
-    <a href="/orders/<%= @order.slug %>" id="floatRight" class="button button_orange">
-      <div class="button__text">Proceed to Checkout</div>
-    </a>
-  </div>
-  <!-- End Button Section -->
+      <div class="row" style="margin-bottom: 30px;">
+        <a href="/orders/<%= @order.slug %>" id="floatRight" class="btn btn-lg button_orange">
+          <div class="button__text">Proceed to Checkout</div>
+        </a>
+      </div>
+
+    <% end %>
+  <% else %>
+    <p id="fontSize" class="order-empty">You have no items in your cart </p>
   <% end %>
-<% else %>
-  <p id="fontSize" >You have no items in your cart </p>
-<% end %>
+</div>

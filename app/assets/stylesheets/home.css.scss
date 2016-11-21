@@ -264,3 +264,65 @@ section#competition {
   }
 
 }
+
+.theme-center img {
+    border-radius: 100%;
+}
+
+// .theme-item-body img {
+//     // width: 100%;
+// }
+//
+// .theme-item-desc {
+//   position: relative;
+//   bottom: 85px;
+//   background: rgba(0, 0, 0, 0.8);
+//   color: white;
+//   padding: 10px 15px;
+// }
+
+
+.countdown h5 {
+  font-size: 25px;
+  margin-bottom: 26px;
+}
+
+.clock-wrapper {
+  position: relative;
+  left: 22%;
+}
+
+
+
+
+.competition-desc-text {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+  @media (min-width: 320px ) and (max-width: 640px ) {
+    .flip-clock-wrapper ul {
+      width: 44px;
+      height: 67px
+    }
+
+    .flip-clock-wrapper ul li {
+      line-height: 60px;
+    }
+
+    .clock-wrapper {
+      left: 7%;
+    }
+
+    .competition-desc-text {
+      font-size: 15px;
+    }
+   }
+
+
+
+//Contact
+.contact-top {
+  text-align: center;
+  margin: 0px 25px 35px 25px;
+}
