@@ -16,15 +16,17 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-custom" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="/competition">Competition<span class="badge menu-icon menu-icon-competition"><i class="fa fa-trophy" aria-hidden="true"></i></span></a></li>
-        <li><a href="/themes">Themes<span class="badge menu-icon menu-icon-theme"><i class="fa fa-flag" aria-hidden="true"></i></span></a></li>
-        <li><a href="/leaderboard">Leader Board<span class="badge menu-icon menu-icon-leaderboard"><i class="fa fa-star" aria-hidden="true"></i></span></a></li>
-        <li><a href="/products">Shop<span class="badge menu-icon menu-icon-shop"><i class="fa fa-shopping-basket" aria-hidden="true"></i></span></a></li>
-        <li><a href="/articles">Blog<span class="badge menu-icon menu-icon-blog"><i class="fa fa-th" aria-hidden="true"></i></span></a></li>
+        <li><a href="<%= competition_path %>">Competition<span class="badge menu-icon menu-icon-competition"><i class="fa fa-trophy" aria-hidden="true"></i></span></a></li>
+        <li><a href="<%= themes_path %>">Themes<span class="badge menu-icon menu-icon-theme"><i class="fa fa-flag" aria-hidden="true"></i></span></a></li>
+        <li><a href="<%= leaderbord_path %>">Leaderboard<span class="badge menu-icon menu-icon-leaderboard"><i class="fa fa-star" aria-hidden="true"></i></span></a></li>
+        <li><a href="<%= products_path %>">Shop<span class="badge menu-icon menu-icon-shop"><i class="fa fa-shopping-basket" aria-hidden="true"></i></span></a></li>
+        <% if false # disabled for now %>
+          <li><a href="/articles">Blog<span class="badge menu-icon menu-icon-blog"><i class="fa fa-th" aria-hidden="true"></i></span></a></li>
+        <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-        <li><a href="/orders">Cart<span class="badge menu-icon menu-icon-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span></a></li>
+        <li><a href="<%= orders_path %>">Cart<span class="badge menu-icon menu-icon-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span></a></li>
         <li><a href="<%= user_path current_user.slug %>">Profile<span class="badge menu-icon menu-icon-profile"><i class="fa fa-user" aria-hidden="true"></i></span></a></li>
         <li><a href="<%= destroy_user_session_path %>">Logout<span class="badge menu-icon menu-icon-logout"><i class="fa fa-sign-out" aria-hidden="true"></i></span></a></li>
         <% else %>

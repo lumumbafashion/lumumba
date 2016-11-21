@@ -2,7 +2,13 @@ class ArticlesController < ApplicationController
 
   ARTICLES_PER_PAGE = 5
 
-  before_action :authenticate_user!, except: [:index, :show]
+  # "Blog" is temporarily disabled. So we restrict it to admins
+  if true
+    before_action :authenticate_admin!
+  else
+    before_action :authenticate_user!, except: [:index, :show]
+  end
+
 
   def index
     @articles = Article.all.page(params[:page]).per(ARTICLES_PER_PAGE)
