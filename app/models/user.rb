@@ -24,10 +24,14 @@ class User < ApplicationRecord
   validates :gender, inclusion: GENDERS, allow_blank: true
 
   def self.from_omniauth(auth)
+    _email = auth.info.email.presence
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
-      user.email = auth.info.email
+      if _email
+        user.email = _email
+        user.confirmed_at = Time.current
+      end
       user.image = auth.info.image
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
