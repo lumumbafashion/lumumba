@@ -36,6 +36,14 @@ module SpecHelpers
 
   end
 
+  def articles_sign_in
+    if true # "Blog" is temporarily disabled.
+      sign_as :admin
+    else
+      sign_as
+    end
+  end
+
   def expect_unauthorized
     controller_ok 302
     expect(flash[:alert]).to include("You need to sign in or sign up before continuing")

@@ -19,12 +19,12 @@ class OrderItemsController < ApplicationController
     if order_item.order.user_id.present? && (current_user.id == order_item.order.user_id)
       begin
         order_item.remove_from_cart!
-        flash['notice'] = 'Item successfully deleted from Cart.'
+        flash['success'] = 'Item successfully deleted from Cart.'
       rescue
-        flash['notice'] = 'Sorry, we encountered an error while deleting the item from the Cart.'
+        flash['error'] = 'Sorry, we encountered an error while deleting the item from the Cart.'
       end
     else
-      flash['notice'] = 'You do not have the permission to delete this item.'
+      flash['warning'] = 'You do not have the permission to delete this item.'
     end
     redirect_back(fallback_location: root_path)
   end
@@ -40,8 +40,9 @@ class OrderItemsController < ApplicationController
       ActiveRecord::Base.transaction do
         item.save!
         order.save!
-        flash['notice'] = 'Item successfully added to cart.'
       end
+      flash[:notice_html_safe] = true
+      flash[:notice] = "Item successfully added to #{view_context.content_tag(:b){ view_context.link_to("Cart", orders_path) }}."
     rescue => e
       Rollbar.warn e
       Rails.logger.warn e

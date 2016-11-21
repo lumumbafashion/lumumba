@@ -31,8 +31,8 @@ Rails.application.routes.draw do
   get 'users/:id/address/', to: 'addresses#index', as: :user_address
 
   get '/users', to: 'users#index', as: :users_default
-  get '/leaderboard', to: 'home#leaderboard'
-  get '/competition', to: 'home#competition'
+  get '/leaderboard', to: 'home#leaderboard', as: :leaderbord
+  get '/competition', to: 'home#competition', as: :competition
   get '/contact', to: 'home#contact', as: :contact_us
   post '/contact', to: 'home#contact_us', as: :message
   get '/add-to-competition/:id', to: 'designs#add_to_competition'

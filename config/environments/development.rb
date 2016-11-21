@@ -21,11 +21,11 @@ Rails.application.configure do
   config.assets.debug = true
   config.assets.quiet = true
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: Lumumba::Application.host, port: 3000 }
   if File.exists?('/Users/vemv')
     config.action_mailer.delivery_method = :letter_opener
   else
     config.action_mailer.delivery_method = :smtp
-    config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
+    config.action_mailer.smtp_settings = { address: Lumumba::Application.host, port: 1025 }
   end
 end

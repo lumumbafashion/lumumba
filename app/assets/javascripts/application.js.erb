@@ -1,0 +1,84 @@
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
+// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// compiled file. JavaScript code in this file should be added after the last require_* statement.
+//
+// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
+// about supported directives.
+//
+//= require jquery
+//= require jquery_ujs
+//= require bootstrap-sprockets
+//= require_tree .
+<% if Lumumba::Application.should_use_cloudinary? %>
+	<% require_asset 'cloudinary' %>
+	<% require_asset 'cloudinary/processing' # resizing and validation %>
+<% end %>
+
+$(document).ready(function(){
+	$('#new_address_form').hide();
+	$('#upload-image').hide();
+	$('#model-design-view').hide();
+
+	$('#hideshow').on('click', function(event) {
+		$('#model-design-view').toggle('show');
+	});
+
+	$('#edit-image').on('click', function(event) {
+		$('#upload-image').toggle('show');
+	});
+
+	$('#new-form').on('click', function(event) {
+		$('#new_address_form').toggle('show');
+	});
+
+	$('#new-form-display').click(function() {
+		$('#small-description').hide();
+		$('#hidden-design-form').show();
+	});
+
+	var clock = $('.clock').FlipClock(3600 * 24 * 10, {
+		clockFace: 'DailyCounter',
+		countdown: true
+	});
+
+});
+
+$(document).ready(function(){
+
+	$('.left-menu__link').click(function(){
+		var tab_id = $(this).attr('data-tab');
+
+		$('.left-menu__link').removeClass('left-menu__link_selected');
+		$('.columns__content').removeClass('active');
+
+		$(this).addClass('left-menu__link_selected');
+		$("#"+tab_id).addClass('active');
+	})
+
+})
+
+$(document).ready(function(){
+	var $navBar = $('.landing');
+	var $navBar2 = $('.scroller');
+
+	$(window).scroll(function () {
+		// get scroll position from top of the page
+		var scrollPos = $(this).scrollTop();
+		if (scrollPos >= 80) {
+			$navBar.addClass('fixer');
+			$navBar2.addClass('scroll-fix');
+			$('.before-scroll').show();
+			$('.alert-scroll-under').hide();
+		} else {
+			$navBar.removeClass('fixer');
+			$('.before-scroll').hide();
+			$('.alert-scroll-under').show();
+			$navBar2.removeClass('scroll-fix');
+		}
+	});
+});

@@ -24,11 +24,18 @@ class User < ApplicationRecord
   validates :gender, inclusion: GENDERS, allow_blank: true
 
   def self.from_omniauth(auth)
+    _email = auth.info.email.presence
+    _image = auth.info.image.presence
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
-      user.email = auth.info.email
-      user.image = auth.info.image
+      if _email
+        user.email = _email
+        user.confirmed_at = Time.current
+      end
+      if _image
+        user.image = "#{_image}#{'?type=large' if auth.provider.to_s == 'facebook'}"
+      end
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
       user.location = auth.info.location
