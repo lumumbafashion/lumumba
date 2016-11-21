@@ -1,5 +1,5 @@
 <div class="default-container">
-<%if @order != nil %>
+  <%if @order != nil %>
   <% if @order.order_items.empty? %>
   <div class="order-empty">
     <p>You have no items in your cart</p>
@@ -21,41 +21,41 @@
   <div id="marginBottom40"></div>
 
   <% @order.order_items.each do |item| %>
-    <!-- Cart Item -->
-    <div class="row">
-      <div class="col-md-6">
-       <p class="cart_p"><b><%= item.product.name %></b></p>
-      </div>
-        <div class="col-md-4">
-          <center>
-            <input class="input_cart" type="text" placeholder="Qty: <%= item.quantity %>" disabled="true">
-            <input class="input_cart" type="text" placeholder="Size: <%= item.size %>" disabled="true">
-          </center>
-        </div>
-        <div class="col-md-2" >
-          <p class="cart_pr">
-            <b>€ <%= item.product.price %></b>
-            <br>
-            <%= link_to "Remove item", product_order_item_path(item.product, item), :method=> :delete %>
-          </p>
-        </div>
+  <!-- Cart Item -->
+  <div class="row">
+    <div class="col-md-6">
+      <p class="cart_p"><b><%= item.product.name %></b></p>
     </div>
-    <!-- End Cart Item -->
+    <div class="col-md-4">
+      <center>
+        <input class="input_cart" type="text" placeholder="Qty: <%= item.quantity %>" disabled="true">
+        <input class="input_cart" type="text" placeholder="Size: <%= item.size %>" disabled="true">
+      </center>
+    </div>
+    <div class="col-md-2" >
+      <p class="cart_pr">
+        <b>€ <%= item.product.price %></b>
+        <br>
+        <%= link_to "Remove item", product_order_item_path(item.product, item), :method=> :delete %>
+      </p>
+    </div>
+  </div>
+  <!-- End Cart Item -->
 
-    <!-- Divider -->
-    <div class="clearfix"></div><hr>
-    <!-- End Divider -->
+  <!-- Divider -->
+  <div class="clearfix"></div><hr>
+  <!-- End Divider -->
   <% end %>
 
   <!-- Resume Section -->
   <div class="wrapper">
-      <div class="line_total">
-        <p id="floatLeft"><b>Subtotal:</b></p>
-        <p id="floatRight"><b>€ <%= @order.sub_total %></b></p>
-      </div>
+    <div class="line_total">
+      <p id="floatLeft"><b>Subtotal:</b></p>
+      <p id="floatRight"><b>€ <%= @order.sub_total %></b></p>
+    </div>
 
-      <div class="clearfix"></div>
-      <div id="marginBottom40"></div>
+    <div class="clearfix"></div>
+    <div id="marginBottom40"></div>
   </div>
 
   <div class="clearfix"></div>
@@ -68,7 +68,7 @@
   </div>
   <!-- End Button Section -->
   <% end %>
-<% else %>
+  <% else %>
   <p id="fontSize" class="order-empty">You have no items in your cart </p>
-<% end %>
+  <% end %>
 </div>

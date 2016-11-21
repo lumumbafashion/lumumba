@@ -1,50 +1,50 @@
 <div class="default-container">
-    <div class="row">
-      <div class="row contact-top">
-        <h1 class="title_h1">Contact</h1>
-        <p class="page-description">We are happy to talk to you. Feel free to contact us by email, WhatsApp or Facebook. We have a WhatsApp channel, you can text us and we'll add you to our Lumumba group</p>  
-      </div>
-        <!-- Contact start -->
-        <div class="row contact">
-           <div class="col-md-8 contact-form">
-                <%= form_for :message ,url: message_path, html: {class: "form contact__form " } do |f| %>
-                  <% if @message.errors.any? %>
-                    <div id="error_explanation">
-                      <h2>
-                        <%= pluralize(@message.errors.count, "error") %> prohibited
-                        this message from being saved:
-                      </h2>
-                      <ul>
-                        <% @message.errors.full_messages.each do |msg| %>
-                          <li><%= msg %></li>
-                        <% end %>
-                      </ul>
-                    </div>
-                  <% end %>
-                  <p class="form-group">
-                    <%= f.text_field :name, class: "form-control", placeholder: "Enter your name"%>
-                  </p><br>
-
-                  <p class="form-group">
-                    <%= f.email_field :email, class: "form-control", placeholder: "Enter your email" %>
-                  </p><br>
-
-                  <p class="form-group">
-                    <%= f.text_area :message,class: "form-control", placeholder: "Enter your message", rows: "5", cols: "58" %>
-                  </p><br>
-
-                  <p class="form-group">
-                    <%= f.submit "Send", class: "btn btn-lg button_blue"%>
-                  </p>
-                <% end %>
-              </div>
-
-            <div class="col-md-4 contact__info">
-                <div class="contact__header">Main Office</div><address class="contact__text">Cloud Coworking<br>Sardenya 229<br>Barcelona, Spain<br><br>+34 629 075 292</address>
-                <div class="contact__header">Connect with Lumumba</div>
-                <div class="contact__social"><a class="contact__social-link" href="https://www.facebook.com/lumumbafashion/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i> </a><a class="contact__social-link" href="https://twitter.com/lumumbafashion" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i> </a><a class="contact__social-link" href="https://pinterest.com/lumumbafashion" target="_blank"><i class="fa fa-pinterest-p" aria-hidden="true"></i> </a><a class="contact__social-link" href="https://www.instagram.com/lumumbafashion" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></div>
-            </div>
-        </div>
-        <!-- Contact finish -->
+  <div class="row">
+    <div class="row contact-top">
+      <h1 class="title_h1">Contact</h1>
+      <p class="page-description">We are happy to talk to you. Feel free to contact us by email, WhatsApp or Facebook. We have a WhatsApp channel, you can text us and we'll add you to our Lumumba group</p>
     </div>
+    <!-- Contact start -->
+    <div class="row contact">
+      <div class="col-md-8 contact-form">
+        <%= form_for :message ,url: message_path, html: {class: "form contact__form " } do |f| %>
+        <% if @message.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@message.errors.count, "error") %> prohibited
+            this message from being saved:
+          </h2>
+          <ul>
+            <% @message.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <p class="form-group">
+          <%= f.text_field :name, class: "form-control", placeholder: "Enter your name"%>
+        </p><br>
+
+        <p class="form-group">
+          <%= f.email_field :email, class: "form-control", placeholder: "Enter your email" %>
+        </p><br>
+
+        <p class="form-group">
+          <%= f.text_area :message,class: "form-control", placeholder: "Enter your message", rows: "5", cols: "58" %>
+        </p><br>
+
+        <p class="form-group">
+          <%= f.submit "Send", class: "btn btn-lg button_blue"%>
+        </p>
+        <% end %>
+      </div>
+
+      <div class="col-md-4 contact__info">
+        <div class="contact__header">Main Office</div><address class="contact__text">Cloud Coworking<br>Sardenya 229<br>Barcelona, Spain<br><br>+34 629 075 292</address>
+        <div class="contact__header">Connect with Lumumba</div>
+        <div class="contact__social"><a class="contact__social-link" href="https://www.facebook.com/lumumbafashion/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i> </a><a class="contact__social-link" href="https://twitter.com/lumumbafashion" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i> </a><a class="contact__social-link" href="https://pinterest.com/lumumbafashion" target="_blank"><i class="fa fa-pinterest-p" aria-hidden="true"></i> </a><a class="contact__social-link" href="https://www.instagram.com/lumumbafashion" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></div>
+      </div>
+    </div>
+    <!-- Contact finish -->
+  </div>
 </div>
