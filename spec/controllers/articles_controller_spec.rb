@@ -8,13 +8,20 @@ RSpec.describe ArticlesController, type: :controller do
 
       before { expect(Article.count).to eq 0 }
 
-      it 'loads correctly' do
-        get :index
-        controller_ok
+      if true # "Blog" is temporarily disabled.
+        it "is unauthorized" do
+          get :index
+          expect_unauthorized
+        end
+      else
+        it 'loads correctly' do
+          get :index
+          controller_ok
+        end
       end
 
       context "signed in" do
-        sign_as
+        articles_sign_in
         it 'loads correctly too' do
           get :index
           controller_ok
@@ -29,13 +36,20 @@ RSpec.describe ArticlesController, type: :controller do
         3.times { FactoryGirl.create :article }
       end
 
-      it 'loads correctly' do
-        get :index
-        controller_ok
+      if true # "Blog" is temporarily disabled.
+        it "is unauthorized" do
+          get :index
+          expect_unauthorized
+        end
+      else
+        it 'loads correctly' do
+          get :index
+          controller_ok
+        end
       end
 
       context "signed in" do
-        sign_as
+        articles_sign_in
         it 'loads correctly too' do
           get :index
           controller_ok
@@ -50,13 +64,20 @@ RSpec.describe ArticlesController, type: :controller do
         (ArticlesController::ARTICLES_PER_PAGE + 1).times { FactoryGirl.create :article }
       end
 
-      it 'loads correctly' do
-        get :index
-        controller_ok
+      if true # "Blog" is temporarily disabled.
+        it "is unauthorized" do
+          get :index
+          expect_unauthorized
+        end
+      else
+        it 'loads correctly' do
+          get :index
+          controller_ok
+        end
       end
 
       context "signed in" do
-        sign_as
+        articles_sign_in
         it 'loads correctly too' do
           get :index
           controller_ok
@@ -69,7 +90,7 @@ RSpec.describe ArticlesController, type: :controller do
 
   describe '#new' do
     context "signed in" do
-      sign_as
+      articles_sign_in
       it 'loads correctly' do
         get :new
         controller_ok
@@ -97,7 +118,7 @@ RSpec.describe ArticlesController, type: :controller do
     }
 
     context "signed in" do
-      sign_as
+      articles_sign_in
       it "works" do
         expect {
           post :create, article_params
@@ -125,7 +146,7 @@ RSpec.describe ArticlesController, type: :controller do
     let(:article) { FactoryGirl.create :article }
 
     context "signed in" do
-      sign_as
+      articles_sign_in
       it "works" do
         get :show, params: {id: article.id}
         controller_ok
@@ -133,9 +154,16 @@ RSpec.describe ArticlesController, type: :controller do
     end
 
     context "signed out" do
-      it "works too" do
-        get :show, params: {id: article.id}
-        controller_ok
+      if true # "Blog" is temporarily disabled.
+        it "is unauthorized" do
+          get :show, params: {id: article.id}
+          expect_unauthorized
+        end
+      else
+        it "works too" do
+          get :show, params: {id: article.id}
+          controller_ok
+        end
       end
     end
 
@@ -147,7 +175,7 @@ RSpec.describe ArticlesController, type: :controller do
 
     context "signed in" do
 
-      sign_as
+      articles_sign_in
       it "works" do
         expect {
           put :upvote, params: {id: article.id}
@@ -198,7 +226,7 @@ RSpec.describe ArticlesController, type: :controller do
     }
 
     context "signed in" do
-      sign_as
+      articles_sign_in
       it "loads correctly" do
         get :edit, params: article_params
         controller_ok
@@ -243,7 +271,7 @@ RSpec.describe ArticlesController, type: :controller do
 
     context "signed in" do
 
-      sign_as
+      articles_sign_in
 
       it "works" do
         expect {
@@ -295,7 +323,7 @@ RSpec.describe ArticlesController, type: :controller do
 
     context "signed in" do
 
-      sign_as
+      articles_sign_in
       it "works" do
         expect {
           delete :destroy, article_params
