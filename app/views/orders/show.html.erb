@@ -80,11 +80,18 @@
       <div class="cart_item_lc">
         <p class="cart_p"><b>VAT</b><br>Total:</p>
       </div>
-      <div class="cart_item_rc" >
-        <p class="cart_pr floatright">
-          <b>€ <%= @order.vat %> </b><br>€ <%= number_with_precision(@order.total_amount, precision: 2) %>
-        </p>
-      </div>
+
+      <% unless @order.total_amount.zero? %>
+        
+        <div class="cart_item_rc" >
+          <p class="cart_pr floatright">
+            <b>€ <%= @order.vat %> </b>
+            <br>
+            € <%= number_with_precision(@order.total_amount, precision: 2) %>
+          </p>
+        </div>
+
+      <% end %>
 
       <% if @order.shipping != nil %>
       <div style="margin-top:60px;"></div><br>
