@@ -1,0 +1,12 @@
+<% if true %>
+  <%= render partial: 'layouts/stripe_checkout', locals: {the_image_path: nil, the_button_selector: '#lumumba-payment-cta', the_form_selector: '#payment-form', the_popup_title: "Pay €#{@order.total_amount_formatted}", the_description: @order.description, the_order: @order} %>
+<% else %>
+
+  <script src="https://js.braintreegateway.com/js/braintree-2.27.0.min.js"></script>
+  <script>
+  var client_token = "<%= @token %>";
+  braintree.setup(client_token, "dropin", {
+    container: "payment-form"
+  });
+  </script>
+<% end %>
