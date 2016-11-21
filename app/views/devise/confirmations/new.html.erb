@@ -1,5 +1,5 @@
-<div class="row login-wrapper">
-  <div class="row login">
+<div class="login-wrapper">
+  <div class="login">
 <h3>Resend confirmation instructions</h3>
 
 <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
@@ -15,7 +15,7 @@
   </div>
 <% end %>
 </div>
-<div class="row login-utility">
+<div class="login-utility">
   <%= render "devise/shared/links" %>
 </div>
 </div>

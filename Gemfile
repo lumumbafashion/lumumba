@@ -2,13 +2,15 @@ source 'https://rubygems.org'
 
 gem 'rails', '5.0.0.1'
 
-gem 'acts_as_votable', '~> 0.10.0' # Voteable Gem
+gem 'acts_as_votable', '~> 0.10' # Voteable Gem
+gem 'bootstrap-sass', '~> 3.3'
 gem 'braintree', '~> 2.68'
 gem 'carmen-rails', '~> 1.0'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0' # Add carriewave gem to upload pictures to user profile
 gem 'coffee-rails', '~> 4.2' # Use CoffeeScript for .coffee assets and views
 gem 'country_select', '~> 2.5'
 gem 'devise', '~> 4.2' # Use devise gem for user authentication
+gem 'font-awesome-sass', '~> 4.7'
 gem 'friendly_id', '~> 5.1' # Use friendly_id for user profile urls
 gem 'jquery-rails', '~> 4.2' # Use jquery as the JavaScript library
 gem 'kaminari', '~> 0.17' # Gem for Rails 3+, Sinatra, and Merb Pagination
@@ -29,6 +31,7 @@ group :staging, :production do
 end
 
 group :staging, :development, :test do
+  gem "awesome_print"
   gem "factory_girl_rails"
   gem 'pry-rails'
 end

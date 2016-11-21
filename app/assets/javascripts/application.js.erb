@@ -12,11 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sprockets
+//= require_tree .
 <% if Lumumba::Application.should_use_cloudinary? %>
 	<% require_asset 'cloudinary' %>
 	<% require_asset 'cloudinary/processing' # resizing and validation %>
 <% end %>
-//= require_tree .
 
 $(document).ready(function(){
 	$('#new_address_form').hide();
@@ -45,4 +46,39 @@ $(document).ready(function(){
 	countdown: true
 	});
 
+});
+
+$(document).ready(function(){
+
+	$('.left-menu__link').click(function(){
+		var tab_id = $(this).attr('data-tab');
+
+		$('.left-menu__link').removeClass('left-menu__link_selected');
+		$('.columns__content').removeClass('active');
+
+		$(this).addClass('left-menu__link_selected');
+		$("#"+tab_id).addClass('active');
+	})
+
+})
+
+$(document).ready(function(){
+  var $navBar = $('.landing');
+  var $navBar2 = $('.scroller');
+
+  $(window).scroll(function () {
+   // get scroll position from top of the page
+   var scrollPos = $(this).scrollTop();
+   if (scrollPos >= 80) {
+     $navBar.addClass('fixer');
+     $navBar2.addClass('scroll-fix');
+     $('.before-scroll').show();
+     $('.alert-scroll-under').hide();
+   } else {
+     $navBar.removeClass('fixer');
+     $('.before-scroll').hide();
+     $('.alert-scroll-under').show();
+     $navBar2.removeClass('scroll-fix');
+   }
+ });
 });

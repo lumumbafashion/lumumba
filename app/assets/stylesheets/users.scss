@@ -331,6 +331,7 @@ form:focus {
   background-color: #fff;
   position: relative;
   border-radius: 8px;
+  padding-top: 10px;
 }
 
 .signup {
@@ -350,6 +351,7 @@ form:focus {
 .list-unstyled {
     padding-left: 0;
     list-style: none;
+    margin-bottom: 20px !important
 }
 //REmemeber to update login and sign up to use btn custom
 .btn-custom {
@@ -381,7 +383,7 @@ form:focus {
     padding: 6px 15px;
     font-weight: normal;
     text-align: left;
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
   }
 
   .btn-google {
