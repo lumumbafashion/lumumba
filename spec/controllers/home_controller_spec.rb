@@ -17,6 +17,13 @@ RSpec.describe HomeController, type: :controller do
         end
       end
 
+      describe '#robots' do
+        it 'loads correctly' do
+          get :robots
+          controller_ok
+        end
+      end
+
       describe '#leaderboard' do
         context 'when there are no designs' do
           before { expect(Design.count).to eq 0 }

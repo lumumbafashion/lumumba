@@ -46,4 +46,7 @@ Rails.application.routes.draw do
 
   post '/checkout', to: 'orders#checkout', as: :checkout
   post 'orders/shipping/:id', to: 'orders#shipping', as: :shipping
+
+  get 'robots.txt', to: 'home#robots', as: :robots
+
 end
