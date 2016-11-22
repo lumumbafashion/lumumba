@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   include ActionController::HttpAuthentication::Basic::ControllerMethods
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
+  before_action :ensure_production_hostname
+
   def authenticate_admin!
     authenticate_user!
     unless current_user.nil?
@@ -16,6 +18,21 @@ class ApplicationController < ActionController::Base
 
   def not_found
     render file: Rails.root.join('public', '404.html'), layout: false, status: 404
+  end
+
+  def ensure_production_hostname
+    if Rails.env.in?(%w(production staging))
+      hostname = Lumumba::Application.host
+      protocol = Lumumba::Application.protocol
+      begin
+        Rollbar.warn("request.protocol: #{request.protocol}")
+      rescue
+        nil
+      end
+      if request.host != hostname
+        redirect_to "#{protocol}://#{hostname}#{request.fullpath}"
+      end
+    end
   end
 
   private
