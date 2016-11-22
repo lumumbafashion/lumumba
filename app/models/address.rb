@@ -1,5 +1,5 @@
 class Address < ApplicationRecord
-  
+
   belongs_to :user
   has_many :orders
 
@@ -9,5 +9,9 @@ class Address < ApplicationRecord
   validates :state, presence: true
   validates :zip_code, presence: true
   validates :country, presence: true
+
+  def to_s
+    [street_address, city, "#{zip_code} #{state}", country].select(&:present?).join(', ')
+  end
 
 end

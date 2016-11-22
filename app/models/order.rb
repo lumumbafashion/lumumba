@@ -4,6 +4,9 @@ class Order < ApplicationRecord
   SUCCESSFULLY_PAID = 'successfully_paid'
   STRIPE_EUR = 'eur'
 
+  extend FriendlyId
+  friendly_id :order_number, use: :slugged
+
   belongs_to :user
   has_many :order_items
 
@@ -17,9 +20,7 @@ class Order < ApplicationRecord
   end
 
   after_initialize :set_default_values
-
-  extend FriendlyId
-  friendly_id :order_number, use: :slugged
+  after_commit :send_confirmation_email
 
   def set_default_values
     # Only set if total_amount and/or order_number IS NOT set
@@ -28,6 +29,10 @@ class Order < ApplicationRecord
 
   def self.open
     where(status: OPEN)
+  end
+
+  def address
+    Address.find_by_id(self.shipping)
   end
 
   def self.charge_description_for order
@@ -88,6 +93,15 @@ class Order < ApplicationRecord
     Rails.logger.error e
     Rollbar.error e
     return false
+  end
+
+  def send_confirmation_email
+    if successfully_paid?
+      change = previous_changes[:status]
+      if change && (change[1] == SUCCESSFULLY_PAID)
+        UserMailer.purchase_confirmation(self).deliver_now
+      end
+    end
   end
 
 end

@@ -1,0 +1,25 @@
+<table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%; min-width:100%;" width="100%" class="mcnTextContentContainer">
+  <tbody>
+    <tr>
+      <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
+        <h1>Hello <br><b><%= @order.user.first_name %></b>,</h1>
+        <p>Thank you for being one of our first customers. I'm Eduard, Lumumba's founder. We're delighted that you want to join the Lumumba tribe and wear meaningful clothes.</p>
+        <br>
+        <p>Your order details are as follows:</p>
+        <p>Order number: <%= @order.order_number %></p>
+        <% @order.order_items.each do |item| %>
+          <p><%= item.to_s %></p>
+        <% end %>
+        <% if @address %>
+          <p>Address: <%= @address %></p>
+        <% end %>
+        <p>Total: €<%= @order.total_amount_formatted %></p>
+        <br>
+        <p>We are now preparing and packacking your clothes in our office. If there's anything you may want to discuss, you can contact me here: eduard@lumumba.com.</p>
+        <br>
+        <p>Best regards,</p>
+        <p>Eduard</p>
+      </td>
+    </tr>
+  </tbody>
+</table>

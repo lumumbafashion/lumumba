@@ -1,4 +1,5 @@
 class OrderItem < ApplicationRecord
+
   belongs_to :order
   belongs_to :product
 
@@ -15,6 +16,10 @@ class OrderItem < ApplicationRecord
       self.destroy!
     end
     true
+  end
+
+  def to_s
+    "#{product} - Size #{size}. #{"#{quantity} Units" if (quantity || -1) > 1}"
   end
 
 end

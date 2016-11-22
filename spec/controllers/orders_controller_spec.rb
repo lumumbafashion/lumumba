@@ -356,6 +356,11 @@ RSpec.describe OrdersController, type: :controller do
 
           end
 
+          it "results in a confirmation email being sent" do
+            expect(UserMailer).to receive(:purchase_confirmation).with(order).and_call_original
+            post :checkout, params: order_params
+          end
+
         end
 
         context "when the Stripe result is unsuccessful" do
@@ -381,6 +386,11 @@ RSpec.describe OrdersController, type: :controller do
           it "redirects to the path of the order" do
             post :checkout, params: order_params
             expect(response).to redirect_to(order_path(order.id))
+          end
+
+          it "doesn't result in a confirmation email being sent" do
+            expect(UserMailer).to_not receive(:purchase_confirmation)
+            post :checkout, params: order_params
           end
 
         end
