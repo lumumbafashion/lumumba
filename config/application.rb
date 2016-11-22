@@ -11,7 +11,7 @@ module Lumumba
     def self.host env=nil
       case (env.presence || Rails.env)
       when 'production'
-        'lumumba.com'
+        'www.lumumba.com'
       when'staging'
         'lumumba-staging.eu-west-1.elasticbeanstalk.com'
       when 'test', 'development'
