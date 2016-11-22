@@ -1,20 +1,17 @@
 class User < ApplicationRecord
-  # Relationships with other models
+
   has_many :designs
   has_many :articles
   has_many :addresses
   has_many :orders
-  # Use friendly_id to generate user friendly urls
+
   extend FriendlyId
   friendly_id :first_name, use: [:slugged, :finders, :history]
-  # Voting
+
   acts_as_voter
-  # Add image uploader view
   mount_uploader :avatar, AvatarUploader
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :omniauthable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+
+  devise :database_authenticatable, :registerable, :omniauthable, :confirmable, :recoverable, :rememberable, :trackable, :validatable
 
   MALE = 'Male'
   FEMALE = 'Female'
