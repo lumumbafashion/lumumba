@@ -6,7 +6,7 @@ RSpec.describe UserMailer, type: :mailer do
     let(:mail) { UserMailer.contact_us(message) }
 
     it 'renders the headers' do
-      expect(mail.subject).to eq('Message from Contact Us form')
+      expect(mail.subject).to include('Message from Contact Us form')
       expect(mail.to).to eq(['tribe@lumumba.com'])
       expect(mail.from).to eq([message.email])
     end

@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+
   mount_uploader :main_image, AvatarUploader
   mount_uploader :first_thumbnail, AvatarUploader
   mount_uploader :second_thumbnail, AvatarUploader
@@ -9,4 +10,9 @@ class Product < ApplicationRecord
 
   extend FriendlyId
   friendly_id :name, use: :slugged
+
+  def to_s
+    name
+  end
+
 end
