@@ -9,9 +9,30 @@
         If you win, your designs will become a Lumumba clothing collection. You create amazing designs, we take care of the rest
       </div>
       <div class="">
-          <%= link_to "Join the competition", new_user_registration_path, class: "btn btn-lg button_blue"%>
+        <% if user_signed_in? %>
+        <button type="button" class="btn btn-lg button_blue" data-toggle="modal" data-target="#competition_modal">Join the competition</button>
+        <% else %>
+        <%= link_to "Join the competition", new_user_registration_path, class: "btn btn-lg button_blue"%>
+        <% end %>
       </div>
     </div>
   </div>
-  <!-- <img src="http://wpthemes.icynets.com/centilium/wp-content/uploads/sites/4/2014/09/Fashion-Top-Models-0017.jpg" alt="" /> -->
+</div>
+
+<div class="modal fade" id="competition_modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Join the competition</h4>
+      </div>
+      <div class="modal-body">
+        <p>Thanks for signing up, we will notify you once the competition is live on December 1st. If you want to join as an early user, send us an email at tribe@lumumba.com</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
