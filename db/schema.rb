@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 20161119181159) do
     t.string   "main_image",                       null: false
     t.string   "first_thumbnail",                  null: false
     t.string   "second_thumbnail",                 null: false
-    t.string   "third_thumbnail",                  null: false
+    t.string   "third_thumbnail"
     t.decimal  "price",                            null: false
     t.string   "description",                      null: false
     t.string   "designer",                         null: false
