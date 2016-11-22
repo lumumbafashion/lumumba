@@ -253,9 +253,9 @@ RSpec.describe OrderItemsController, type: :controller do
 
       end
 
-      context "when I own an order with status other than 'open'" do
+      context "when I own an paid order" do
 
-        let!(:order){ FactoryGirl.create :order, user: user, status: SecureRandom.hex }
+        let!(:order){ FactoryGirl.create :order, :successfully_paid, user: user }
 
         before { expect(order.status).to_not eq(Order::OPEN) }
 
@@ -263,14 +263,22 @@ RSpec.describe OrderItemsController, type: :controller do
 
           let!(:order_item){ FactoryGirl.create :order_item, order: order }
 
-          it "is possible to delete the orderitem" do
+          it "is not possible to delete the orderitem" do
 
             expect {
               the_action
             }.to_not change {
-              Order.find(order.id) # note that find would throw an exception if the deletion was performed.
+              OrderItem.find(order_item.id) # note that find would throw an exception if the deletion was performed.
             }
 
+          end
+
+          it "doesn't delete the Order" do
+            expect {
+              the_action
+            }.to_not change {
+              Order.find_by_id(order.id).present?
+            }
           end
 
         end

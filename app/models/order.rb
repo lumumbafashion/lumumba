@@ -9,11 +9,11 @@ class Order < ApplicationRecord
 
   validates :user, presence: true
   validates :order_number, presence: true
-  validates :total_amount, presence: true, unless: :open?
-  validates :status, presence: true
-  validates :transaction_id, presence: true, unless: :open?
+  validates :total_amount, presence: true, if: :successfully_paid?
+  validates :status, presence: true, inclusion: [OPEN, SUCCESSFULLY_PAID]
+  validates :transaction_id, presence: true, if: :successfully_paid?
   if false
-    validates :payment_method, presence: true, unless: :open?
+    validates :payment_method, presence: true, if: :successfully_paid?
   end
 
   after_initialize :set_default_values
@@ -40,6 +40,10 @@ class Order < ApplicationRecord
 
   def open?
     self.status == OPEN
+  end
+
+  def successfully_paid?
+    self.status == SUCCESSFULLY_PAID
   end
 
   def total_amount_formatted

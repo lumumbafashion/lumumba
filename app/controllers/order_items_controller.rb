@@ -17,10 +17,15 @@ class OrderItemsController < ApplicationController
   def destroy
     order_item = OrderItem.find(params[:id])
     if order_item.order.user_id.present? && (current_user.id == order_item.order.user_id)
+      success = false
       begin
-        order_item.remove_from_cart!
-        flash['success'] = 'Item successfully deleted from Cart.'
+        success = order_item.remove_from_cart!
       rescue
+        success = false
+      end
+      if success
+        flash['success'] = 'Item successfully deleted from Cart.'
+      else
         flash['error'] = 'Sorry, we encountered an error while deleting the item from the Cart.'
       end
     else

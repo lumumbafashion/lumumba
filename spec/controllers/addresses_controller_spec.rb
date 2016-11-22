@@ -84,7 +84,7 @@ RSpec.describe AddressesController, type: :controller do
       sign_as
       it "works" do
         expect {
-          post :create, address_params
+          post :create, params: address_params
         }.to change {
           Address.count
         }.by(1)
@@ -94,7 +94,7 @@ RSpec.describe AddressesController, type: :controller do
     context "signed out" do
       it "is unauthorized" do
         expect {
-          post :create, address_params
+          post :create, params: address_params
         }.to_not change {
           Address.count
         }
@@ -125,7 +125,7 @@ RSpec.describe AddressesController, type: :controller do
       sign_as
       it "works" do
         expect {
-          put :update, address_params
+          put :update, params: address_params
         }.to change {
           address.reload.updated_at
         }.and change {
@@ -146,7 +146,7 @@ RSpec.describe AddressesController, type: :controller do
       let!(:address){ FactoryGirl.create(:address) }
       it "is unauthorized" do
         expect {
-          put :update, address_params
+          put :update, params: address_params
         }.to_not change {
           Address.pluck :updated_at
         }
@@ -166,7 +166,7 @@ RSpec.describe AddressesController, type: :controller do
       sign_as
       it "works" do
         expect {
-          delete :destroy, address_params
+          delete :destroy, params: address_params
         }.to change {
           Address.count
         }.by(-1)
@@ -178,7 +178,7 @@ RSpec.describe AddressesController, type: :controller do
 
         it "is forbidden" do
           expect {
-            delete :destroy, address_params
+            delete :destroy, params: address_params
           }.to_not change {
             Address.count
           }
@@ -194,7 +194,7 @@ RSpec.describe AddressesController, type: :controller do
 
       it "is forbidden" do
         expect {
-          delete :destroy, address_params
+          delete :destroy, params: address_params
         }.to_not change {
           Address.count
         }
