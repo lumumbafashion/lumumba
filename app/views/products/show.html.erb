@@ -44,7 +44,7 @@
           <dl class="product__param-list">
           <dt class="product__param-title">Size</dt>
           <dd class="product__param-value sizes">
-            <%= f.collection_radio_buttons :size, [['S', 'S'] ,['M', 'M'], ['L', 'L'], ['XL', 'XL']], :first, :last%>
+            <%= f.collection_radio_buttons :size, [['S', 'S'] ,['M', 'M'], ['L', 'L']], :first, :last%>
           </dd>
           <br>
           <%= f.input :quantity, label: 'Select an amount' do %>
