@@ -29,7 +29,7 @@ class HomeController < ApplicationController
   end
 
   def robots
-    headers['Content-Type'] = Mime::TEXT.to_s
+    headers['Content-Type'] = Mime[:text].to_s
     request.format = :txt
     render(
       text: '', # nothing - all content in layout file
