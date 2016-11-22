@@ -32,7 +32,7 @@ class HomeController < ApplicationController
     headers['Content-Type'] = Mime[:text].to_s
     request.format = :txt
     render(
-      text: '', # nothing - all content in layout file
+      plain: '', # nothing - all content in layout file
       layout: '/layouts/robots',
       formats: 'txt')
   end
