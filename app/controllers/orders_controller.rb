@@ -1,12 +1,14 @@
 require 'rubygems'
-require 'braintree'
+require 'braintree' if false
 
 class OrdersController < ApplicationController
 
-  Braintree::Configuration.environment = :sandbox
-  Braintree::Configuration.merchant_id = ENV['BRAINTREE_MERCHANT_ID']
-  Braintree::Configuration.public_key = ENV['BRAINTREE_PUBLIC_KEY']
-  Braintree::Configuration.private_key = ENV['BRAINTREE_PRIVATE_KEY']
+  if false
+    Braintree::Configuration.environment = :sandbox
+    Braintree::Configuration.merchant_id = ENV['BRAINTREE_MERCHANT_ID']
+    Braintree::Configuration.public_key = ENV['BRAINTREE_PUBLIC_KEY']
+    Braintree::Configuration.private_key = ENV['BRAINTREE_PRIVATE_KEY']
+  end
 
   before_action :authenticate_user!
   skip_before_action :verify_authenticity_token
@@ -30,41 +32,11 @@ class OrdersController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  def payment
-    @order = current_user.orders.friendly.find(params[:id])
-    @address = current_user.addresses.find_by(id: @order.shipping)
-    if @address.present?
-      @token = get_generated_token
-    else
-      flash[:error] = "You need to select a valid shipping address."
-      redirect_back(fallback_location: root_path)
-    end
-  end
-
   def checkout
-    order = the_checkout_order
-    nonce = params[:payment_method_nonce]
-
-    result = Braintree::Transaction.sale(
-      amount: order.total_amount_formatted,
-      payment_method_nonce: nonce,
-      options: {
-        submit_for_settlement: true
-      }
-    )
-
-    if result.success? || result.transaction
-      order.transaction_id = result.transaction.id
-      order.payment_method = result.transaction.credit_card_details.card_type
-      order.status = result.transaction.status
-      order.save!
+    if true
+      stripe_checkout_impl
     else
-      user_error_messages = result.errors.map { |error| "Error: #{error.code}: #{error.message}" }
-      internal_error_message = user_error_messages.join('; ')
-      Rollbar.warn internal_error_message
-      Rails.logger.warn internal_error_message
-      flash[:error] = user_error_messages
-      redirect_to payment_path(params['order'])
+      braintree_checkout_impl
     end
   end
 
@@ -109,6 +81,45 @@ class OrdersController < ApplicationController
       SecureRandom.hex
     else
       Braintree::ClientToken.generate
+    end
+  end
+
+  def stripe_checkout_impl
+    order = the_checkout_order
+    stripe_token = params.require :stripe_token
+    if order.charge! stripe_token
+      # Do nothing in particular. Just render view
+    else
+      order.reload # for cleaning up any possibly modified attributes
+      flash[:error] = 'Sorry, there has been a problem with your payment. You have not been charged.'
+      redirect_to order_path(params['order'])
+    end
+  end
+
+  def braintree_checkout_impl
+    order = the_checkout_order
+    nonce = params[:payment_method_nonce]
+
+    result = Braintree::Transaction.sale(
+      amount: order.total_amount_formatted,
+      payment_method_nonce: nonce,
+      options: {
+        submit_for_settlement: true
+      }
+    )
+
+    if result.success? || result.transaction
+      order.transaction_id = result.transaction.id
+      order.payment_method = result.transaction.credit_card_details.card_type
+      order.status = result.transaction.status
+      order.save!
+    else
+      user_error_messages = result.errors.map { |error| "Error: #{error.code}: #{error.message}" }
+      internal_error_message = user_error_messages.join('; ')
+      Rollbar.warn internal_error_message
+      Rails.logger.warn internal_error_message
+      flash[:error] = user_error_messages
+      redirect_to order_path(params['order'])
     end
   end
 

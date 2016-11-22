@@ -1,0 +1,6 @@
+<% if Rails.env.production? && request.host.include?(Lumumba::Application.host) %>
+<% # don't ban anything, so far %>
+<% else %>
+User-Agent: *
+Disallow: /
+<% end %>

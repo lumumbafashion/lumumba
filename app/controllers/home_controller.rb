@@ -28,6 +28,15 @@ class HomeController < ApplicationController
     end
   end
 
+  def robots
+    headers['Content-Type'] = Mime[:text].to_s
+    request.format = :txt
+    render(
+      plain: '', # nothing - all content in layout file
+      layout: '/layouts/robots',
+      formats: 'txt')
+  end
+
   private
 
   def message_params
@@ -37,5 +46,5 @@ class HomeController < ApplicationController
   def new_message
     Message.new(message_params)
   end
-  
+
 end

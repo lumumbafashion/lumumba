@@ -1,106 +1,111 @@
 <div class="default-container">
   <% if @order.nil? %>
-  <p id="fontSize" class="order-empty"> You have no existing items for this order </p>
+    <p id="fontSize" class="order-empty"> You have no existing items for this order </p>
   <% else %>
-  <div class="row" style="margin: 0 35px">
-    <div class="width-70">
-      <h1 class="title_h1_checkout">Delivery address</h1>
-      <% if @order.shipping.blank? %>
-      <p id="fontSize" >Please select a delivery address below: </p>
-      <% end %>
-      <div style="margin-top:40px;"></div>
-      <% if @addresses.empty? %>
-      <%= render 'addresses/new_address_form' %>
-      <% else %>
-      <div id="addresses">
-        <% @addresses.each.with_index do |address, index| %>
-        <% if index > 0 %> <hr/> <% end %>
-        <% if @order.shipping == address.id %>
-        <p>
-          <strong>This is the currently selected address:</strong>
-        </p>
+    <div class="row" style="margin: 0 35px">
+      <div class="width-70">
+        <h1 class="title_h1_checkout">Delivery address</h1>
+        <% if @order.shipping.blank? %>
+        <p id="fontSize" >Please select a delivery address below: </p>
         <% end %>
-        <p id="fontSize" > Street: <%= address.street_address %> </p>
-        <p id="fontSize" > City: <%= address.city %> </p>
-        <p id="fontSize" > State: <%= address.state %> </p>
-        <p id="fontSize" > Zip Code: <%= address.zip_code %> </p>
-        <p id="fontSize" > Country: <%= address.country %> </p>
-        <% if @order.shipping != address.id %>
-        <%= link_to "Select this shipping address", shipping_path(address.id), method: :post, class: 'btn btn-lg btn-info button_principal' %>
+        <div style="margin-top:40px;"></div>
+        <% if @addresses.empty? %>
+        <%= render 'addresses/new_address_form' %>
+        <% else %>
+        <div id="addresses">
+          <% @addresses.each.with_index do |address, index| %>
+          <% if index > 0 %> <hr/> <% end %>
+          <% if @order.shipping == address.id %>
+          <p>
+            <strong>This is the currently selected address:</strong>
+          </p>
+          <% end %>
+          <p id="fontSize" > Street: <%= address.street_address %> </p>
+          <p id="fontSize" > City: <%= address.city %> </p>
+          <p id="fontSize" > State: <%= address.state %> </p>
+          <p id="fontSize" > Zip Code: <%= address.zip_code %> </p>
+          <p id="fontSize" > Country: <%= address.country %> </p>
+          <% if @order.shipping != address.id %>
+          <%= link_to "Select this shipping address", shipping_path(address.id), method: :post, class: 'btn btn-lg btn-info button_principal' %>
+          <% end %>
+          <% end %>
+
+          <div class="clearfix"></div>
+          <hr id="hrC">
+
+          <a class="btn btn-lg button_orange button_principal" id="new-form">
+            <div class="button__text">Add Address</div>
+          </a>
+        </div>
+
+        <div class="container" id="new_address_form" style='display: none'>
+          <%= render 'addresses/new_address_form' %>
+        </div>
         <% end %>
+        <div style="margin-top:60px;"></div>
+      </div>
+
+      <div class="width-30">
+        <h1 class="title_h1_checkout">Shopping cart</h1>
+        <div style="margin-top:20px;"></div>
+        <p id="fontSize" >Your order overview</p>
+        <% @order.order_items.each do |item| %>
+        <div class="cart_item_lc" style='overflow: hidden'>
+          <p class="cart_p"><b> <%= item.product.name %> </b></p>
+        </div>
+        <div class="cart_item_rc" >
+          <p class="cart_pr floatright"><b>€<%= item.product.price %></b><br>Size: <%= item.size %></p>
+        </div>
+
+        <div class="clearfix"></div>
+        <hr id="hrC">
         <% end %>
+        <div class="cart_item_lc">
+          <p class="cart_p"><b>Subtotal:</b></p>
+        </div>
+        <div class="cart_item_rc" >
+          <p class="cart_pr floatright"><b>€<%= @order.sub_total %></b></p>
+        </div>
 
         <div class="clearfix"></div>
         <hr id="hrC">
 
-        <a class="btn btn-lg button_orange button_principal" id="new-form">
-          <div class="button__text">Add Address</div>
-        </a>
-      </div>
-
-      <div class="container" id="new_address_form">
-        <%= render 'addresses/new_address_form' %>
-      </div>
-      <% end %>
-      <div style="margin-top:60px;"></div>
-    </div>
-
-    <div class="width-30">
-      <h1 class="title_h1_checkout">Shopping cart</h1>
-      <div style="margin-top:20px;"></div>
-      <p id="fontSize" >Your order overview</p>
-      <% @order.order_items.each do |item| %>
-      <div class="cart_item_rc" >
-        <p class="cart_pr floatright"><b>Price: <%= item.product.price %></b><br>Size: <%= item.size %></p>
-      </div>
-
-      <div class="clearfix"></div>
-      <hr id="hrC">
-      <% end %>
-      <div class="cart_item_lc">
-        <p class="cart_p"><b>Subtotal:</b></p>
-      </div>
-      <div class="cart_item_rc" >
-        <p class="cart_pr floatright"><b>€ <%= @order.sub_total %></b></p>
-      </div>
-
-      <div class="clearfix"></div>
-      <hr id="hrC">
-
-      <div class="cart_item_lc">
-        <p class="cart_p">Shipping Costs:</p>
-      </div>
-      <div class="cart_item_rc" >
-        <p class="cart_pr floatright"><b>€ <%= @order.shipping_cost %></b></p>
-      </div>
-
-      <div class="clearfix"></div>
-      <hr id="hrC">
-
-      <div class="cart_item_lc">
-        <p class="cart_p"><b>VAT</b><br>Total:</p>
-      </div>
-
-      <% unless @order.total_amount.blank? || @order.total_amount.zero? %>
-
+        <div class="cart_item_lc">
+          <p class="cart_p">Shipping Costs:</p>
+        </div>
         <div class="cart_item_rc" >
-          <p class="cart_pr floatright">
-            <b>€ <%= @order.vat %> </b>
-            <br>
-            € <%= number_with_precision(@order.total_amount, precision: 2) %>
-          </p>
+          <p class="cart_pr floatright"><b>€<%= @order.shipping_cost %></b></p>
         </div>
 
-      <% end %>
+        <div class="clearfix"></div>
+        <hr id="hrC">
 
-      <% if @order.shipping != nil %>
-      <div style="margin-top:60px;"></div><br>
-      <a href="payment/<%= @order.slug %>" class="btn btn-lg button_orange button_principal">
-        <div class="button__text">Checkout</div>
-      </a>
-      <% end %>
+        <% unless @order.total_amount.blank? || @order.total_amount.zero? %>
+
+          <div class="cart_item_lc">
+            <p class="cart_p"><b>VAT</b><br>Total:</p>
+          </div>
+
+          <div class="cart_item_rc" >
+            <p class="cart_pr floatright">
+              <b>€<%= number_with_precision(@order.vat, precision: 2) %> </b>
+              <br>
+              €<%= number_with_precision(@order.total_amount, precision: 2) %>
+            </p>
+          </div>
+
+          <div class="clearfix"></div>
+          <hr id="hrC">
+
+          <%= render 'payment_form' %>
+    
+          <%= render 'payment_form_js' %>
+
+        <% end %>
+
+      </div>
+
     </div>
 
-  </div>
   <% end %>
 </div>

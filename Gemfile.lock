@@ -305,6 +305,8 @@ GEM
       sprockets (>= 3.0.0)
     sql-logging (3.0.8)
       rails (> 3.0.0)
+    stripe (1.56.2)
+      rest-client (>= 1.4, < 4.0)
     thin (1.7.0)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -379,6 +381,7 @@ DEPENDENCIES
   simple_form (~> 3.3)
   simplecov (~> 0.12)
   sql-logging
+  stripe (~> 1.56)
   thin
   tzinfo-data
   uglifier (~> 3)

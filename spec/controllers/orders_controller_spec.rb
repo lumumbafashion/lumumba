@@ -65,44 +65,80 @@ RSpec.describe OrdersController, type: :controller do
 
       sign_as
 
-      [Order::OPEN, SecureRandom.hex].each do |status|
+      describe "for the status value '#{Order::OPEN}'" do
 
-        describe "for the status value '#{status}'" do
+        let!(:order){ FactoryGirl.create :order, user: user, status: Order::OPEN }
 
-          let!(:order){ FactoryGirl.create :order, user: user, status: status }
+        context "when I have no addresses" do
 
-          context "when I have no addresses" do
+          before { expect(user.addresses.count).to be_zero }
 
-            before { expect(user.addresses.count).to be_zero }
-
-            it "loads correctly" do
-              the_action
-              controller_ok
-            end
-
+          it "loads correctly" do
+            the_action
+            controller_ok
           end
 
-          context "when I have 1 address" do
+        end
 
-            let!(:address){ FactoryGirl.create :address, user: user }
+        context "when I have 1 address" do
 
-            it "loads correctly" do
-              the_action
-              controller_ok
-            end
+          let!(:address){ FactoryGirl.create :address, user: user }
 
+          it "loads correctly" do
+            the_action
+            controller_ok
           end
 
-          context "when I have 2 addresses" do
+        end
 
-            let!(:address_1){ FactoryGirl.create :address, user: user }
-            let!(:address_2){ FactoryGirl.create :address, user: user }
+        context "when I have 2 addresses" do
 
-            it "loads correctly" do
-              the_action
-              controller_ok
-            end
+          let!(:address_1){ FactoryGirl.create :address, user: user }
+          let!(:address_2){ FactoryGirl.create :address, user: user }
 
+          it "loads correctly" do
+            the_action
+            controller_ok
+          end
+
+        end
+
+      end
+
+      describe "for the status value '#{Order::SUCCESSFULLY_PAID}'" do
+
+        let!(:order){ FactoryGirl.create :order, :successfully_paid, user: user }
+
+        context "when I have no addresses" do
+
+          before { expect(user.addresses.count).to be_zero }
+
+          it "loads correctly" do
+            the_action
+            controller_ok
+          end
+
+        end
+
+        context "when I have 1 address" do
+
+          let!(:address){ FactoryGirl.create :address, user: user }
+
+          it "loads correctly" do
+            the_action
+            controller_ok
+          end
+
+        end
+
+        context "when I have 2 addresses" do
+
+          let!(:address_1){ FactoryGirl.create :address, user: user }
+          let!(:address_2){ FactoryGirl.create :address, user: user }
+
+          it "loads correctly" do
+            the_action
+            controller_ok
           end
 
         end
@@ -161,9 +197,9 @@ RSpec.describe OrdersController, type: :controller do
 
       end
 
-      context "when I have an order, but it's not open" do
+      context "when I have a paid order" do
 
-        let!(:order){ FactoryGirl.create :order, user: user, status: SecureRandom.hex }
+        let!(:order){ FactoryGirl.create :order, :successfully_paid, user: user }
         before { expect(user.orders.open.count).to eq 0 }
 
         it "returns 404" do
@@ -257,119 +293,13 @@ RSpec.describe OrdersController, type: :controller do
 
   end
 
-  describe '#payment' do
-
-    def the_action
-      post :payment, params: {id: order.id}
-    end
-
-    context "signed in" do
-
-      sign_as
-
-      let!(:address){ FactoryGirl.create :address, user: user }
-
-      describe "when I own an open order, with a shipping address" do
-
-        let!(:order){ FactoryGirl.create :order, user: user, shipping: address.id }
-        before { expect(user.orders.open.count).to eq 1 }
-
-        it "loads correctly" do
-          expect(Braintree::ClientToken).to receive(:generate).and_return(SecureRandom.hex)
-          the_action
-          controller_ok
-        end
-
-      end
-
-      describe "when I own an open order, with a shipping address, in any status" do
-
-        let!(:order){ FactoryGirl.create :order, user: user, shipping: address.id, status: SecureRandom.hex() }
-        before { expect(user.orders.open.count).to eq 0 }
-        before { expect(user.orders.count).to eq 1 }
-
-        it "loads correctly" do
-          expect(Braintree::ClientToken).to receive(:generate).and_return(SecureRandom.hex)
-          the_action
-          controller_ok
-        end
-
-      end
-
-      describe "when I own an open order, without a shipping address" do
-
-        let!(:order){ FactoryGirl.create :order, user: user }
-        before { expect(order.shipping).to be_nil }
-        before { expect(user.orders.open.count).to eq 1 }
-
-        it "returns 302" do
-          the_action
-          controller_ok 302
-          expect(response).to redirect_to(root_path)
-          expect(flash[:error]).to include("You need to select a valid shipping address")
-        end
-
-        it "doesn't call Braintree::ClientToken.generate" do
-          expect(Braintree::ClientToken).to_not receive(:generate)
-          the_action
-        end
-
-      end
-
-      describe "when I own an open order, without a shipping address, in any status" do
-
-        let!(:order){ FactoryGirl.create :order, user: user, status: SecureRandom.hex() }
-        before { expect(order.shipping).to be_nil }
-        before { expect(user.orders.open.count).to eq 0 }
-        before { expect(user.orders.count).to eq 1 }
-
-        it "returns 302" do
-          the_action
-          controller_ok 302
-          expect(response).to redirect_to(root_path)
-          expect(flash[:error]).to include("You need to select a valid shipping address")
-        end
-
-        it "doesn't call Braintree::ClientToken.generate" do
-          expect(Braintree::ClientToken).to_not receive(:generate)
-          the_action
-        end
-
-      end
-
-      describe "attempting to pay an Order I don't own" do
-
-        let!(:order){ FactoryGirl.create :order }
-
-        it "returns 404" do
-          the_action
-          controller_ok 404
-        end
-
-      end
-
-    end
-
-    context "signed out" do
-
-      let!(:order){ FactoryGirl.create :order }
-
-      it "is unauthorized" do
-        the_action
-        expect_unauthorized
-      end
-
-    end
-
-  end
-
   describe '#checkout' do
 
     let(:payment_method_nonce){ SecureRandom.hex }
     let(:order_params){
       {
         order: order.id,
-        payment_method_nonce: payment_method_nonce
+        stripe_token: payment_method_nonce
       }
     }
 
@@ -380,12 +310,13 @@ RSpec.describe OrdersController, type: :controller do
       describe "paying an open order I own" do
 
         let(:order){ FactoryGirl.create :order, user: user }
-        let(:total_amount_formatted){ SecureRandom.hex }
+        let(:total_amount_in_cents){ order.total_amount_in_cents }
+        let(:description){ order.description }
         let(:result){ double }
 
         let(:transaction_id) { SecureRandom.hex }
         let(:payment_method) { SecureRandom.hex }
-        let(:transaction_status) { SecureRandom.hex }
+        let(:transaction_status) { Order::SUCCESSFULLY_PAID }
         let(:transaction) do
           double({
             id: transaction_id,
@@ -395,22 +326,22 @@ RSpec.describe OrdersController, type: :controller do
         end
 
         before do
-          expect(order).to receive(:total_amount_formatted).and_return(total_amount_formatted)
           expect(controller).to receive(:the_checkout_order).and_return(order)
-          expect(Braintree::Transaction).to receive(:sale).with({
-            amount: total_amount_formatted,
-            payment_method_nonce: payment_method_nonce,
-            options: {
-              submit_for_settlement: true
-            }
-          }).and_return(result)
         end
 
-        context "when the Braintree result is a `success?`" do
+        describe "Stripe success" do
 
           before do
-            expect(result).to receive(:success?).and_return true
-            expect(result).to receive(:transaction).at_least(3).times.and_return transaction
+            expect(Stripe::Charge).to receive(:create).with({
+              amount: total_amount_in_cents,
+              currency: Order::STRIPE_EUR,
+              source: payment_method_nonce,
+              description: description
+            }).and_return(result)
+          end
+
+          before do
+            expect(result).to receive(:id).at_least(1).times.and_return transaction_id
           end
 
           it "updates the order" do
@@ -420,44 +351,27 @@ RSpec.describe OrdersController, type: :controller do
             }.to change {
               order.reload.transaction_id
             }.to(transaction_id).and change {
-              order.reload.payment_method
-            }.to(payment_method).and change {
               order.reload.status
             }.to(transaction_status)
 
           end
 
-        end
-
-        context "when the Braintree result is not a `success?`, but it returns a `transaction`" do
-
-          before do
-            expect(result).to receive(:success?).and_return false
-            expect(result).to receive(:transaction).at_least(3).times.and_return transaction
-          end
-
-          it "updates the order" do
-
-            expect {
-              post :checkout, params: order_params
-            }.to change {
-              order.reload.transaction_id
-            }.to(transaction_id).and change {
-              order.reload.payment_method
-            }.to(payment_method).and change {
-              order.reload.status
-            }.to(transaction_status)
-
+          it "results in a confirmation email being sent" do
+            expect(UserMailer).to receive(:purchase_confirmation).with(order).and_call_original
+            post :checkout, params: order_params
           end
 
         end
 
-        context "when the Braintree result is unsuccessful" do
+        context "when the Stripe result is unsuccessful" do
 
           before do
-            expect(result).to receive(:success?).and_return false
-            expect(result).to receive(:transaction).and_return false
-            expect(result).to receive(:errors).and_return []
+            expect(Stripe::Charge).to receive(:create).with({
+              amount: total_amount_in_cents,
+              currency: Order::STRIPE_EUR,
+              source: payment_method_nonce,
+              description: description
+            }).and_raise(Stripe::CardError.new('oops', 'oops', 'oops'))
           end
 
           it "doesn't update the order" do
@@ -469,18 +383,23 @@ RSpec.describe OrdersController, type: :controller do
             controller_ok(302)
           end
 
-          it "redirects to the payment path of the order" do
+          it "redirects to the path of the order" do
             post :checkout, params: order_params
-            expect(response).to redirect_to(payment_path(order.id))
+            expect(response).to redirect_to(order_path(order.id))
+          end
+
+          it "doesn't result in a confirmation email being sent" do
+            expect(UserMailer).to_not receive(:purchase_confirmation)
+            post :checkout, params: order_params
           end
 
         end
 
       end
 
-      describe "attempting to pay an order I own, in an status other than '#{Order::OPEN}'" do
+      describe "attempting to pay an order I own, which is already paid" do
 
-        let(:order){ FactoryGirl.create :order, user: user, status: SecureRandom.hex  }
+        let!(:order){ FactoryGirl.create :order, :successfully_paid, user: user }
 
         it "doesn't update the order" do
           expect {

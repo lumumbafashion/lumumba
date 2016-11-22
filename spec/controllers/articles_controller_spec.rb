@@ -121,7 +121,7 @@ RSpec.describe ArticlesController, type: :controller do
       articles_sign_in
       it "works" do
         expect {
-          post :create, article_params
+          post :create, params: article_params
         }.to change {
           Article.count
         }.by(1)
@@ -131,7 +131,7 @@ RSpec.describe ArticlesController, type: :controller do
     context "signed out" do
       it "is unauthorized" do
         expect {
-          post :create, article_params
+          post :create, params: article_params
         }.to_not change {
           Article.count
         }
@@ -248,7 +248,7 @@ RSpec.describe ArticlesController, type: :controller do
     context "signed out" do
       let!(:article){ FactoryGirl.create(:article) }
       it "is unauthorized" do
-        get :edit, article_params
+        get :edit, params: article_params
         expect_unauthorized
       end
     end
@@ -275,7 +275,7 @@ RSpec.describe ArticlesController, type: :controller do
 
       it "works" do
         expect {
-          put :update, article_params
+          put :update, params: article_params
         }.to change {
           article.reload.updated_at
         }.and change {
@@ -306,7 +306,7 @@ RSpec.describe ArticlesController, type: :controller do
       let!(:article){ FactoryGirl.create(:article) }
       it "is unauthorized" do
         expect {
-          put :update, article_params
+          put :update, params: article_params
         }.to_not change {
           Article.pluck :updated_at
         }
@@ -326,7 +326,7 @@ RSpec.describe ArticlesController, type: :controller do
       articles_sign_in
       it "works" do
         expect {
-          delete :destroy, article_params
+          delete :destroy, params: article_params
         }.to change {
           Article.count
         }.by(-1)
@@ -338,7 +338,7 @@ RSpec.describe ArticlesController, type: :controller do
 
         it "is forbidden" do
           expect {
-            delete :destroy, article_params
+            delete :destroy, params: article_params
           }.to_not change {
             Article.count
           }
@@ -354,7 +354,7 @@ RSpec.describe ArticlesController, type: :controller do
 
       it "is forbidden" do
         expect {
-          delete :destroy, article_params
+          delete :destroy, params: article_params
         }.to_not change {
           Article.count
         }
