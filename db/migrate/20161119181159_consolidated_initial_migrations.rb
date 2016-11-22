@@ -133,7 +133,7 @@ class ConsolidatedInitialMigrations < ActiveRecord::Migration[5.0]
       t.string :main_image, null: false
       t.string :first_thumbnail, null: false
       t.string :second_thumbnail, null: false
-      t.string :third_thumbnail, null: false
+      t.string :third_thumbnail # optional
       t.decimal :price, null: false
       t.string :description, null: false
       t.string :designer, null: false

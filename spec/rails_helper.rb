@@ -24,3 +24,6 @@ RSpec.configure do |config|
 end
 
 include SpecHelpers
+
+Capybara.server_host = 'localhost' # no 127.0.0.1. Cleaner and FB expects it too
+Capybara.server_port = Lumumba::Application.port
