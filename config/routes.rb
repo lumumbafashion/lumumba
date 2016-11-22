@@ -46,5 +46,4 @@ Rails.application.routes.draw do
 
   post '/checkout', to: 'orders#checkout', as: :checkout
   post 'orders/shipping/:id', to: 'orders#shipping', as: :shipping
-  get 'orders/payment/:id', to: 'orders#payment', as: :payment
 end

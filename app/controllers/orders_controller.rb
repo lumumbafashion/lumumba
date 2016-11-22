@@ -32,19 +32,6 @@ class OrdersController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  def payment
-    @order = current_user.orders.friendly.find(params[:id])
-    @address = current_user.addresses.find_by(id: @order.shipping)
-    if @address.present?
-      if false
-        @token = get_generated_token
-      end
-    else
-      flash[:error] = "You need to select a valid shipping address."
-      redirect_back(fallback_location: root_path)
-    end
-  end
-
   def checkout
     if true
       stripe_checkout_impl
@@ -105,7 +92,7 @@ class OrdersController < ApplicationController
     else
       order.reload # for cleaning up any possibly modified attributes
       flash[:error] = 'Sorry, there has been a problem with your payment. You have not been charged.'
-      redirect_to payment_path(params['order'])
+      redirect_to order_path(params['order'])
     end
   end
 
@@ -132,7 +119,7 @@ class OrdersController < ApplicationController
       Rollbar.warn internal_error_message
       Rails.logger.warn internal_error_message
       flash[:error] = user_error_messages
-      redirect_to payment_path(params['order'])
+      redirect_to order_path(params['order'])
     end
   end
 

@@ -354,7 +354,7 @@ RSpec.describe ArticlesController, type: :controller do
 
       it "is forbidden" do
         expect {
-          delete :destroy, article_params
+          delete :destroy, params: article_params
         }.to_not change {
           Article.count
         }

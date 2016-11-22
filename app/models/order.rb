@@ -68,7 +68,7 @@ class Order < ApplicationRecord
       amount: total_amount_in_cents,
       currency: STRIPE_EUR,
       source: token,
-      description: self.class.charge_description_for(self)
+      description: description
     )
 
     Rails.logger.info "Successfully charged order with id #{id}. Charge id: #{charge.id}"
