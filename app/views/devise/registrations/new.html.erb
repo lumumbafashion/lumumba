@@ -1,3 +1,5 @@
+<% email_errors = resource.errors.messages[:email] || [] %>
+
 <div class="login-wrapper">
   <div class="login signup">
 
@@ -17,19 +19,20 @@
         </div>
       <% end %>
 
-      <div class="field form-group">
+      <div class="field form-group <%= 'has-error' if email_errors.any? %>">
         <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+        <%= f.email_field :email, autofocus: true, class: 'form-control', required: true %>
+        <%= email_errors.join(', ') %>
       </div>
 
       <div class="field form-group">
         <%= f.label :first_name %><br />
-        <%= f.text_field :first_name, autofocus: true, class: 'form-control' %>
+        <%= f.text_field :first_name, autofocus: true, class: 'form-control', required: true %>
       </div>
 
       <div class="field form-group">
         <%= f.label :last_name %><br />
-        <%= f.text_field :last_name, autofocus: true, class: 'form-control' %>
+        <%= f.text_field :last_name, autofocus: true, class: 'form-control', required: true %>
       </div>
 
       <div class="field form-group">
@@ -57,12 +60,12 @@
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br />
-        <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+        <%= f.password_field :password, autocomplete: "off", class: 'form-control', required: true %>
       </div>
 
       <div class="field form-group">
         <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', required: true %>
       </div>
 
       <div class="actions">
