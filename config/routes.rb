@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount Ckeditor::Engine => '/ckeditor'
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', registrations: 'registrations', confirmations: 'confirmations' }
 
@@ -48,6 +49,8 @@ Rails.application.routes.draw do
   post 'orders/shipping/:id', to: 'orders#shipping', as: :shipping
 
   get 'robots.txt', to: 'home#robots', as: :robots
+
+  get 'ck_editor_assets/*asset_name', to: 'ck_editor_assets#serve'
 
   # NOTE: this declaration must be the last one in routes.rb.
   match "*path", to: "application#handle_not_found", via: :all

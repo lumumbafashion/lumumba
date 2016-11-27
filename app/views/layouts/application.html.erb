@@ -8,7 +8,7 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-K89SNHD');
     </script>
-    
+
     <title>Lumumba</title>
     <%= csrf_meta_tags %>
     <meta charset="utf-8">
@@ -30,7 +30,6 @@
 
     <div>
 
-      <%= cloudinary_js_config if Lumumba::Application.should_use_cloudinary? %>
       <%= render "layouts/main_navbar" %>
 
     </div>

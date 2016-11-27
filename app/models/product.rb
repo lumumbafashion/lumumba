@@ -7,7 +7,7 @@ class Product < ApplicationRecord
 
   has_many :order_items
   has_many :stocks
-  validates :main_image, :first_thumbnail, :second_thumbnail, :description, :designer, :price, presence: true
+  validates :main_image, :first_thumbnail, :second_thumbnail, :description, :designer, :price, :name, :slug, presence: true
   validates :initial_stock, presence: true, numericality: {greater_than_or_equal_to: 1}
   validate :initial_stock_cannot_change, on: :update
 

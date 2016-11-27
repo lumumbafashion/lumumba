@@ -14,10 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
-<% if Lumumba::Application.should_use_cloudinary? %>
-	<% require_asset 'cloudinary' %>
-	<% require_asset 'cloudinary/processing' # resizing and validation %>
-<% end %>
 
 $(document).ready(function(){
 	$('#new_address_form').hide();
