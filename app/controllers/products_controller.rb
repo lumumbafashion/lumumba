@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_admin!, except: [:index, :show]
 
   def index
-    @products = Product.all.page(params[:page]).per(ARTICLES_PER_PAGE)
+    @products = Product.all.page(params[:page]).per(10)
   end
 
   def new

@@ -74,4 +74,12 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def item_count
+    count = 0
+    self.orders.each do |order|
+      count += order.order_items.count
+    end
+    count
+  end
+
 end

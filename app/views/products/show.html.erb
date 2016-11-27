@@ -1,62 +1,57 @@
 <div class="default-container">
-  <div id="product_show">
-    <!-- Breadcrumbs start -->
-    <div class="breadcrumbs">
-      <div class="breadcrumbs__wrapper">
-        <ul class="breadcrumbs__list">
-          <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="javascript:;">Lumumba</a></li>
-          <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="javascript:;">Shop</a></li>
-          <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="javascript:;">Dresses</a></li>
-          <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="javascript:;"><%= @product.name %></a></li>
-        </ul>
-      </div>
-    </div>
-    <!-- Breadcrumbs finish -->
-    <!-- Product start -->
-    <div class="product">
-      <div class="product__wrapper">
-        <div class="product__gallery">
-          <ul class="product__preview-list">
-            <li class="product__preview-item" style="background-image: url(<%= asset_path  @product.first_thumbnail_url %>);"></li>
-            <li class="product__preview-item" style="background-image: url(<%= asset_path @product.second_thumbnail_url %>);"></li>
-            <li class="product__preview-item" style="background-image: url(<%=  asset_path @product.third_thumbnail_url %>);"></li>
-          </ul>
-          <div class="product__photo-wrapper" style="background-image: url(<%= asset_path @product.main_image_url %>);"></div>
-        </div>
-        <div class="product__info">
-          <div class="product__title"><%= @product.name %></div>
-          <div class="product__price">€ <%= @product.price %></div>
-          <!-- Test form for payment integration -->
-          <%= simple_form_for @order_item, url: product_order_items_path(@product), html: {class: "form "} do |f| %>
-          <% if @order_item.errors.any? %>
-          <div class="alert fade in alert-danger">
-            <h2>
-              <%= pluralize(@order_item.errors.count, "error") %> prohibited
-              this item from being added to the cart:
-            </h2>
-            <ul>
-              <% @order_item.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-              <% end %>
-            </ul>
-          </div>
-          <% end %>
-          <dl class="product__param-list">
-          <dt class="product__param-title">Size</dt>
-          <dd class="product__param-value sizes">
-            <%= f.collection_radio_buttons :size, [['S', 'S'] ,['M', 'M'], ['L', 'L']], :first, :last%>
-          </dd>
-          <br>
-          <%= f.input :quantity, label: 'Select an amount' do %>
-          <%= f.select :quantity, (1..5).each{ |quant| [quant]  },  { :class => 'form__select' }%>
-          <% end %>
-          <%= f.button :submit, class: 'button button_blue', value: 'Add to Cart', data: {disable_with: 'Add to Cart'} %>
-          <% end %>
-          <div class="product__desc-title">Description</div>
-          <p class="product__desc"> <%= @product.description %></p>
-        </div>
-      </div>
-      <!-- Product finish -->
+  <div class="row" style="margin-bottom: 75px">
+    <div class="col-md-8 col-sm-12 product-images" style="margin-bottom: 25px">
+        <%= render "product_images"%>
     </div>
 
+    <div class="col-md-4 col-sm-12 product-info">
+      <div class="row prod-title">
+        <%= @product.name %>
+      </div>
+      <div class="prod-details">
+        <%= simple_form_for @order_item, url: product_order_items_path(@product), html: {class: "form "} do |f| %>
+        <% if @order_item.errors.any? %>
+        <div class="alert fade in alert-danger">
+          <h2>
+            <%= pluralize(@order_item.errors.count, "error") %> prohibited
+            this item from being added to the cart:
+          </h2>
+          <ul>
+            <% @order_item.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <dl class="product__param-list">
+        <dt class="product__param-title">Size</dt>
+        <dd class="product__param-value sizes">
+          <!-- <%= f.collection_radio_buttons :size, [['S', 'S'] ,['M', 'M'], ['L', 'L']], :first, :last%> -->
+        </dd>
+        <div class="form-group">
+          <%= f.select :size, ["S", "M", "L"], class: "form-control" %>
+        </div>
+
+        <br>
+        <dt class="product__param-title">Quantity</dt>
+        <%= f.select :quantity, (1..5).each{ |quant| [quant]  },  { :class => 'form__select' }%>
+        <div class="row prod-price">
+          € <%= @product.price %>
+        </div>
+        <div class="row add-to-cart">
+          <%= f.button :submit, class: 'button button_blue', value: 'Add to Cart', data: {disable_with: 'Add to Cart'} %>
+        </div>
+        <% end %>
+      </div>
+      <div class="row">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#">Description</a></li>
+          <li><a href="#">About Designer</a></li>
+          <li><a href="#">About Lumumba</a></li>
+      </ul>
+    <br>
+      <p class="product__desc"> <%= @product.description %></p>
+      </div>
+    </div>
   </div>
+</div>

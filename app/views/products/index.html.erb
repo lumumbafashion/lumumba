@@ -5,23 +5,27 @@
   <div class="row products" id="products" style="margin-top: 75px;">
     <div class="row">
       <% @products.each do |product| %>
-      <div class="col-sm-6 col-md-4 product">
-        <div class="thumbnail thumbnail-custom">
-          <img src="<%= asset_path product.main_image_url(:product) %>" alt="" />
-          <div class="caption">
-            <div class="product-detail">
-              <span class="product-title">
+      <div class="col-xs-6 col-md-3">
+          <div class="thumbnail thumbnail-custom">
+            <a href="<%= product_path product.id %>">
+            <img src="<%= asset_path product.main_image_url(:product) %>" alt="" />
+          </a>
+            <div class="caption">
+              <div class="product-detail">
+                <div class="row product-title">
                 <a href="/products/<%= product.id %>">
-                  <h5><%= product.name[1...10] %></h5>
+                  <h5><%= product.name %></h5>
                 </a>
-              </span>
-              <span class="product-price">
-                € <%= product.price %>
-              </span>
+
+                </div>
+                <div class="row product-price">
+                  €<%= product.price %>
+                </div>
+              </div>
+              <!-- <a href="/products/<%= product.id %>" class="btn button_blue cart-button" role="button">ADD TO CART</a> -->
             </div>
-            <a href="/products/<%= product.id %>" class="btn button_blue cart-button" role="button">ADD TO CART</a>
           </div>
-        </div>
+
       </div>
       <% end %>
     </div>
