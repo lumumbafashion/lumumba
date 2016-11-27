@@ -1,9 +1,9 @@
 class Product < ApplicationRecord
 
-  mount_uploader :main_image, AvatarUploader
-  mount_uploader :first_thumbnail, AvatarUploader
-  mount_uploader :second_thumbnail, AvatarUploader
-  mount_uploader :third_thumbnail, AvatarUploader
+  mount_uploader :main_image, ImageUploader
+  mount_uploader :first_thumbnail, ImageUploader
+  mount_uploader :second_thumbnail, ImageUploader
+  mount_uploader :third_thumbnail, ImageUploader
 
   has_many :order_items
   has_many :stocks

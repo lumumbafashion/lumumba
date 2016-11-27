@@ -9,7 +9,7 @@ class User < ApplicationRecord
   friendly_id :first_name, use: [:slugged, :finders, :history]
 
   acts_as_voter
-  mount_uploader :avatar, AvatarUploader
+  mount_uploader :avatar, ImageUploader
 
   devise :database_authenticatable, :registerable, :omniauthable, :confirmable, :recoverable, :rememberable, :trackable, :validatable
 
