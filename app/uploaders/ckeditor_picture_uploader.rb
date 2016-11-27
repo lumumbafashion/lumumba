@@ -6,7 +6,7 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   storage :fog unless Rails.env.in?(%w(test development))
 
   def store_dir
-    "#{super}/uploads/ckeditor/pictures/#{model.id}"
+    "#{super}/uploads/ckeditor/pictures/#{model.class.to_s.underscore}/#{model.id}"
   end
 
   process :read_dimensions

@@ -5,7 +5,7 @@ class CkeditorAttachmentFileUploader < CarrierWave::Uploader::Base
   storage :fog unless Rails.env.in?(%w(test development))
 
   def store_dir
-    "#{super}/uploads/ckeditor/attachments/#{model.id}"
+    "#{super}/uploads/ckeditor/attachments/#{model.class.to_s.underscore}/#{model.id}"
   end
 
   def extension_white_list
