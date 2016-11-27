@@ -1,0 +1,11 @@
+:ruby
+  base_location = RailsAdmin::Config::Fields::Types::CKEditor::BASE_LOCATION.call
+  js_data = {
+    jspath: base_location + "ckeditor.js",
+    base_location: base_location,
+    options: {
+      customConfig: base_location + "config.js"
+    }
+  }
+
+= form.text_area key, {}.reverse_merge(data: { richtext: 'ckeditor', options: js_data.to_json }).reverse_merge({ value: value })

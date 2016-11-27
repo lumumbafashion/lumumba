@@ -15,11 +15,17 @@
                   <h5><%= product.name[1...10] %></h5>
                 </a>
               </span>
-              <span class="product-price">
-                € <%= product.price %>
-              </span>
+              <% if product.in_stock?(1) %>
+                <span class="product-price">
+                  € <%= product.price %>
+                </span>
+              <% else %>
+                <span class="product-price">
+                  Out of stock
+                </span>
+              <% end %>
             </div>
-            <a href="/products/<%= product.id %>" class="btn button_blue cart-button" role="button">ADD TO CART</a>
+            <a href="/products/<%= product.id %>" class="btn button_blue cart-button" role="button">DETAILS </a>
           </div>
         </div>
       </div>

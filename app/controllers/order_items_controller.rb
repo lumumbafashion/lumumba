@@ -29,7 +29,7 @@ class OrderItemsController < ApplicationController
         flash['error'] = 'Sorry, we encountered an error while deleting the item from the Cart.'
       end
     else
-      flash['warning'] = 'You do not have the permission to delete this item.'
+      flash[:warning] = 'You do not have the permission to delete this item.'
     end
     redirect_back(fallback_location: root_path)
   end
@@ -52,7 +52,7 @@ class OrderItemsController < ApplicationController
       Rollbar.warn e
       Rails.logger.warn e
       if item.size.blank?
-        flash['warning'] = 'Please select a size for your clothing purchase!'
+        flash[:warning] = 'Please select a size for your clothing purchase!'
       else
         flash['error'] = 'The item could not be added to your cart. Please try again!'
       end

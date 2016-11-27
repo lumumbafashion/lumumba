@@ -1,6 +1,6 @@
 <div class="default-container">
   <div id="product_show">
-    <!-- Breadcrumbs start -->
+
     <div class="breadcrumbs">
       <div class="breadcrumbs__wrapper">
         <ul class="breadcrumbs__list">
@@ -11,8 +11,7 @@
         </ul>
       </div>
     </div>
-    <!-- Breadcrumbs finish -->
-    <!-- Product start -->
+
     <div class="product">
       <div class="product__wrapper">
         <div class="product__gallery">
@@ -27,38 +26,40 @@
         </div>
         <div class="product__info">
           <div class="product__title"><%= @product.name %></div>
-          <div class="product__price">€ <%= @product.price %></div>
-          <!-- Test form for payment integration -->
-          <%= simple_form_for @order_item, url: product_order_items_path(@product), html: {class: "form "} do |f| %>
-          <% if @order_item.errors.any? %>
-          <div class="alert fade in alert-danger">
-            <h2>
-              <%= pluralize(@order_item.errors.count, "error") %> prohibited
-              this item from being added to the cart:
-            </h2>
-            <ul>
-              <% @order_item.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
+          <% if @product.in_stock?(1) %>
+            <div class="product__price">€ <%= @product.price %></div>
+            <div> Stock: <%= @product.stocks.count %>/<%= @product.initial_stock %> </div><br/>
+            <%= simple_form_for @order_item, url: product_order_items_path(@product), html: {class: "form "} do |f| %>
+              <% if @order_item.errors.any? %>
+                <div class="alert fade in alert-danger">
+                  <h2>
+                    Looks like there are <%= pluralize(@order_item.errors.count, "error") %>:
+                  </h2>
+                  <ul>
+                    <% @order_item.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
               <% end %>
-            </ul>
-          </div>
-          <% end %>
-          <dl class="product__param-list">
-          <dt class="product__param-title">Size</dt>
-          <dd class="product__param-value sizes">
-            <%= f.collection_radio_buttons :size, [['S', 'S'] ,['M', 'M'], ['L', 'L']], :first, :last%>
-          </dd>
-          <br>
-          <%= f.input :quantity, label: 'Select an amount' do %>
-          <%= f.select :quantity, (1..5).each{ |quant| [quant]  },  { :class => 'form__select' }%>
-          <% end %>
-          <%= f.button :submit, class: 'button button_blue', value: 'Add to Cart', data: {disable_with: 'Add to Cart'} %>
+              <dl class="product__param-list">
+              <dt class="product__param-title">Size</dt>
+              <dd class="product__param-value sizes">
+                <%= f.collection_radio_buttons :size, [['S', 'S'] ,['M', 'M'], ['L', 'L']], :first, :last %>
+              </dd>
+              <br>
+              <%= f.input :quantity, label: 'Select an amount' do %>
+                <%= f.select :quantity, (1..5).each{ |quant| [quant]  },  { :class => 'form__select' }%>
+              <% end %>
+              <%= f.button :submit, class: 'button button_blue', value: 'Add to Cart', data: {disable_with: 'Add to Cart'} %>
+            <% end %>
+          <% else %>
+            Out of stock
           <% end %>
           <div class="product__desc-title">Description</div>
           <p class="product__desc"> <%= @product.description %></p>
         </div>
       </div>
-      <!-- Product finish -->
-    </div>
 
+    </div>
   </div>
