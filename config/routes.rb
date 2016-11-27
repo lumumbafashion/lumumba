@@ -49,4 +49,6 @@ Rails.application.routes.draw do
 
   get 'robots.txt', to: 'home#robots', as: :robots
 
+  # NOTE: this declaration must be the last one in routes.rb.
+  match "*path", to: "application#handle_not_found", via: :all
 end
