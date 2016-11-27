@@ -9,6 +9,7 @@ class Order < ApplicationRecord
 
   belongs_to :user
   has_many :order_items
+  has_many :products, through: :order_items
 
   validates :user, presence: true
   validates :order_number, presence: true
@@ -63,6 +64,30 @@ class Order < ApplicationRecord
     transaction_id.present?
   end
 
+  # note that there can exist N OrderItems referring to the same product, hence the slightly complicated method
+  def any_product_out_of_stock?
+    order_items.group_by(&:product).values.any? do |items|
+      criterion = items.sum(&:quantity)
+      items.first.product.out_of_stock?(criterion)
+    end
+  end
+
+  def safely_delete_stocks!
+    begin
+      order_items.group_by(&:product).values.map do |items|
+        product = items.first.product
+        criterion = items.sum(&:quantity)
+        stocks = Stock.where(product: product).limit(criterion)
+        if stocks.count < criterion
+          SafeLogger.error { "Expected #{criterion} Stock records from product #{product} to exist, only #{stocks.count} exist" }
+        end
+        stocks.map(&:destroy!)
+      end
+    rescue => e
+      SafeLogger.error { "#{e.class} in `Order#safely_delete_stocks!`: #{e}" }
+    end
+  end
+
   def charge!(token)
 
     raise "already charged" if charged?
@@ -86,6 +111,9 @@ class Order < ApplicationRecord
       Rails.logger.error message
       Rollbar.error message
     end
+
+    safely_delete_stocks!
+
     return true
 
   rescue Stripe::CardError => e

@@ -326,7 +326,7 @@ RSpec.describe OrdersController, type: :controller do
         end
 
         before do
-          expect(controller).to receive(:the_checkout_order).and_return(order)
+          expect(controller).to receive(:the_checkout_order).at_least(1).times.and_return(order)
         end
 
         describe "Stripe success" do
