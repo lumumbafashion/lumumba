@@ -30,6 +30,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def handle_not_found
+    SafeLogger.error(rollbar: false) { "404 - not found: #{request.try :fullpath}" }
+    render plain: '', status: 404
+  end
+
   private
   def after_sign_in_path_for(resource)
     session["user_return_to"] || user_path(resource.slug)
