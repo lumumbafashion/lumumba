@@ -1,13 +1,12 @@
 <%= render "layouts/homepage_image"%>
-
-<div class="row shop-now" id="shop_now">
-  <div class="shop-now-text">
-    <h5>Street fashion inspired by cultures from around the world. Modern apparel that connects to identities, diversity and traditions.</h5>
-    <a href="/products" class="btn btn-lg become-designer-cta button_orange">Shop Now</a>
-  </div>
-  <%= image_tag "provagris.jpg"%>
+<div class="row">
+	<div class="col-xs-12">
+		<div class="shop-now" id="shop_now">
+			<div class="shop-now-text col-xs-10 col-xs-offset-1 col-lg-4 col-lg-offset-6">
+				<h2>Street fashion inspired by cultures from around the world. <br>Modern apparel that connects to identities, diversity and traditions.</h2>
+				<p><a href="/products" class="btn btn-lg become-designer-cta button_orange upcase no-decorate">Shop Now</a></p>
+			</div>
+		</div>
+	</div>
 </div>
-
-<div class="row shop-now">
-  <%= render "countdown_timer"%>
-</div>
+		<%= render "countdown_timer"%>
