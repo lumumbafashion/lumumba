@@ -90,6 +90,7 @@ RSpec.describe ProductsController, type: :controller do
       {product:
         {
           name: reference_product.name,
+          initial_stock: reference_product.initial_stock,
           price: reference_product.price,
           description: reference_product.description,
           designer: reference_product.designer,

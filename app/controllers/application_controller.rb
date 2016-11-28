@@ -24,15 +24,15 @@ class ApplicationController < ActionController::Base
     if Rails.env.in?(%w(production staging))
       hostname = Lumumba::Application.host
       protocol = Lumumba::Application.protocol
-      begin
-        Rollbar.warn("request.protocol: #{request.protocol}")
-      rescue
-        nil
-      end
       if request.host != hostname
         redirect_to "#{protocol}://#{hostname}#{request.fullpath}"
       end
     end
+  end
+
+  def handle_not_found
+    SafeLogger.error(rollbar: false) { "404 - not found: #{request.try :fullpath}" }
+    render plain: '', status: 404
   end
 
   private
