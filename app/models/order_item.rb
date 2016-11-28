@@ -1,5 +1,8 @@
 class OrderItem < ApplicationRecord
 
+  SIZES = %w(S M L)
+  QUANTITIES = (1..5).to_a
+
   belongs_to :order
   belongs_to :product
 

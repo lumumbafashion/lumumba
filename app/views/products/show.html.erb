@@ -26,15 +26,14 @@
         <dl class="product__param-list">
         <dt class="product__param-title">Size</dt>
         <dd class="product__param-value sizes">
-          <!-- <%= f.collection_radio_buttons :size, [['S', 'S'] ,['M', 'M'], ['L', 'L']], :first, :last%> -->
         </dd>
         <div class="form-group">
-          <%= f.select :size, ["S", "M", "L"], class: "form-control" %>
+          <%= f.select :size, OrderItem::SIZES, class: "form-control" %>
         </div>
 
         <br>
         <dt class="product__param-title">Quantity</dt>
-        <%= f.select :quantity, (1..5).each{ |quant| [quant]  },  { :class => 'form__select' }%>
+        <%= f.select :quantity, OrderItem.map{|a| [a] }, { :class => 'form__select' }%>
         <div class="row prod-price">
           € <%= @product.price %>
         </div>

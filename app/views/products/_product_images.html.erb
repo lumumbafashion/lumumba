@@ -21,9 +21,11 @@
       <%= image_tag @product.second_thumbnail_url %>
     </div>
 
-    <div class="item">
-      <%= image_tag @product.third_thumbnail_url %>
-    </div>
+    <% if @product.third_thumbnail_url.present? %>
+      <div class="item">
+        <%= image_tag @product.third_thumbnail_url %>
+      </div>
+    <% end %>
 
 
     <!-- Left and right controls -->

@@ -75,11 +75,9 @@ class User < ApplicationRecord
   end
 
   def item_count
-    count = 0
-    self.orders.each do |order|
-      count += order.order_items.count
-    end
-    count
+    self.orders.open.map do |order|
+      order.order_items.map(&:quantity).sum
+    end.sum
   end
 
 end
