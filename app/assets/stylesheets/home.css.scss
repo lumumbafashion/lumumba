@@ -285,10 +285,12 @@ section#competition {
 .countdown h5 {
   font-size: 25px;
   margin-bottom: 26px;
+  padding: 0 30px;
 }
 
 .clock-wrapper {
   position: relative;
+  width: 60%;
   left: 22%;
   @media screen and (max-width: 412px){
     display: none;
@@ -302,6 +304,7 @@ section#competition {
 .competition-desc-text {
   font-size: 20px;
   margin-bottom: 20px;
+  padding: 0 45px;
 }
 
   @media (min-width: 412px ) and (max-width: 732px ) {
@@ -316,6 +319,7 @@ section#competition {
 
     .clock-wrapper {
       left: 10%;
+      width: 75%;
     }
 
     .competition-desc-text {
