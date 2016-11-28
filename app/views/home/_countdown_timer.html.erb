@@ -1,6 +1,6 @@
 <div class="row countdown-wrapper">
   <div class="countdown">
-    <h5>Join the competition and become a Lumumba designer. Starts in:</h5>
+    <h2>Join the competition and become a Lumumba designer. Starts in:</h2>
     <div class="clock-wrapper">
       <div class="clock"></div>
     </div>
@@ -13,9 +13,9 @@
         </div>
         <div class="">
           <% if user_signed_in? %>
-          <button type="button" class="btn btn-lg button_blue" data-toggle="modal" data-target="#competition_modal">Join the competition</button>
+          <button type="button" class="btn btn-lg button_blue upcase no-decorate" data-toggle="modal" data-target="#competition_modal">Join the competition</button>
           <% else %>
-          <%= link_to "Join the competition", new_user_registration_path, class: "btn btn-lg button_blue"%>
+          <%= link_to "Join the competition", new_user_registration_path, class: "btn btn-lg button_blue upcase no-decorate"%>
           <% end %>
         </div>
       </div>
