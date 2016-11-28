@@ -9,5 +9,6 @@ FactoryGirl.define do
     description { SecureRandom.hex }
     designer { SecureRandom.hex }
     preview false
+    initial_stock 1
   end
 end

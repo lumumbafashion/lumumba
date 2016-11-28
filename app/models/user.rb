@@ -9,7 +9,7 @@ class User < ApplicationRecord
   friendly_id :first_name, use: [:slugged, :finders, :history]
 
   acts_as_voter
-  mount_uploader :avatar, AvatarUploader
+  mount_uploader :avatar, ImageUploader
 
   devise :database_authenticatable, :registerable, :omniauthable, :confirmable, :recoverable, :rememberable, :trackable, :validatable
 
@@ -72,6 +72,12 @@ class User < ApplicationRecord
 
   def to_s
     "#{first_name} #{last_name}"
+  end
+
+  def item_count
+    self.orders.open.map do |order|
+      order.order_items.map(&:quantity).sum
+    end.sum
   end
 
 end

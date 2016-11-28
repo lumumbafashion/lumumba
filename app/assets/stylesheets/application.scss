@@ -919,6 +919,16 @@ body {
   right: 34px;
 }
 
+.cart-item-count {
+  font-size: 15px;
+  background: orange;
+  border-radius: 3px;
+  position: relative;
+  bottom: 5px;
+  left: 0px;
+  padding: 1px;
+}
+
 .fixer {
   &:not(.landing){
     position: fixed !important;

@@ -15,12 +15,12 @@ class OrdersController < ApplicationController
 
   def index
     @order = current_user.orders.open.first
+    prepare_stocks_warning if @order
   end
 
   def show
     @order = current_user.orders.friendly.find(params[:id])
-    @addresses = current_user.addresses
-    @address = Address.new
+    prepare_addresses
   end
 
   def shipping
@@ -33,6 +33,14 @@ class OrdersController < ApplicationController
   end
 
   def checkout
+    if the_checkout_order.any_product_out_of_stock?
+      flash.now[:error_html_safe] = true
+      flash.now[:error] = "Sorry, some of the items in your cart are out of stock now. <b>You have not been charged.</b> Please review your #{view_context.content_tag(:b){ view_context.link_to("cart", orders_path) }} and try again."
+      @order = the_checkout_order.reload
+      prepare_addresses
+      render :show
+      return
+    end
     if true
       stripe_checkout_impl
     else
@@ -73,7 +81,7 @@ class OrdersController < ApplicationController
   end
 
   def the_checkout_order
-    current_user.orders.open.friendly.find(params[:order])
+    @the_checkout_order ||= current_user.orders.open.friendly.find(params[:order])
   end
 
   def get_generated_token
@@ -93,6 +101,17 @@ class OrdersController < ApplicationController
       order.reload # for cleaning up any possibly modified attributes
       flash[:error] = 'Sorry, there has been a problem with your payment. You have not been charged.'
       redirect_to order_path(params['order'])
+    end
+  end
+
+  def prepare_stocks_warning
+    @order.order_items.group_by(&:product).values.map do |items|
+      criterion = items.sum(&:quantity)
+      product = items.first.product
+      if product.out_of_stock?(criterion)
+        flash[:warning] = %|In this cart, you have ordered the product "#{product}" with a quantity greater than our current stock of that product (#{product.stocks.count})|
+        return
+      end
     end
   end
 
@@ -121,6 +140,11 @@ class OrdersController < ApplicationController
       flash[:error] = user_error_messages
       redirect_to order_path(params['order'])
     end
+  end
+
+  def prepare_addresses
+    @addresses = current_user.addresses
+    @address = Address.new
   end
 
 end

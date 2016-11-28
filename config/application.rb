@@ -42,10 +42,6 @@ module Lumumba
       end
     end
 
-    def self.should_use_cloudinary?
-      Rails.env.in?(%w(production staging))
-    end
-
     config.action_mailer.default_url_options ||= {}
     config.action_mailer.default_url_options[:host] = self.host
     config.action_mailer.default_url_options[:port] = self.port if self.port

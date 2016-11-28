@@ -1,28 +1,35 @@
 <div class="default-container">
+
   <div class="row winners">
     <%= render "latest_products"%>
   </div>
+
   <div class="row products" id="products" style="margin-top: 75px;">
     <div class="row">
       <% @products.each do |product| %>
-      <div class="col-sm-6 col-md-4 product">
-        <div class="thumbnail thumbnail-custom">
-          <img src="<%= asset_path product.main_image_url(:product) %>" alt="" />
-          <div class="caption">
-            <div class="product-detail">
-              <span class="product-title">
-                <a href="/products/<%= product.id %>">
-                  <h5><%= product.name[1...10] %></h5>
-                </a>
-              </span>
-              <span class="product-price">
-                € <%= product.price %>
-              </span>
+        <div class="col-xs-6 col-md-3">
+          <div class="thumbnail thumbnail-custom">
+            <a href="<%= product_path product.id %>">
+              <img src="<%= asset_path product.main_image_url(:product) %>" alt="" />
+            </a>
+            <div class="caption">
+              <div class="product-detail">
+                <div class="row product-title">
+                  <a href="<%= link_to product %>">
+                    <h5><%= product.name %></h5>
+                  </a>
+                </div>
+                <div class="row product-price">
+                  <% if product.in_stock?(1) %>
+                    €<%= product.price %>
+                  <% else %>
+                    Out of stock
+                  <% end %>
+                </div>
+              </div>
             </div>
-            <a href="/products/<%= product.id %>" class="btn button_blue cart-button" role="button">ADD TO CART</a>
           </div>
         </div>
-      </div>
       <% end %>
     </div>
   </div>
