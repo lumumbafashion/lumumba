@@ -4,20 +4,24 @@
     <div class="clock-wrapper">
       <div class="clock"></div>
     </div>
-    <div class="competition-desc">
-      <div class="row competition-desc-text">
-        If you win, your designs will become a Lumumba clothing collection. You create amazing designs, we take care of the rest
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="competition-desc">
+          <p class="competition-desc-text">
+            If you win, your designs will become a Lumumba clothing collection. You create amazing designs, we take care of the rest
+          </p>
+        </div>
+        <div class="">
+          <% if user_signed_in? %>
+          <button type="button" class="btn btn-lg button_blue" data-toggle="modal" data-target="#competition_modal">Join the competition</button>
+          <% else %>
+          <%= link_to "Join the competition", new_user_registration_path, class: "btn btn-lg button_blue"%>
+          <% end %>
+        </div>
       </div>
-      <div class="">
-        <% if user_signed_in? %>
-        <button type="button" class="btn btn-lg button_blue" data-toggle="modal" data-target="#competition_modal">Join the competition</button>
-        <% else %>
-        <%= link_to "Join the competition", new_user_registration_path, class: "btn btn-lg button_blue"%>
-        <% end %>
-      </div>
-    </div>
   </div>
 </div>
+
 
 <div class="modal fade" id="competition_modal">
   <div class="modal-dialog">

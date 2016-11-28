@@ -1,38 +1,80 @@
-<nav class="navbar navbar-default <%= " landing custom_nav" if current_page?('/')  %> <%= "static-nav" unless current_page?('/') %>" style="color: white" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+<div class="navbar-container">
+  
+  <!-- <nav class="navbar navbar-default <%#= " landing custom_nav" if current_page?('/')  %> <%#= "static-nav" unless current_page?('/') %>" style="color: white" role="navigation"> -->
+  <nav class="navbar navbar-default navbar-fixd-top col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1" style="color: white; background-color: transparent; border: unset; margin-top: 13px" role="navigation">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">
-        <%= image_tag("new_logo")%>
-      </a>
+        </button>
+        <a class="navbar-brand" href="/">
+          <%= image_tag("new_logo")%>
+        </a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="<%= "active" if current_page?('/competition') %>">
+            <a class="main-menu-link" href="<%= competition_path %>">
+              <span class="menu-icon"><i class="fa fa-trophy" aria-hidden="true"></i></span>
+              Competition
+            </a>
+          </li>
+          <li class="<%= "active" if current_page?('/themes') %>">
+            <a class="main-menu-link" href="<%= themes_path %>">
+              <span class="menu-icon"><i class="fa fa-flag" aria-hidden="true"></i></span>
+              Themes
+            </a>
+          </li>
+          <li>
+            <a class="main-menu-link" href="<%= leaderbord_path %>">
+              <span class="menu-icon"><i class="fa fa-star" aria-hidden="true"></i></span>
+              Leaderboard
+            </a>
+          </li>
+          <li>
+            <a class="main-menu-link" href="<%= products_path %>">
+              <span class="menu-icon"><i class="fa fa-shopping-basket" aria-hidden="true"></i></span>
+              Shop
+            </a>
+          </li>
+          <% if false # disabled for now %>
+          <li>
+            <a class="main-menu-link" href="/articles">
+              <span class="menu-icon"><i class="fa fa-th" aria-hidden="true"></i></span>
+              Blog
+            </a></li>
+            <% end %>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+            <li>
+              <a class="main-menu-link" href="<%= orders_path %>">
+                <span class="menu-icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+                Cart
+              </a>
+            </li>
+            <li>
+              <a class="main-menu-link" href="<%= user_path current_user.slug %>">
+                <span class="menu-icon"><i class="fa fa-user" aria-hidden="true"></i></span></a>
+                Profile
+              </li>
+              <li>
+                <a class="main-menu-link" href="<%= destroy_user_session_path %>">
+                  <span class="menu-icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
+                </a>
+                Logout
+              </li>
+              <% else %>
+              <li><a class="main-menu-link" href="<%= new_user_session_path %>">Login</a></li>
+              <li><a class="main-menu-link" href="<%= new_user_registration_path %>">Sign Up</a></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse navbar-custom" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="<%= competition_path %>">Competition<span class="badge menu-icon menu-icon-competition"><i class="fa fa-trophy" aria-hidden="true"></i></span></a></li>
-        <li><a href="<%= themes_path %>">Themes<span class="badge menu-icon menu-icon-theme"><i class="fa fa-flag" aria-hidden="true"></i></span></a></li>
-        <li><a href="<%= leaderbord_path %>">Leaderboard<span class="badge menu-icon menu-icon-leaderboard"><i class="fa fa-star" aria-hidden="true"></i></span></a></li>
-        <li><a href="<%= products_path %>">Shop<span class="badge menu-icon menu-icon-shop"><i class="fa fa-shopping-basket" aria-hidden="true"></i></span></a></li>
-        <% if false # disabled for now %>
-          <li><a href="/articles">Blog<span class="badge menu-icon menu-icon-blog"><i class="fa fa-th" aria-hidden="true"></i></span></a></li>
-        <% end %>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
-        <li><a href="<%= orders_path %>">Cart<span class="badge menu-icon menu-icon-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span></a></li>
-        <li><a href="<%= user_path current_user.slug %>">Profile<span class="badge menu-icon menu-icon-profile"><i class="fa fa-user" aria-hidden="true"></i></span></a></li>
-        <li><a href="<%= destroy_user_session_path %>">Logout<span class="badge menu-icon menu-icon-logout"><i class="fa fa-sign-out" aria-hidden="true"></i></span></a></li>
-        <% else %>
-        <li><a href="<%= new_user_session_path %>">Login</a></li>
-        <li><a href="<%= new_user_registration_path %>">Sign Up</a></li>
-        <% end %>
-      </ul>
-    </div>
-  </nav>
