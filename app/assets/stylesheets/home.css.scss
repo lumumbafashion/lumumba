@@ -1,6 +1,9 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "./vars";
+
 .nav__logo {
    background: asset-data-url("logo.png") center center no-repeat;
  }
@@ -269,42 +272,42 @@ section#competition {
     border-radius: 100%;
 }
 
-// .theme-item-body img {
-//     // width: 100%;
-// }
-//
-// .theme-item-desc {
-//   position: relative;
-//   bottom: 85px;
-//   background: rgba(0, 0, 0, 0.8);
-//   color: white;
-//   padding: 10px 15px;
-// }
 
+.countdown-wrapper {
+  margin: 0 0 0 0 !important;
+  min-height: 500px;
+}
 
-.countdown h5 {
-  font-size: 25px;
+.countdown h2 {
+  font-family: $lato;
+  font-weight: 300;
   margin-bottom: 26px;
   padding: 0 30px;
 }
 
 .clock-wrapper {
-  position: relative;
-  width: 60%;
-  left: 22%;
+  width: 44.7em;
+  margin: 5em auto;
   @media screen and (max-width: 412px){
+    position: unset;
     display: none;
   }
 
 }
 
-
-
+.button_blue {
+  padding: 20px !important;
+  font-size: 1.5rem !important;
+}
 
 .competition-desc-text {
-  font-size: 20px;
+  font-family: $lato;
+  font-size: 0.750em;
   margin-bottom: 20px;
   padding: 0 45px;
+  font-weight: 300;
+  text-transform: uppercase;
+  word-spacing: 4px;
 }
 
   @media (min-width: 412px ) and (max-width: 732px ) {
