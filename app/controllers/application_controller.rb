@@ -2,7 +2,8 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   include ActionController::HttpAuthentication::Basic::ControllerMethods
-  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from ActiveRecord::RecordNotFound, with: :handle_not_found
+  rescue_from ActionController::InvalidAuthenticityToken, with: :handle_csrf_errors
 
   before_action :ensure_production_hostname
 
@@ -16,10 +17,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def not_found
-    render file: Rails.root.join('public', '404.html'), layout: false, status: 404
-  end
-
   def ensure_production_hostname
     if Rails.env.in?(%w(production staging))
       hostname = Lumumba::Application.host
@@ -31,13 +28,24 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_not_found
-    SafeLogger.error(rollbar: false) { "404 - not found: #{request.try :fullpath}" }
-    render plain: '', status: 404
+    SafeLogger.error(rollbar: false) { "404 - not found: #{logging_info_for_error_handling}" }
+    render file: Rails.root.join('public', '404.html'), layout: false, status: 404
+  end
+
+  def handle_csrf_errors
+    SafeLogger.warn { "ActionController::InvalidAuthenticityToken for #{logging_info_for_error_handling}" }
+    flash[:warning] = 'Sorry, there was a problem authenticating your request (CSRF token). Please try again.'
+    redirect_back(fallback_location: root_path)
   end
 
   private
+  
   def after_sign_in_path_for(resource)
     session["user_return_to"] || user_path(resource.slug)
+  end
+
+  def logging_info_for_error_handling
+    "#{request.try(:fullpath)} - current_user.id: #{current_user.try(:id) || 'nil'}"
   end
 
 end
