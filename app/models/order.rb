@@ -3,6 +3,8 @@ class Order < ApplicationRecord
   OPEN = 'open'
   SUCCESSFULLY_PAID = 'successfully_paid'
   STRIPE_EUR = 'eur'
+  ES = 'ES'
+  DEFAULT_SHIPPING_COST = 15
 
   extend FriendlyId
   friendly_id :order_number, use: :slugged
@@ -104,4 +106,15 @@ class Order < ApplicationRecord
     end
   end
 
+  def calculate_shipping
+    shipping_cost = DEFAULT_SHIPPING_COST
+    if tax = Tax.find_by(country: self.address.country)
+      shipping_cost = if tax.country == ES
+                        5.0
+                      else
+                        10.0
+                      end
+    end
+    shipping_cost
+  end
 end

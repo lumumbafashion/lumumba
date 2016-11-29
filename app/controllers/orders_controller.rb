@@ -26,8 +26,9 @@ class OrdersController < ApplicationController
   def shipping
     address = current_user.addresses.find(params[:id])
     order = current_user.orders.find_by!(status: Order::OPEN)
+    order.shipping = address.id
     tax = calculate_tax(address, order)
-    shipping_cost = calculate_shipping(address)
+    shipping_cost = order.calculate_shipping
     save_order(order, tax, shipping_cost, address)
     redirect_back(fallback_location: root_path)
   end
@@ -50,18 +51,6 @@ class OrdersController < ApplicationController
       tax_rate = rate * order.sub_total
     end
     tax_rate
-  end
-
-  def calculate_shipping(address)
-    shipping_cost = 15.00
-    if tax = Tax.find_by(country: address.country)
-      shipping_cost = if tax.country == Tax::ES
-                        5.0
-                      else
-                        10.0
-                      end
-    end
-    shipping_cost
   end
 
   def save_order(order, tax, shipping_cost, address)
