@@ -16,6 +16,13 @@ RSpec.describe HomeController, type: :controller do
           controller_ok
         end
       end
+      
+      describe '#design_guide' do
+        it 'loads correctly' do
+          get :design_guide
+          controller_ok
+        end
+      end
 
       describe '#robots' do
         it 'loads correctly' do

@@ -18,6 +18,11 @@ class HomeController < ApplicationController
     @message = Message.new
   end
 
+  def design_guide
+    design_guide = File.join(Rails.root, 'public', 'design_guide.pdf')
+    send_file(design_guide, filename: 'design_guide.pdf', disposition: 'inline', type: 'application/pdf')
+  end
+
   def contact_us
     @message = new_message
     if @message.save
