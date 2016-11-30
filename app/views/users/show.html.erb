@@ -1,20 +1,23 @@
-<% if current_user.id == @user.id %>
-<div class="container">
-	<div class="row">
-		<div class="col-md-4">
-			<%= render "left_menu" %>
-		</div>
-		<div class="col-md-8">
-			<div class="row profile-top">
-				<h1 class="title_h1">My dashboard</h1>
-				<p class="page-description">Welcome to your dashboard. You can set up your account, check your orders and manage your designs here.</p>
+
+<div class="default-container">
+	<% if current_user.id == @user.id %>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<%= render "left_menu" %>
 			</div>
-			<div class="row">
-				<%= render "profile" %>
+			<div class="col-md-8">
+				<div class="row profile-top">
+					<h1 class="title_h1">My dashboard</h1>
+					<p class="page-description">Welcome to your dashboard. You can set up your account, check your orders and manage your designs here.</p>
+				</div>
+				<div class="row">
+					<%= render "profile" %>
+				</div>
 			</div>
 		</div>
 	</div>
+	<% else %>
+	<%= render "public_profile" %>
+	<% end %>
 </div>
-<% else %>
-<%= render "public_profile" %>
-<% end %>

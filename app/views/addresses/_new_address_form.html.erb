@@ -1,3 +1,4 @@
+<div>
 <%= simple_form_for @address, url: addresses_path, html: {class: "form "} do |f| %>
 
   <% if @address.errors.any? %>
@@ -14,7 +15,7 @@
     </div>
   <% end %>
 
-  <p class="form__group">
+  <p class="form-group">
     <%= f.label :street_address, "Street Address" %><br>
     <%= f.text_field :street_address, class: "form__input",placeholder: "Enter your Street Address", required: true  %>
   </p><br>
@@ -44,4 +45,5 @@
   </p>
   <% end %>
 
-<br>
+<br />
+</div>
