@@ -1,6 +1,4 @@
 <div class="navbar-container">
-  
-  <!-- <nav class="navbar navbar-default <%#= " landing custom_nav" if current_page?('/')  %> <%#= "static-nav" unless current_page?('/') %>" style="color: white" role="navigation"> -->
   <nav class="navbar navbar-default navbar-fixd-top col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1" style="color: white; background-color: transparent; border: unset; margin-top: 13px" role="navigation">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -30,55 +28,53 @@
               Themes
             </a>
           </li>
-          <li>
+          <li class="<%= "active" if current_page?('/leaderboard') %>">
             <a class="main-menu-link" href="<%= leaderbord_path %>">
               <span class="menu-icon"><i class="fa fa-star" aria-hidden="true"></i></span>
               Leaderboard
             </a>
           </li>
-          <li>
+          <li class="<%= "active" if current_page?('/products') %>">
             <a class="main-menu-link" href="<%= products_path %>">
               <span class="menu-icon"><i class="fa fa-shopping-basket" aria-hidden="true"></i></span>
               Shop
             </a>
           </li>
           <% if false # disabled for now %>
-          <li>
-            <a class="main-menu-link" href="/articles">
-              <span class="menu-icon"><i class="fa fa-th" aria-hidden="true"></i></span>
-              Blog
-            </a>
-          </li>
+            <li>
+              <a class="main-menu-link" href="/articles">
+                <span class="menu-icon"><i class="fa fa-th" aria-hidden="true"></i></span>
+                Blog
+              </a>
+            </li>
           <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-          <li>
-            <a href="<%= orders_path %>">Cart
-              <span class="badge menu-icon menu-icon-cart">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                <% user_item_count = current_user.item_count %>
-                <% unless user_item_count.zero? %>
-                <span class=" badge cart-item-count"><%= current_user.item_count %></span>
+            <li class="<%= "active" if current_page?('/orders') %>">
+              <a class="main-menu-link" href="<%= orders_path %>">
+                <span class="menu-icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+                Cart
+                <% unless current_user.item_count.zero? %>
+                  <span class=" badge cart-item-count"><%= current_user.item_count %></span>
                 <% end %>
-              </span>
+              </a>
+            </li>
+            <li class="<%= "active" if current_page?('/users/') %>">
+              <a class="main-menu-link" href="<%= user_path current_user.slug %>">
+                <span class="menu-icon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                Profile
             </a>
-          </li>
-          <li>
-            <a class="main-menu-link" href="<%= user_path current_user.slug %>">
-              <span class="menu-icon"><i class="fa fa-user" aria-hidden="true"></i></span>
-              Profile
-            </a>
-          </li>
-          <li>
-            <a class="main-menu-link" href="<%= destroy_user_session_path %>">
+            </li>
+            <li>
+              <a class="main-menu-link" href="<%= destroy_user_session_path %>">
               <span class="menu-icon"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
-              Logout
-            </a>
-          </li>
+                Logout
+              </a>
+            </li>
           <% else %>
-          <li><a class="main-menu-link" href="<%= new_user_session_path %>">Login</a></li>
-          <li><a class="main-menu-link" href="<%= new_user_registration_path %>">Sign Up</a></li>
+            <li><a class="main-menu-link" href="<%= new_user_session_path %>">Login</a></li>
+            <li><a class="main-menu-link" href="<%= new_user_registration_path %>">Sign Up</a></li>
           <% end %>
         </ul>
       </div>
