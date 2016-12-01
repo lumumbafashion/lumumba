@@ -337,3 +337,32 @@ section#competition {
   text-align: center;
   margin: 0px 25px 35px 25px;
 }
+
+.like-design {
+  float: left;
+  margin: 0 5px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.designer-name {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.design-name p {
+  font-size: 0.9em;
+  margin-left: 32px;
+  margin-top: -5px;
+  font-weight: 400;
+}
+
+.design-votes {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 50%;
+}
