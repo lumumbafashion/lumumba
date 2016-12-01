@@ -3,6 +3,8 @@ class Order < ApplicationRecord
   OPEN = 'open'
   SUCCESSFULLY_PAID = 'successfully_paid'
   STRIPE_EUR = 'eur'
+  DEFAULT_SHIPPING_COST = 15.0
+  DEFAULT_VAT_COST = 0.0
 
   extend FriendlyId
   friendly_id :order_number, use: :slugged
@@ -132,4 +134,24 @@ class Order < ApplicationRecord
     end
   end
 
+  def find_tax
+    Tax.find_by(country: self.address.try(:country))
+  end
+
+  def calculate_shipping!
+    tax = find_tax
+    self.shipping_cost = tax && ((tax.country == Tax::ES) ? 5.0 : 10.0) || DEFAULT_SHIPPING_COST
+  end
+
+  def calculate_vat!
+    tax = find_tax
+    self.vat = tax && (tax.vat_rate * self.sub_total) || DEFAULT_VAT_COST
+  end
+  
+  def calculate_total!
+    calculate_shipping!
+    calculate_vat!
+    self.total_amount = self.sub_total + self.shipping_cost + self.vat
+  end
+  
 end

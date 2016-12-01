@@ -41,7 +41,7 @@ $(document).ready(function(){
 	var end = new Date("December 1, 2016 12:00:00");
 	var count = parseInt((end - now)/1000)
 
-	var clock = $('.clock').FlipClock(count, {
+	var clock = $('.clock').FlipClock(3600 * 24 * 2, {
 	clockFace: 'DailyCounter',
 	countdown: true
 	});

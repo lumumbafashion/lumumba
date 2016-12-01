@@ -4,23 +4,24 @@
 
   <div class="row contestants">
     <% @designs.each do |design| %>
-    <div class="col-sm-6 col-md-4 product">
+    <div class="col-xs-6 col-md-3">
       <div class="thumbnail thumbnail-custom">
         <img src="<%= asset_path design.image_url(:product) %>" alt="" />
         <div class="caption">
-          <div class="product-detail">
-            <span class="product-title">
-              <a href="<%= user_path design.user.slug %>">
-                <%= design.user.first_name%> <%= design.user.last_name%>
-              </a>
-            </span>
-            <span class="product-price">
+          <div class="row design-detail">
+            <span class="like-design">
               <%= link_to like_design_path(design), method: :put do %>
               <i class="fa fa-heart" aria-hidden="true"></i>
               <% end %>
             </span>
+            <span class="designer-name">
+              <a href="<%= user_path design.user.slug %>">
+                <%= design.user.first_name[0..8]%> <%= design.user.last_name[0..10]%>
+              </a>
+            </span>
           </div>
-          <div class="cart-button">
+
+          <div class="design-votes">
             <%= design.get_upvotes.size %>
           </div>
         </div>
