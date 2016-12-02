@@ -94,6 +94,8 @@ RSpec.describe ProductsController, type: :controller do
           price: reference_product.price,
           description: reference_product.description,
           designer: reference_product.designer,
+          about_designer: reference_product.about_designer,
+          about_lumumba: reference_product.about_lumumba,
           main_image: fixture_file_upload('blank.png', 'image/png'),
           first_thumbnail: fixture_file_upload('blank.png', 'image/png'),
           second_thumbnail: fixture_file_upload('blank.png', 'image/png'),

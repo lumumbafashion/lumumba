@@ -3,6 +3,8 @@ require 'braintree' if false
 
 class OrdersController < ApplicationController
 
+  after_action :expire_user_order_item_count_cache!, only: [:checkout]
+
   if false
     Braintree::Configuration.environment = :sandbox
     Braintree::Configuration.merchant_id = ENV['BRAINTREE_MERCHANT_ID']

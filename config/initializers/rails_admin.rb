@@ -25,4 +25,23 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'Product' do
+    edit do
+      field :name
+      field :slug
+      field :price
+      field :initial_stock
+      field :description
+      field :designer
+      field :main_image
+      field :first_thumbnail
+      field :second_thumbnail
+      field :third_thumbnail
+      field :preview
+      field :about_designer, :ck_editor
+      field :about_lumumba, :ck_editor
+      include_all_fields
+    end
+  end
+
 end

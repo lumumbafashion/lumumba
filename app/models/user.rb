@@ -74,10 +74,4 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def item_count
-    self.orders.open.map do |order|
-      order.order_items.map(&:quantity).sum
-    end.sum
-  end
-
 end

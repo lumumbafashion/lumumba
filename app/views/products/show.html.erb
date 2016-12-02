@@ -10,59 +10,74 @@
       </div>
       <div class="prod-details">
         <%= simple_form_for @order_item, url: product_order_items_path(@product), html: {class: "form "} do |f| %>
-        <% if @order_item.errors.any? %>
-          <div class="alert fade in alert-danger">
-            <h2>
-              Looks like there are <%= pluralize(@order_item.errors.count, "error") %>:
-            </h2>
-            <ul>
-              <% @order_item.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-        
-        <% if @product.in_stock?(1) %>
-        
-          <div> Stock: <%= @product.stocks.count %>/<%= @product.initial_stock %> </div><br/>
-          
-          <dl class="product__param-list">
-          <dt class="product__param-title">Size</dt>
-          <dd class="product__param-value sizes">
-          </dd>
-          
-          <div class="form-group">
-            <%= f.select :size, OrderItem::SIZES, class: "form-control" %>
-          </div>
+          <% if @order_item.errors.any? %>
+            <div class="alert fade in alert-danger">
+              <h2>
+                Looks like there are <%= pluralize(@order_item.errors.count, "error") %>:
+              </h2>
+              <ul>
+                <% @order_item.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
 
-          <br>
-          <dt class="product__param-title">Quantity</dt>
-          <%= f.select :quantity, OrderItem::QUANTITIES.map{|a| [a] }, { :class => 'form__select' }%>
-          <div class="row prod-price">
-            € <%= @product.price %>
-          </div>
-          <div class="row add-to-cart">
-            <%= f.button :submit, class: 'button button_blue', value: 'Add to Cart', data: {disable_with: 'Add to Cart'} %>
-          </div>
-        
-        <% else %>
-          <h3>
-            Out of stock
-          </h3>
-        <% end %>
-        
+          <% if @product.in_stock?(1) %>
+
+            <div> Stock: <%= @product.stocks.count %>/<%= @product.initial_stock %> </div><br/>
+
+            <dl class="product__param-list">
+            <dt class="product__param-title">Size</dt>
+            <dd class="product__param-value sizes">
+            </dd>
+
+            <div class="form-group">
+              <%= f.select :size, OrderItem::SIZES, class: "form-control" %>
+            </div>
+
+            <br>
+            <dt class="product__param-title">Quantity</dt>
+            <%= f.select :quantity, OrderItem::QUANTITIES.map{|a| [a] }, { :class => 'form__select' }%>
+            <div class="row prod-price">
+              € <%= @product.price %>
+            </div>
+            <div class="row add-to-cart">
+              <%= f.button :submit, class: 'button button_blue', value: 'Add to Cart', data: {disable_with: 'Add to Cart'} %>
+            </div>
+
+          <% else %>
+            <h3>
+              Out of stock
+            </h3>
+          <% end %>
+
         <% end %>
       </div>
-      <div class="row">
-        <ul class="nav nav-tabs">
-          <li class="active"><a href="#">Description</a></li>
-          <li><a href="#">About Designer</a></li>
-          <li><a href="#">About Lumumba</a></li>
-      </ul>
-    <br>
-      <p class="product__desc"> <%= @product.description %></p>
+
+      <div>
+
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#description" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
+          <li role="presentation"><a href="#about_designer" aria-controls="profile" role="tab" data-toggle="tab">About Designer</a></li>
+          <li role="presentation"><a href="#about_lumumba" aria-controls="messages" role="tab" data-toggle="tab">About Lumumba</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <br/>
+          <div role="tabpanel" class="product__desc tab-pane active" id="description">
+            <%= @product.description %>
+          </div>
+          <div role="tabpanel" class="product__desc tab-pane" id="about_designer">
+            <%= raw @product.about_designer %>
+          </div>
+          <div role="tabpanel" class="product__desc tab-pane" id="about_lumumba">
+            <%= raw @product.about_lumumba %>
+          </div>
+        </div>
+
       </div>
+
     </div>
   </div>
 </div>
