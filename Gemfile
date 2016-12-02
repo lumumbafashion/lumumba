@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '5.0.0.1'
 
+gem 'activerecord-session_store', '~> 1'
 gem 'acts_as_votable', '~> 0.10' # Voteable Gem
 gem 'bootstrap-sass', '~> 3.3'
 gem 'braintree', '~> 2.68'
