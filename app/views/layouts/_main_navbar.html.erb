@@ -55,8 +55,8 @@
               <a class="main-menu-link" href="<%= orders_path %>">
                 <span class="menu-icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
                 Cart
-                <% unless current_user.item_count.zero? %>
-                  <span class=" badge cart-item-count"><%= current_user.item_count %></span>
+                <% unless @order_item_count_value.zero? %>
+                  <span class=" badge cart-item-count"><%= @order_item_count_value %></span>
                 <% end %>
               </a>
             </li>

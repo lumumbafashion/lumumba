@@ -1,6 +1,7 @@
 class OrderItemsController < ApplicationController
 
   before_action :authenticate_user!
+  after_action :expire_user_order_item_count_cache!
 
   def create
 
