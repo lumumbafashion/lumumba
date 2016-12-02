@@ -5,7 +5,7 @@ if Rails.env.in?(%w(development staging))
 end
 
 if Rails.env.development?
-  FactoryGirl.create :user, email: 'vemv@vemv.net', password: 'p', password_confirmation: 'p', admin: true
+  FactoryGirl.create :user, email: 'vemv91@gmail.com', password: 'p', password_confirmation: 'p', admin: true
 end
 
 countries = [['BE',	0.21],

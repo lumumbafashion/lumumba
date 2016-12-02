@@ -7,8 +7,19 @@ class Product < ApplicationRecord
 
   has_many :order_items
   has_many :stocks
-  validates :main_image, :first_thumbnail, :second_thumbnail, :description, :designer, :price, :name, :slug, presence: true
+
+  validates :main_image, presence: true
+  validates :first_thumbnail, presence: true
+  validates :second_thumbnail, presence: true
+  validates :description, presence: true
+  validates :designer, presence: true
+  validates :about_designer, presence: true
+  validates :about_lumumba, presence: true
+  validates :price, presence: true, numericality: {greater_than_or_equal_to: 1}
+  validates :name, presence: true
+  validates :slug, presence: true
   validates :initial_stock, presence: true, numericality: {greater_than_or_equal_to: 1}
+
   validate :initial_stock_cannot_change, on: :update
 
   # don't use after_commit - we want to leverage transactions.
