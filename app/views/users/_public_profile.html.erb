@@ -33,23 +33,16 @@
 
       <section class="designs">
         <h3>Designs</h3>
-        <div class="digg_pagination">
-          <div class="page_info">
-            <%= paginate @designs %>
-          </div>
-        </div>
         <% if @designs.empty? %>
         <p> This user has no designs available </p>
         <% else %>
         <ul class="designs-wrapper">
-          <% @designs.each do |design| %>
-          <li class="designs">
-            <a href="<%= design_path design.id %>">
-
-              <div class="design-image" style="background-image: url(<%= asset_path design.image.url %>);"></div>
-
-            </a>
-          </li>
+        <% @designs.each do |design| %>
+          <div class="col-xs-6 col-md-3">
+            <div class="thumbnail thumbnail-custom">
+              <img src="<%= asset_path design.image_url(:product) %>" alt="" />
+            </div>
+          </div>
           <% end %>
         </ul>
         <% end %>
@@ -59,11 +52,6 @@
 
       <section class="blog-posts">
         <h3>blog posts</h3>
-        <div class="digg_pagination">
-          <div class="page_info">
-            <%= paginate @articles %>
-          </div>
-        </div>
 
         <% if @articles.empty? %>
         <p> This user has no blogpost available </p>

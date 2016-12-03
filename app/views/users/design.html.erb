@@ -11,12 +11,14 @@
             <p class="page-description">Welcome to your dashboard. You can set up your account, check your orders and manage your designs here.</p>
           </div>
           <div class="row">
-            <div id="design-info">
+            <div class="row">
               <%= render 'add_design_button' %>
+            </div>
+            <div class="user-page-content">
               <% if @designs.empty? %>
-                <p class="button__text"> User has no designs </p>
+              <p> User has no designs </p>
               <% else %>
-                <%= render 'my_designs' %>
+              <%= render 'my_designs' %>
               <% end %>
               <%= paginate @designs %>
             </div>

@@ -38,10 +38,10 @@ $(document).ready(function(){
 	});
 
 	var now = Date.now();
-	var end = new Date("December 1, 2016 12:00:00");
+	var end = new Date("December 31, 2016 12:00:00");
 	var count = parseInt((end - now)/1000)
 
-	var clock = $('.clock').FlipClock(3600 * 24 * 2, {
+	var clock = $('.clock').FlipClock(count, {
 	clockFace: 'DailyCounter',
 	countdown: true
 	});

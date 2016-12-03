@@ -9,6 +9,7 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "./vars";
+@import "./design";
 @font-face {
  font-family: 'Avenir Regular';
  src:font-url('fonts/AvenirNextLTPro.otf');
@@ -382,7 +383,9 @@
    margin-top: 40px; }
 
  .blog {
-   position: relative; }
+   position: relative;
+   margin-left: 15px;
+ }
 
  .blog__intro {
    display: -webkit-box;
@@ -829,7 +832,7 @@ body {
 .default-container {
   width: 90%;
   margin: 0 auto;
-  padding-top: 120px;
+  // padding-top: 120px;
 }
 
 
@@ -1080,6 +1083,18 @@ body {
   }
 }
 
+.homepage-video {
+  margin: 25px 0;
+  text-align: center;
+}
+
+.homepage-video h2 {
+  font-size: 2.5em;
+  font-weight: 300;
+  font-family: 'Lato', sans-serif;
+  margin: 80px 0;
+}
+
 .social-buttons {
   margin-bottom: 0;
 }
@@ -1268,8 +1283,5 @@ body {
 }
 
 .flash-error {
-  position: absolute;
-  top: 21%;
-  z-index: 999;
-  width: 100%;
+  margin-top: 90px
 }
