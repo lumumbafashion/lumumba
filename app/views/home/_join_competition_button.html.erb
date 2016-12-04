@@ -1,0 +1,7 @@
+<div class="">
+  <% if user_signed_in? %>
+    <%= link_to "Join the competition", new_design_path, class: "btn btn-lg button_blue upcase no-decorate"%>
+  <% else %>
+    <%= link_to "Join the competition", new_user_registration_path, class: "btn btn-lg button_blue upcase no-decorate"%>
+  <% end %>
+</div>

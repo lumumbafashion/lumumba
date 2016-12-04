@@ -1,10 +1,10 @@
 <div class="default-container">
   <div class="row" style="margin-bottom: 75px">
-    <div class="col-md-8 col-sm-12 product-images" style="margin-bottom: 25px">
+    <div class="col-md-4 col-sm-12 product-images" style="margin-bottom: 25px">
         <%= render "product_images"%>
     </div>
 
-    <div class="col-md-4 col-sm-12 product-info">
+    <div class="col-md-7 col-sm-12 product-info">
       <div class="row prod-title">
         <%= @product.name %>
       </div>
@@ -27,18 +27,20 @@
 
             <div> Stock: <%= @product.stocks.count %>/<%= @product.initial_stock %> </div><br/>
 
-            <dl class="product__param-list">
-            <dt class="product__param-title">Size</dt>
-            <dd class="product__param-value sizes">
-            </dd>
 
-            <div class="form-group">
-              <%= f.select :size, OrderItem::SIZES, class: "form-control" %>
+            <div class="form-inline">
+              <div class="form-group">
+                <%= f.label :size, "Size", class: "control-label"%>
+                <%= f.select :size, OrderItem::SIZES, class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :quantity, "Quantity", class: "control-label"%>
+                <%= f.select :quantity, OrderItem::QUANTITIES.map{|a| [a] }, { :class => 'form-control' }%>
+              </div>
             </div>
 
-            <br>
-            <dt class="product__param-title">Quantity</dt>
-            <%= f.select :quantity, OrderItem::QUANTITIES.map{|a| [a] }, { :class => 'form__select' }%>
+
             <div class="row prod-price">
               € <%= @product.price %>
             </div>

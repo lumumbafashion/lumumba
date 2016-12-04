@@ -71,7 +71,7 @@ class DesignsController < ApplicationController
   def upvote
     design = Design.find(params[:id])
     if current_user.voted_for? design
-      flash[:error] = 'You already liked this design!'
+      flash[:error] = 'You already liked this design. Feel free to like other cool designs.'
     else
       design.upvote_by current_user
       first_vote(design)

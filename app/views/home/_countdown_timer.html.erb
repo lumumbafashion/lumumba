@@ -11,13 +11,7 @@
             If you win, your designs will become a Lumumba clothing collection. You create amazing designs, we take care of the rest
           </p>
         </div>
-        <div class="">
-          <% if user_signed_in? %>
-            <button type="button" class="btn btn-lg button_blue upcase no-decorate" data-toggle="modal" data-target="#competition_modal">Join the competition</button>
-          <% else %>
-            <%= link_to "Join the competition", new_user_registration_path, class: "btn btn-lg button_blue upcase no-decorate"%>
-          <% end %>
-        </div>
+          <%= render "join_competition_button"%>
       </div>
     </div>
   </div>

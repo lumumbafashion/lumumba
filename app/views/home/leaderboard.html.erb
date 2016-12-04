@@ -1,151 +1,211 @@
-<div class="row default-container">
-  <div class="wrapper" id="leaderboard">
-    <div class="row">
-      <h1 class="title_h1">Leaderboard</h1>
-      <p class="page-description">Discover who is who in the Lumumba community. Are you part of the competition? You can check here how many votes you have and how well you are doing.</p>
+<div class="page-wrapper">
+  <div class="container">
+    <div class="page-header">
+      <h1 class="upcase">Leaderboard
+      <small class="block normal-case">Discover who is who in the Lumumba community. Are you part of the competition? You can check here how many votes you have and how well you are doing.</small>
+      </h1>
     </div>
-
-    <div class="row">
-      <div class="col-md-4">
-        <div class="list-group">
-          <a href="#" class="list-group-item">
-            <span class="badge"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
-            Trending This Week
-          </a>
-
-          <a href="#" class="list-group-item">
-            <span class="badge"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
-            Current Competition Leaders
-          </a>
-
-          <a href="#" class="list-group-item">
-            <span class="badge"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
-            Past Winners
-          </a>
-
-          <a href="#" class="list-group-item">
-            <span class="badge"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
-            Top Lumumba Contributors
-          </a>
-        </div>
-      </div>
-
-      <div class="col-md-8">
-        <div class="columns__content active" id="trending">
-          <h3 class="title_h3">TRENDING THIS WEEK</h3>
-          <!-- Past winners start -->
-          <ol class="past-winners">
-            <% @designs.each do |design| %>
-            <li class="past-winners__item">
-              <div class="top-designers__photo-wrapper">
-                <% if design.user.image_status == "upload" %>
-                <div class="top-designers__photo" style="background-image: url(<%= asset_path design.user.avatar_url %>);"></div>
-                <% elsif design.user.image != nil%>
-                <div class="top-designers__photo" style="background-image: url(<%= asset_path design.user.avatar_url %>);"></div>
-                <% else  %>
-                <div class="top-designers__photo" style="background-image: url(<%= asset_path 'default-user.png' %>);"></div>
-                <% end %>
-              </div>
-              <div class="past-winners__info">
-                <div class="past-winners__name"><%= design.user.first_name%> <%= design.user.last_name%></div>
-                <div class="past-winners__location"><%= design.user.location %></div>
-              </div>
-              <div class="past-winners__wins"> 34 competitions wins </div>
-              <div class="past-winners__earned">$ 192,383 total earned</div>
-            </li>
-            <% end %>
-          </ol>
-          <!-- Past winners finish -->
-        </div>
-
-        <div class="columns__content" id="competition_lead">
-          <h3 class="title_h3">Current Competition Leaders</h3>
-          <!-- Top designers start -->
-          <ol class="top-designers">
-            <% @designs.each do |design| %>
-            <li class="top-designers__item">
-              <a class="top-designers__link" href="<%= user_path design.user.slug %>">
-                <div class="top-designers__project-wrapper">
-                  <div class="top-designers__project" style="background-image: url(<%= asset_path design.image_url %>);"></div>
-                </div>
-
-                <div class="top-designers__photo-wrapper">
-                  <% if design.user.image_status == "upload" %>
-                  <div class="top-designers__photo" style="background-image: url(<%= asset_path design.user.avatar_url %>);"></div>
-                  <% elsif design.user.image != nil%>
-                  <div class="top-designers__photo" style="background-image: url(<%= asset_path design.user.avatar_url %>);"></div>
-                  <% else  %>
-                  <div class="top-designers__photo" style="background-image: url(<%= asset_path 'default-user.png' %>);"></div>
+    <div>
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#competition" aria-controls="home" role="tab" data-toggle="tab"><span class="upcase lato">Competition Leaders</span></a></li>
+        <li role="presentation"><a href="#trendin" aria-controls="profile" role="tab" data-toggle="tab"><span class="upcase lato"></span>Trending This week</a></li>
+        <li role="presentation"><a href="#winner" aria-controls="messages" role="tab" data-toggle="tab"><span class="upcase lato">Winners</span></a></li>
+        <li role="presentation"><a href="#contributor" aria-controls="settings" role="tab" data-toggle="tab"><span class="upcase lato">Contributors</span></a></li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="competition">
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+              <div class="table-container" id="">
+                <h3 class="upcase lato tab-heading">Competition Leaders</h3>
+                <!-- Past winners start -->
+                <table class="table table-striped">
+                  <thead>
+                    <th></th>
+                    <th></th>
+                    <th class="lato">Name</th>
+                    <th class="lato">Location</th>
+                    <th class="lato">Likes</th>
+                  </thead>
+                  <% @designs.each.with_index(1) do |design, index| %>
+                    <tr>
+                      <td><%= index %></td>
+                      <td class="flex flex-center">
+                        <% if design.user.image_status == "upload" %>
+                        <div class="top-designers__photo" style="background-image: url(<%= asset_path design.user.avatar_url %>);"></div>
+                        <% elsif design.user.image != nil%>
+                        <div class="top-designers__photo" style="background-image: url(<%= asset_path design.user.avatar_url %>);"></div>
+                        <% else  %>
+                        <div class="top-designers__photo" style="background-image: url(<%= asset_path 'default-user.png' %>);"></div>
+                        <% end %>
+                      </td>
+                      <td class="col-xs-3">
+                        <%= design.user.first_name%> <%= design.user.last_name%>
+                      </td>
+                      <td><%= design.user.location %></td>
+                      <td><%= design.votes_for.size %></td>
+                    </tr>
                   <% end %>
-                </div>
+                </table>
 
-                <div class="top-designers__info">
-                  <div class="top-designers__name"><%= design.user.first_name%> <%= design.user.last_name%></div>
-                  <div class="top-designers__location"><%= design.user.location %></div>
-                  <div class="top-designers__location">Total Votes: <%= design.votes_for.size%></div>
-                </div>
-              </a>
-            </li>
-            <% end %>
-          </ol>
+                <!-- Past winners finish -->
+              </div>
+            </div>
+          </div>
         </div>
+        <div role="tabpanel" class="tab-pane" id="trending">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="table-container" id="">
+                <h3 class="lato upcase tab-heading">Leaders</h3>
+                <!-- Top designers start -->
+                <table class="table table-striped">
 
-        <div class="columns__content" id="winners">
-          <h3 class="title_h3">Past winners</h3>
-          <!-- Past winners start -->
-          <ol class="past-winners">
-            <% @designs.each do |design| %>
-            <li class="past-winners__item">
-              <div class="top-designers__photo-wrapper">
-                <% if design.user.image_status == "upload" %>
-                <div class="top-designers__photo" style="background-image: url(<%= asset_path design.user.avatar_url %>);"></div>
-                <% elsif design.user.image != nil%>
-                <div class="top-designers__photo" style="background-image: url(<%= asset_path design.user.avatar_url %>);"></div>
-                <% else  %>
-                <div class="top-designers__photo" style="background-image: url(<%= asset_path 'default-user.png' %>);"></div>
-                <% end %>
-              </div>
-              <div class="past-winners__info">
-                <div class="past-winners__name"><%= design.user.first_name%> <%= design.user.last_name%></div>
-                <div class="past-winners__location"><%= design.user.location %></div>
-              </div>
+                  <thead>
+                    <th></th>
+                    <th>Design</th>
+                    <th>Competitor</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Votes</th>
+                  </thead>
 
-              <div class="past-winners__earned">$ 192,383 total earned</div>
-            </li>
-            <% end %>
-          </ol>
-          <!-- Past winners finish -->
+                  <% @designs.each.with_index(1) do |design, index| %>
+                    <tr class="">
+                      <td><%= index %></td>
+                      <td>
+                        <a class="flex flex-center" href="<%= user_path design.user.slug %>">
+                          <div>
+                            <div class="top-designers__project" style="background-image: url(<%= asset_path design.image_url %>);"></div>
+                          </div>
+                        </a>
+                      </td>
+                      <td class="col-xs-2">
+                        <div class="">
+                          <a class="" href="<%= user_path design.user.slug %>">
+                            <% if design.user.image_status == "upload" %>
+                              <div class="top-designers__photo" style="background-image: url(<%#= asset_path design.user.avatar_url %>);"></div>
+                            <% elsif design.user.image != nil%>
+                              <div class="top-designers__photo" style="background-image: url(<%#= asset_path design.user.avatar_url %>);"></div>
+                            <% else  %>
+                              <div class="top-designers__photo" style="background-image: url(<%= asset_path 'default-user.png' %>);"></div>
+                            <% end %>
+                          </a>
+                        </div>
+                      </td>
+                      <td class="col-xs-3">
+                        <a class="" href="<%= user_path design.user.slug %>">
+                          <%= design.user.first_name%> <%= design.user.last_name%>
+                        </a>
+                      </td>
+                      <td>
+                        <a class="" href="<%= user_path design.user.slug %>">
+                          <%= design.user.location %>
+                        </a>
+                      </td>
+                      <td>
+                        <a class="" href="<%= user_path design.user.slug %>">
+                          <%= design.votes_for.size %>
+                        </a>
+                      </td>
+                    </tr>
+                  <% end %>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="columns__content" id="top_contributors">
-          <h3 class="title_h3">Top Lumumba contributors</h3>
-          <!-- Top buyers start -->
-          <ol class="top-buyers">
-            <% @designs.each do |design| %>
-            <li class="past-winners__item">
-              <div class="top-designers__photo-wrapper">
-                <% if design.user.image_status == "upload" %>
-                <div class="top-designers__photo" style="background-image: url(<%= asset_path design.user.avatar_url %>);"></div>
-                <% elsif design.user.image != nil%>
-                <div class="top-designers__photo" style="background-image: url(<%= asset_path design.user.avatar_url %>);"></div>
-                <% else  %>
-                <div class="top-designers__photo" style="background-image: url(<%= asset_path 'default-user.png' %>);"></div>
-                <% end %>
+        <div role="tabpanel" class="tab-pane" id="winners">
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+              <div class="table-container" id="">
+                <h3 class="lato upcase tab-heading">winners</h3>
+                <!-- Past winners start -->
+                <table class="table table-striped">
+                  <thead>
+                    <th></th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Total Earned</th>
+                  </thead>
+                  <% @designs.each.with_index(1) do |design, index| %>
+                    <tr>
+                      <td><%= index %></td>
+                      <td>
+                        <div class="flex flex-center">
+                          <% if design.user.image_status == "upload" %>
+                            <div class="top-designers__photo" style="background-image: url(<%= asset_path design.user.avatar_url %>);"></div>
+                          <% elsif design.user.image != nil%>
+                            <div class="top-designers__photo" style="background-image: url(<%= asset_path design.user.avatar_url %>);"></div>
+                          <% else  %>
+                            <div class="top-designers__photo" style="background-image: url(<%= asset_path 'default-user.png' %>);"></div>
+                          <% end %>
+                        </div>
+                      </td>
+                      <td class="col-xs-3">
+                        <%= design.user.first_name%> <%= design.user.last_name%>
+                      </td>
+                      <td>
+                        <%= design.user.location %>
+                      </td>
+                      <td> 192,383</td>
+                    </tr>
+                  <% end %>
+                </table>
+                <!-- Past winners finish -->
               </div>
-              <div class="past-winners__info">
-                <div class="past-winners__name"><%= design.user.first_name%> <%= design.user.last_name%></div>
-                <div class="past-winners__location"><%= design.user.location %></div>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="contributors">
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+              <div class="table-container" id="">
+                <h3 class="lato upcase tab-heading">contributors</h3>
+                <!-- Top buyers start -->
+                <table class="table table-striped">
+                  <thead>
+                    <th>&nbsp;</th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Total Earned($)</th>
+                  </thead>
+                  <% @designs.each.with_index(1) do |design, index| %>
+                    <tr>
+                      <td><%= index %></td>
+                      <td>
+                        <div class="flex flex-center">
+                          <% if design.user.image_status == "upload" %>
+                            <div class="top-designers__photo" style="background-image: url(<%= asset_path design.user.avatar_url %>);"></div>
+                          <% elsif design.user.image != nil%>
+                            <div class="top-designers__photo" style="background-image: url(<%= asset_path design.user.avatar_url %>);"></div>
+                          <% else  %>
+                            <div class="top-designers__photo" style="background-image: url(<%= asset_path 'default-user.png' %>);"></div>
+                          <% end %>
+                        </div>
+                      </td>
+                      <td class="col-xs-3">
+                        <%= design.user.first_name%> <%= design.user.last_name%>
+                      </td>
+                      <td>
+                        <%= design.user.location %>
+                      </td>
+                      <td>
+                        192,383
+                      </td>
+                    </tr>
+                  <% end %>
+                </table>
+                <!-- Top buyers finish -->
               </div>
-
-              <div class="past-winners__earned">$ 192,383 total earned</div>
-            </li>
-            <% end %>
-
-          </ol>
-          <!-- Top buyers finish -->
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </div>
