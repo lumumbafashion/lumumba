@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :designs do
     member do
       put 'like', to: 'designs#upvote'
-      get :design_description
     end
   end
 

@@ -148,29 +148,8 @@ RSpec.describe DesignsController, type: :controller do
       end
 
       context "signed out" do
-        it "is forbidden" do
+        it "works too" do
           get :show, params: {id: design.id}
-          expect_unauthorized
-        end
-      end
-
-    end
-
-    describe '#design_description' do
-
-      let(:design) { FactoryGirl.create :design }
-
-      context "signed in" do
-        sign_as
-        it "works" do
-          get :design_description, params: {id: design.id}
-          controller_ok
-        end
-      end
-
-      context "signed out" do
-        it "works" do
-          get :design_description, params: {id: design.id}
           controller_ok
         end
       end
