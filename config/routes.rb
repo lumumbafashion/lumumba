@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :designs do
     member do
       put 'like', to: 'designs#upvote'
+      put 'unlike', to: 'designs#undo_upvote'
     end
   end
 

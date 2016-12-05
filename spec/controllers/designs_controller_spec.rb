@@ -183,7 +183,7 @@ RSpec.describe DesignsController, type: :controller do
             }.to_not change {
               design.reload.votes_for.size
             }
-            expect(flash[:error]).to include("You already liked this design")
+            expect(flash[:warning]).to include("You already liked this design")
           end
 
         end
@@ -194,6 +194,57 @@ RSpec.describe DesignsController, type: :controller do
         it "is unauthorized" do
           expect {
             put :upvote, params: {id: design.id}
+          }.to_not change {
+            design.reload.votes_for.size
+          }
+          expect_unauthorized
+        end
+      end
+
+    end
+
+    describe '#undo_upvote' do
+
+      let(:design) { FactoryGirl.create :design }
+
+      context "signed in" do
+
+        sign_as
+
+        context "when I already have voted" do
+
+          before do
+            design.upvote_by user
+          end
+
+          it "allows me to unlike the design" do
+            expect {
+              put :undo_upvote, params: {id: design.id}
+            }.to change {
+              design.reload.votes_for.size
+            }.by(-1)
+          end
+
+        end
+
+        context "when I haven't voted for a given design" do
+
+          it "doesn't change the downvote count" do
+            expect {
+              put :undo_upvote, params: {id: design.id}
+            }.to_not change {
+              design.reload.votes_for.size
+            }
+          end
+
+        end
+
+      end
+
+      context "signed out" do
+        it "is unauthorized" do
+          expect {
+            put :undo_upvote, params: {id: design.id}
           }.to_not change {
             design.reload.votes_for.size
           }

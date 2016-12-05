@@ -23,10 +23,11 @@
                   </g>
                 </svg>
               </div>
-              <div class="blog__action">
-                <%= @article.get_upvotes.size %>
-              </div>
-              <!-- Post contents finish -->
+              <% if false # articles likes don't work yet %>
+                <div class="blog__action">
+                  <%= @article.get_upvotes.size %>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>

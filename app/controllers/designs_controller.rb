@@ -70,11 +70,22 @@ class DesignsController < ApplicationController
   def upvote
     design = Design.find(params[:id])
     if current_user.voted_for? design
-      flash[:error] = 'You already liked this design. Feel free to like other cool designs.'
+      flash[:warning] = 'You already liked this design. Feel free to like other designs!'
     else
       design.upvote_by current_user
       first_vote(design)
-      flash[:notice] = 'You have successfully voted!'
+      flash[:success] = 'You have successfully voted!'
+    end
+    redirect_back(fallback_location: root_path)
+  end
+
+  def undo_upvote
+    design = Design.find(params[:id])
+    if current_user.voted_for? design
+      design.unliked_by current_user
+      flash[:notice] = 'Unliked!'
+    else
+      # no flash, this shouldn't ever happen
     end
     redirect_back(fallback_location: root_path)
   end

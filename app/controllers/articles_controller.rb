@@ -39,9 +39,9 @@ class ArticlesController < ApplicationController
   def upvote
     article = Article.find(params[:id])
     if current_user.voted_for? article
-      flash[:error] = 'You already liked this article!'
+      flash[:warning] = 'You already liked this article!'
     else
-      article.upvote_by current_user
+      article.liked_by current_user
       flash[:notice] = 'Liked!'
       vote_notification article
     end

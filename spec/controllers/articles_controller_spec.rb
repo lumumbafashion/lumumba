@@ -196,7 +196,7 @@ RSpec.describe ArticlesController, type: :controller do
           }.to_not change {
             article.reload.votes_for.size
           }
-          expect(flash[:error]).to include("You already liked this article")
+          expect(flash[:warning]).to include("You already liked this article")
         end
 
       end
