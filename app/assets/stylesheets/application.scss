@@ -1278,18 +1278,13 @@ body {
 
 .homepage-error {
   position: absolute;
-  top: 80px;
+  top: -10px;
   background: transparent;
   width: 100%;
-}
-
-.flash-error::before {
-  content: " ";
-  margin-top: 1px;
+  z-index: 999;
 }
 
 .flash-error {
   margin-top: 90px;
   display: block;
-  position: relative;
 }
