@@ -272,6 +272,9 @@ section#competition {
     border-radius: 100%;
 }
 
+.theme-video {
+  margin-bottom: 50px;
+}
 
 .countdown-wrapper {
   margin: 0 0 0 0 !important;
@@ -346,8 +349,9 @@ section#competition {
 }
 
 .designer-name {
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: 500;
+  word-break: break-all;
 }
 
 .design-name p {
@@ -365,4 +369,69 @@ section#competition {
   color: white;
   padding: 5px 10px;
   border-radius: 50%;
+}
+
+//Leaderboard
+.page-wrapper {
+	margin-bottom: 30px;
+	h1 {
+		font-family: $lato;
+		font-weight: 300;
+		small {
+			font-size: 12px;
+			font-style: italic;
+			font-family: $lato;
+		}
+	}
+}
+
+.block {
+	line-height: 40px;
+}
+
+.normal-case {
+	text-transform: initial;
+}
+
+.lato {
+	font-family: $lato;
+	font-weight: 300;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+td {
+	padding: 20px 5px !important;
+	text-align: center !important;
+	vertical-align: middle !important;
+
+}
+
+th {
+	text-align: center !important;
+	@extend .bold;
+}
+
+.table-container {
+	margin-bottom: 40px;
+}
+
+.flex {
+	display: flex;
+}
+
+.flex-center {
+	justify-content: center;
+}
+
+.tab-heading {
+	display: block;
+    margin: 60px 0;
+}
+
+.theme-page-title {
+  text-align: center;
+  margin-bottom: 35px;
 }

@@ -16,8 +16,8 @@
 //= require_tree .
 
 $(document).ready(function(){
-	$('#new_address_form').hide();
-	$('#upload-image').hide();
+  $('#new_address_form').hide();
+  $('#upload-image').hide();
   $('#model-design-view').hide();
 
   $('#hideshow').on('click', function(event) {
@@ -32,33 +32,39 @@ $(document).ready(function(){
     $('#new_address_form').toggle('show');
   });
 
-	$('#new-form-display').click(function() {
-	  $('#small-description').hide();
-	  $('#hidden-design-form').show();
-	});
+  $('#new-form-display').click(function() {
+    $('#small-description').hide();
+    $('#hidden-design-form').show();
+  });
 
-	var now = Date.now();
-	var end = new Date("December 1, 2016 12:00:00");
-	var count = parseInt((end - now)/1000)
+  var now = Date.now();
+  var end = new Date("December 31, 2016 12:00:00");
+  var count = parseInt((end - now)/1000)
 
-	var clock = $('.clock').FlipClock(3600 * 24 * 2, {
-	clockFace: 'DailyCounter',
-	countdown: true
-	});
+  var clock = $('.clock').FlipClock(count, {
+    clockFace: 'DailyCounter',
+    countdown: true
+  });
 
+
+  $(".garment").mouseover(function(){
+    $(this).find(".garment-desc").show()
+  }).mouseout(function(){
+    $(this).find(".garment-desc").hide();
+  });
 });
 
 $(document).ready(function(){
 
-	$('.left-menu__link').click(function(){
-		var tab_id = $(this).attr('data-tab');
+  $('.left-menu__link').click(function(){
+    var tab_id = $(this).attr('data-tab');
 
-		$('.left-menu__link').removeClass('left-menu__link_selected');
-		$('.columns__content').removeClass('active');
+    $('.left-menu__link').removeClass('left-menu__link_selected');
+    $('.columns__content').removeClass('active');
 
-		$(this).addClass('left-menu__link_selected');
-		$("#"+tab_id).addClass('active');
-	})
+    $(this).addClass('left-menu__link_selected');
+    $("#"+tab_id).addClass('active');
+  })
 
 })
 

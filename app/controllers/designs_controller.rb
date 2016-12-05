@@ -2,7 +2,7 @@ class DesignsController < ApplicationController
 
   ARTICLES_PER_PAGE = 4
 
-  before_action :authenticate_user!, except: [:index, :competition]
+  before_action :authenticate_user!, except: [:index, :competition, :design_description]
 
   def index
   end
@@ -28,6 +28,10 @@ class DesignsController < ApplicationController
   def show
     @design = Design.find(params[:id])
     @other_designs = Design.where.not(id: @design.id).page(params[:page]).per(ARTICLES_PER_PAGE)
+  end
+
+  def design_description
+    @design = Design.find(params[:id])
   end
 
   def update
@@ -71,7 +75,7 @@ class DesignsController < ApplicationController
   def upvote
     design = Design.find(params[:id])
     if current_user.voted_for? design
-      flash[:error] = 'You already liked this design!'
+      flash[:error] = 'You already liked this design. Feel free to like other cool designs.'
     else
       design.upvote_by current_user
       first_vote(design)

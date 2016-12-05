@@ -9,6 +9,7 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "./vars";
+@import "./design";
 @font-face {
  font-family: 'Avenir Regular';
  src:font-url('fonts/AvenirNextLTPro.otf');
@@ -382,7 +383,9 @@
    margin-top: 40px; }
 
  .blog {
-   position: relative; }
+   position: relative;
+   margin-left: 15px;
+ }
 
  .blog__intro {
    display: -webkit-box;
@@ -829,7 +832,7 @@ body {
 .default-container {
   width: 90%;
   margin: 0 auto;
-  padding-top: 120px;
+  // padding-top: 120px;
 }
 
 
@@ -839,16 +842,17 @@ body {
 
 .navbar-brand > img {
   display: block;
-  width: 130px;
-  margin-top: -34px;
-  margin-left: -44px;
+  width: 200px;
+  margin-top: -60px;
+  margin-left: -30px;
+  margin-right: -35px;
   transition: all 1s;
   @media screen and (max-width: 768px) and (min-width: 425px) {
-    margin-left: -20px;
+    margin-left: -35px;
   }
 
   @media screen and (max-height: 1024px) and (min-width: 769px) {
-    margin-left: -78px;
+    margin-left: -135px;
   }
 }
 
@@ -1080,6 +1084,18 @@ body {
   }
 }
 
+.homepage-video {
+  margin: 25px 0;
+  text-align: center;
+}
+
+.homepage-video h2 {
+  font-size: 2.5em;
+  font-weight: 300;
+  font-family: 'Lato', sans-serif;
+  margin: 80px 0;
+}
+
 .social-buttons {
   margin-bottom: 0;
 }
@@ -1262,14 +1278,13 @@ body {
 
 .homepage-error {
   position: absolute;
-  top: 80px;
+  top: -10px;
   background: transparent;
   width: 100%;
+  z-index: 999;
 }
 
 .flash-error {
-  position: absolute;
-  top: 21%;
-  z-index: 999;
-  width: 100%;
+  margin-top: 90px;
+  display: block;
 }

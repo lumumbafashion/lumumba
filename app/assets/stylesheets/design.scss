@@ -1,0 +1,205 @@
+@import "./vars";
+
+.add-design-form {
+  width: 55%;
+  margin: 0 auto;
+}
+
+.lato {
+  font-family: $lato;
+  font-weight: 300;
+}
+
+.upcase {
+  text-transform: uppercase;
+}
+
+@mixin font-size($value) {
+  font-size: $value !important;
+}
+
+@mixin margins($topBottom, $rightLeft) {
+  margin: $topBottom $rightLeft;
+}
+
+.font-24 {
+  @include font-size(24px);
+}
+
+.font-16 {
+  @include font-size(16px);
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.border {
+  border: 1px solid;
+}
+
+.design-page-container {
+  margin-top: 78px;
+  @extend .lato;
+}
+
+.top-banner-row {
+  background-color: rgba(244, 177, 51, 1);
+  min-height: 6em;
+}
+
+.top-banner {
+  h1,h2,h3,h4,h5,h6 {
+  @extend .lato;
+  @include font-size(16px);
+  font-weight: normal;
+  }
+  text-align: center;
+  color: white;
+  padding: 10px 0;
+}
+
+.custom-breadcrumb {
+  @extend .upcase, .bold;
+  margin: 30px 0;
+  background-color: #fff !important;
+  padding-left: 0 !important;
+  opacity: 0.6;
+}
+
+// .design-image {
+// 	background-position: center;
+// 	background-size: cover;
+// 	height: 780px;
+// 	width: 540px;
+// }
+
+.design-image img {
+  width: 100%;
+  height: 780%
+}
+
+.design-info-sect {
+  margin-bottom: 30px;
+}
+
+.text-container {
+  padding: 0 30px !important;
+  h3 {
+  opacity: 0.7;
+  }
+}
+
+.like-icon {
+  color: rgba(244, 177, 51, 1);
+  @include  font-size(40px);
+  @include margins(5px, 10px);
+}
+
+.b-margin-30 {
+  margin-bottom: 30px;
+}
+
+.social-icon {
+  @include margins(5px, 10px);
+  @include font-size(24px);
+}
+
+.designer-img {
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  height: 100px;
+  width: 100px !important;
+  margin: 0 auto;
+}
+
+.sect-margin {
+  margin-bottom: 60px;
+}
+
+.designer-desc {
+  opacity: 0.5;
+}
+
+.more {
+  text-align: center;
+  word-spacing: 20px;
+  letter-spacing: 20px;
+  font-weight: initial;
+  margin: 40px 0 60px 0;
+}
+
+.other-design-cont {
+  margin-bottom: 50px;
+  .image {
+  background-size: cover;
+  background-position: center;
+  width: 260px;
+  height: 760px - 378px;
+  }
+
+  .other-details {
+  margin: 10px 0;
+
+  span:first-child {
+  font-weight: bold;
+  font-size: 18px;
+  display: inline-block;
+  width: 30px;
+  margin-top: -10px;
+  }
+
+  span:nth-child(2) {
+  font-weight: bold;
+  font-size: 18px;
+  color: rgb(145, 204, 238);
+  display: inline-block;
+  width: 158px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-top: 4px;
+  padding-left: 4px;
+
+  }
+
+  span:last-child {
+  font-size: 26px;
+  display: unset !important;
+  }
+  }
+}
+
+img.garment-img {
+  height: 20%;
+}
+
+img.garment-img a:hover .garment-desc {
+  display: block;
+  background: black;
+}
+
+.garment {
+  position: relative;
+}
+
+.garment-desc {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  bottom: 0;
+  margin-bottom: 30px;
+  margin-right: 20px;
+  margin-left: 6px;
+  padding: 0 15px;
+  color: white;
+  font-size: 1.1em;
+  text-align: justify;
+  display: none;
+}
+
+.garment-section {
+  text-align: center;
+  margin: 10px 0;
+}

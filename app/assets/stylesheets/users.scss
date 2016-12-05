@@ -287,6 +287,7 @@ form:focus {
   display: block;
   margin: auto;
   height: 15em;
+  width: 15em;
   border-radius: 50%;
   background-image: url(default-user.png);
   margin: auto;
@@ -485,4 +486,8 @@ form#new_user {
 
 .contestants {
   margin-top: 55px;
+}
+
+.user-page-content {
+  margin-left: 25px;
 }

@@ -6,6 +6,7 @@ gem 'activerecord-session_store', '~> 1'
 gem 'acts_as_votable', '~> 0.10' # Voteable Gem
 gem 'bootstrap-sass', '~> 3.3'
 gem 'braintree', '~> 2.68'
+gem 'browser', '~> 2.3'
 gem 'carmen-rails', '~> 1.0'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0' # Add carriewave gem to upload pictures to user profile
 gem 'ckeditor', '4.1.6'

@@ -23,21 +23,28 @@ class User < ApplicationRecord
   def self.from_omniauth(auth)
     _email = auth.info.email.presence
     _image = auth.info.image.presence
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    instance = find_by(email: _email) || where(provider: auth.provider, uid: auth.uid).first_or_initialize
+    instance.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid
       if _email
         user.email = _email
-        user.confirmed_at = Time.current
+        user.confirmed_at ||= Time.current
       end
       if _image
         user.image = "#{_image}#{'?type=large' if auth.provider.to_s == 'facebook'}"
       end
-      user.first_name = auth.info.first_name
-      user.last_name = auth.info.last_name
-      user.location = auth.info.location
-      user.description = auth.info.about
-      user.gender = auth.extra.raw_info.gender.capitalize
+      [
+        [:gender, auth.extra.raw_info.try(:gender).try(:capitalize)],
+        [:first_name, auth.info.first_name],
+        [:last_name, auth.info.last_name],
+        [:location, auth.info.location],
+        [:about, auth.info.about]
+      ].each do |attr, value|
+        if value.present?
+          user.send("#{attr}=", value)
+        end
+      end
       user.save!
     end
   end

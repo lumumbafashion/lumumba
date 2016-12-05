@@ -18,28 +18,26 @@
 
   <body>
 
-    <div>
-
+    <div class="row">
       <%= render "layouts/main_navbar" %>
-
     </div>
 
     <div class="layout-wrapper">
-
       <div class="flash-error <%= 'homepage-error' if current_page?('/') %>">
-        <% flash.each_with_index do |(type, content), index| %>
-          <% next if type.to_s.include?('html_safe') %>
-          <% messages = Array(content).select(&:present?) %>
-          <% messages.each do |message| %>
-            <div class="fade in alert <%= alert_class_for(type) %>" style="<%= 'margin-bottom: 70px' if index == flash.to_a.size - 1 %>">
-              <button class='close' data-dismiss="alert">x</button>
-              <% is_html_safe = flash["#{type}_html_safe"] %>
-              <%= message.send(is_html_safe ? :html_safe : :presence) %>
-            </div>
+        <div class="container">
+          <% flash.each_with_index do |(type, content), index| %>
+            <% next if type.to_s.include?('html_safe') %>
+            <% messages = Array(content).select(&:present?) %>
+            <% messages.each do |message| %>
+              <div class="fade in alert <%= alert_class_for(type) %>" style="<%= 'margin-bottom: 20px' if index == flash.to_a.size - 1 %>">
+                <button class='close' data-dismiss="alert">x</button>
+                <% is_html_safe = flash["#{type}_html_safe"] %>
+                <%= message.send(is_html_safe ? :html_safe : :presence) %>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
-
       <%= yield %>
     </div>
 
