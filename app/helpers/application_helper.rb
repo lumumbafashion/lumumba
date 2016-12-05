@@ -24,6 +24,15 @@ module ApplicationHelper
     }[flash_type.to_sym] || flash_type.to_s
   end
 
+  def orange_backgrounds
+    [
+      '/users/sign_in',
+      '/users/sign_up',
+      '/users/password/new',
+      '/users/confirmation/new'
+    ]
+  end
+
   class ActionView::Helpers::Tags::Base
     include ActionView::Helpers::TagHelper
     include ActionView::Helpers::FormTagHelper

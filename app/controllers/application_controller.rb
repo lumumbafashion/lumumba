@@ -8,6 +8,13 @@ class ApplicationController < ActionController::Base
   before_action :ensure_production_hostname
   before_action :prepare_order_item_count_value
 
+  before_action do
+  flash[:error] = 'Error'
+  flash[:info] = 'Info'
+  flash[:warning] = 'Warning'
+end
+
+
   def authenticate_admin!
     authenticate_user!
     unless current_user.nil?

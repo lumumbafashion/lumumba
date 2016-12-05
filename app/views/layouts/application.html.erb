@@ -22,7 +22,7 @@
       <%= render "layouts/main_navbar" %>
     </div>
 
-    <div class="layout-wrapper">
+    <div class="layout-wrapper <%= "default-color" if orange_backgrounds.any? { |path| current_page?(path) }%>">
       <div class="flash-error <%= 'homepage-error' if current_page?('/') %>">
         <div class="container">
           <% flash.each_with_index do |(type, content), index| %>

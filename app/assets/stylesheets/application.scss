@@ -832,7 +832,10 @@ body {
 .default-container {
   width: 90%;
   margin: 0 auto;
-  // padding-top: 120px;
+}
+
+.default-color {
+  background: orange;
 }
 
 
@@ -978,7 +981,7 @@ body {
     top: 0;
     left: 0;
     @media screen and (max-width: 425px) {
-      position: relative;
+      // position: relative;
     }
 }
 
@@ -1286,6 +1289,6 @@ body {
 }
 
 .flash-error {
-  margin-top: 90px;
+  margin-top: 78px;
   display: block;
 }
