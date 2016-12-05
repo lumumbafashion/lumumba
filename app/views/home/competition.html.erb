@@ -15,8 +15,8 @@
               <% end %>
             </span>
             <span class="designer-name">
-              <a href="<%= user_path design.user.slug %>">
-                <%= design.user.first_name[0..8]%> <%= design.user.last_name[0..10]%>
+              <a href="<%= design_description_design_path design %>">
+                <%= design.user.first_name%> <%= design.user.last_name %>
               </a>
             </span>
           </div>

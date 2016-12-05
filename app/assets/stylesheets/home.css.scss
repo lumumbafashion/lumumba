@@ -349,8 +349,9 @@ section#competition {
 }
 
 .designer-name {
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: 500;
+  word-break: break-all;
 }
 
 .design-name p {
@@ -428,4 +429,9 @@ th {
 .tab-heading {
 	display: block;
     margin: 60px 0;
+}
+
+.theme-page-title {
+  text-align: center;
+  margin-bottom: 35px;
 }
