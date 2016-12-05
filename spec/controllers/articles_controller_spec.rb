@@ -8,7 +8,7 @@ RSpec.describe ArticlesController, type: :controller do
 
       before { expect(Article.count).to eq 0 }
 
-      if true # "Blog" is temporarily disabled.
+      if !true # "Blog" is temporarily disabled.
         it "is unauthorized" do
           get :index
           expect_unauthorized
@@ -36,7 +36,7 @@ RSpec.describe ArticlesController, type: :controller do
         3.times { FactoryGirl.create :article }
       end
 
-      if true # "Blog" is temporarily disabled.
+      if !true # "Blog" is temporarily disabled.
         it "is unauthorized" do
           get :index
           expect_unauthorized
@@ -64,7 +64,7 @@ RSpec.describe ArticlesController, type: :controller do
         (ArticlesController::ARTICLES_PER_PAGE + 1).times { FactoryGirl.create :article }
       end
 
-      if true # "Blog" is temporarily disabled.
+      if !true # "Blog" is temporarily disabled.
         it "is unauthorized" do
           get :index
           expect_unauthorized
@@ -111,6 +111,7 @@ RSpec.describe ArticlesController, type: :controller do
       {article:
         {
           title: reference_article.title,
+          slug: reference_article.slug,
           description: reference_article.description,
           image: fixture_file_upload('blank.png', 'image/png')
         }
@@ -154,7 +155,7 @@ RSpec.describe ArticlesController, type: :controller do
     end
 
     context "signed out" do
-      if true # "Blog" is temporarily disabled.
+      if !true # "Blog" is temporarily disabled.
         it "is unauthorized" do
           get :show, params: {id: article.id}
           expect_unauthorized

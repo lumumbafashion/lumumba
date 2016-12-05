@@ -34,6 +34,9 @@
     display: block;
     .blog__preview {
       text-align: justify;
+      img {
+        text-align: center
+      }
     }
     .blog__actions{
       justify-content: center;
