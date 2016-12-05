@@ -4,18 +4,18 @@
 
   <div class="row contestants">
     <% @designs.each do |design| %>
-    <div class="col-xs-6 col-md-3">
+    <div class="col-xs-12 col-md-3">
       <div class="thumbnail thumbnail-custom">
         <img src="<%= asset_path design.image_url(:product) %>" alt="" />
         <div class="caption">
           <div class="row design-detail">
             <span class="like-design">
               <%= link_to like_design_path(design), method: :put do %>
-              <i class="fa fa-heart" aria-hidden="true"></i>
+                <i class="fa fa-heart" aria-hidden="true"></i>
               <% end %>
             </span>
             <span class="designer-name">
-              <a href="<%= design_description_design_path design %>">
+              <a href="<%= design_path design %>">
                 <%= design.user.first_name%> <%= design.user.last_name %>
               </a>
             </span>

@@ -5,5 +5,6 @@ FactoryGirl.define do
     description { SecureRandom.hex(500) }
     author { SecureRandom.hex }
     user
+    slug { SecureRandom.hex }
   end
 end

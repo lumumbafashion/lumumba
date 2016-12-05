@@ -832,7 +832,10 @@ body {
 .default-container {
   width: 90%;
   margin: 0 auto;
-  // padding-top: 120px;
+}
+
+.default-color {
+  background: orange;
 }
 
 
@@ -977,9 +980,6 @@ body {
     width: 100%;
     top: 0;
     left: 0;
-    @media screen and (max-width: 425px) {
-      position: relative;
-    }
 }
 
 .main-menu-link {
@@ -1282,9 +1282,13 @@ body {
   background: transparent;
   width: 100%;
   z-index: 999;
+  margin-top: unset;
 }
 
 .flash-error {
-  margin-top: 90px;
+  margin-top: 100px;
   display: block;
+  &.flash-error-less-margin {
+    margin-top: 78px;
+  }
 }

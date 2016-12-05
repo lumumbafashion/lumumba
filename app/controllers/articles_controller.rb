@@ -2,13 +2,7 @@ class ArticlesController < ApplicationController
 
   ARTICLES_PER_PAGE = 5
 
-  # "Blog" is temporarily disabled. So we restrict it to admins
-  if true
-    before_action :authenticate_admin!
-  else
-    before_action :authenticate_user!, except: [:index, :show]
-  end
-
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @articles = Article.all.page(params[:page]).per(ARTICLES_PER_PAGE)
@@ -33,15 +27,15 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
+    @article = Article.friendly.find(params[:id])
   end
 
   def upvote
     article = Article.find(params[:id])
     if current_user.voted_for? article
-      flash[:error] = 'You already liked this article!'
+      flash[:warning] = 'You already liked this article!'
     else
-      article.upvote_by current_user
+      article.liked_by current_user
       flash[:notice] = 'Liked!'
       vote_notification article
     end
@@ -81,7 +75,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :description, :image)
+    params.require(:article).permit(:title, :description, :image, :slug)
   end
 
   def vote_notification(article)

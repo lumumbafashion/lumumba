@@ -16,9 +16,9 @@
             </div>
             <div class="user-page-content">
               <% if @designs.empty? %>
-              <p> User has no designs </p>
+                <% # show nothing in particular %>
               <% else %>
-              <%= render 'my_designs' %>
+                <%= render 'my_designs' %>
               <% end %>
               <%= paginate @designs %>
             </div>

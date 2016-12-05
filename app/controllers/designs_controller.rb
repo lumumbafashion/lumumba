@@ -2,7 +2,7 @@ class DesignsController < ApplicationController
 
   ARTICLES_PER_PAGE = 4
 
-  before_action :authenticate_user!, except: [:index, :competition, :design_description]
+  before_action :authenticate_user!, except: [:show, :index, :competition]
 
   def index
   end
@@ -26,11 +26,6 @@ class DesignsController < ApplicationController
   end
 
   def show
-    @design = Design.find(params[:id])
-    @other_designs = Design.where.not(id: @design.id).page(params[:page]).per(ARTICLES_PER_PAGE)
-  end
-
-  def design_description
     @design = Design.find(params[:id])
   end
 
@@ -75,11 +70,22 @@ class DesignsController < ApplicationController
   def upvote
     design = Design.find(params[:id])
     if current_user.voted_for? design
-      flash[:error] = 'You already liked this design. Feel free to like other cool designs.'
+      flash[:warning] = 'You already liked this design. Feel free to like other designs!'
     else
       design.upvote_by current_user
       first_vote(design)
-      flash[:notice] = 'You have successfully voted!'
+      flash[:success] = 'You have successfully voted!'
+    end
+    redirect_back(fallback_location: root_path)
+  end
+
+  def undo_upvote
+    design = Design.find(params[:id])
+    if current_user.voted_for? design
+      design.unliked_by current_user
+      flash[:notice] = 'Unliked!'
+    else
+      # no flash, this shouldn't ever happen
     end
     redirect_back(fallback_location: root_path)
   end
