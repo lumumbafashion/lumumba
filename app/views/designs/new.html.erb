@@ -16,80 +16,83 @@
 
   <div class="dummy__wrapper" id="designs">
     <div class="row" style="text-align: center">
-      <h1 class="title_h1" >Total Look</h1>
+      <h1 class="title_h1" >Submit your design for competition</h1>
     </div>
 
     <div class="row add-design-form">
       <div class="wrapper" id="formAdd">
-        <h3>Total Look</h3>
+        <h3>Your Outfit Design </h3>
         <h4>Upload your total look sketch below</h4>
+        <hr/>
         <div class="form-group">
-          <%= f.label :image, 'Upload "Total look" File', class: "control-label" %>
+          <%= f.label :image, 'Upload "Total look" Picture', class: "control-label" %>
           <%= f.file_field :image, class: "form-control", required: true %>
         </div>
         <div class="form-group">
-          <%= f.label :image_desc, "Explain us your design concept. What did you get inspired by?", class: "control-label" %>
+          <%= f.label :image_desc, "What is your design concept? Where did you take your inspiration from?", class: "control-label" %>
           <%= f.text_area :image_desc, class: "form-control", rows: "3", placeholder: "E.g The theme was set around winter that's why I used gray and blue colors. I tried to use garments that are warm and used leaves for the print design.", required: true %>
         </div>
       </div>
 
       <div class="wrapper" id="formAdd">
-        <h3>Flat Pattern Drawing Garment 1</h3>
-        <h4>Upload your flat pattern drawing garment 1 below</h4>
+        <h3>First Garment Design</h3>
+        <h4>Upload your flat pattern drawing below</h4>
         <div class="form-group">
-          <%= f.label :first_garment_design, '"Garment 1" File', class: "control-label" %>
+          <%= f.label :first_garment_design, '"Garment 1" Picture', class: "control-label" %>
           <%= f.file_field :first_garment_design, class: "form-control", required: true %>
         </div>
 
         <div class="form-group">
-          <%= f.label :first_garment_print_design, '"Print design" File', class: "control-label" %>
+          <%= f.label :first_garment_print_design, 'Details of Print and Design Picture', class: "control-label" %>
           <%= f.file_field :first_garment_print_design, class: "form-control", required: true %>
         </div>
 
         <div class="form-group">
-          <%= f.label :first_garment_desc, "Description of the garment with its technical explanation and  materials description.", class: "control-label" %>
+          <%= f.label :first_garment_desc, "Description of the garment with technical explanation and material descrption.", class: "control-label" %>
           <%= f.text_area :first_garment_desc, class: "form-control", rows: "3", placeholder: "E.g The theme was set around winter that's why I used gray and blue colors. I tried to use garments that are warm and used leaves for the print design.", required: true %>
         </div>
       </div>
 
       <div class="wrapper" id="formAdd">
-        <h3>Flat Pattern Drawing Garment 2</h3>
-        <h4>Upload your flat pattern drawing garment 2 below</h4>
+        <h3>Second Garment Design</h3>
+        <h4>Upload your flat pattern drawing below</h4>
         <div class="form-group">
-          <%= f.label :second_garment_design, '"Garment 2" File', class: "control-label" %>
+          <%= f.label :second_garment_design, '"Garment 2" Picture', class: "control-label" %>
           <%= f.file_field :second_garment_design, class: "form-control", required: true %>
         </div>
 
         <div class="form-group">
-          <%= f.label :second_garment_print_design, '"Print design 2" File', class: "control-label" %>
+          <%= f.label :second_garment_print_design, 'Details of Print and Design Picture', class: "control-label" %>
           <%= f.file_field :second_garment_print_design, class: "form-control", required: true %>
         </div>
 
         <div class="form-group">
-          <%= f.label :second_garment_desc, "Description of the garment with its technical explanation and  materials description.", class: "control-label" %>
+          <%= f.label :second_garment_desc, "Description of the garment with technical explanation and material descrption.", class: "control-label" %>
           <%= f.text_area :second_garment_desc, class: "form-control", rows: "3", placeholder: "E.g The theme was set around winter that's why I used gray and blue colors. I tried to use garments that are warm and used leaves for the print design.", required: true %>
         </div>
       </div>
 
 
       <div class="wrapper" id="formAdd">
-        <h3>Flat Pattern Drawing Garment 3</h3>
-        <h4>Upload your flat pattern drawing garment 3 below</h4>
+        <h3>Third Garment Design</h3>
+        <h4>Upload your flat pattern drawing below</h4>
         <div class="form-group">
-          <%= f.label :third_garment_design, '"Garment 3" File', class: "control-label" %>
+          <%= f.label :third_garment_design, '"Garment 3" Picture', class: "control-label" %>
           <%= f.file_field :third_garment_design, class: "form-control", required: true %>
         </div>
 
         <div class="form-group">
-          <%= f.label :third_garment_print_design, '"Print design 3" File', class: "control-label" %>
+          <%= f.label :third_garment_print_design, 'Details of Print and Design Picture', class: "control-label" %>
           <%= f.file_field :third_garment_print_design, class: "form-control", required: true %>
         </div>
 
         <div class="form-group">
-          <%= f.label :third_garment_desc, "Description of the garment with its technical explanation and  materials description.", class: "control-label" %>
+          <%= f.label :third_garment_desc, "Description of the garment with technical explanation and material descrption.", class: "control-label" %>
           <%= f.text_area :third_garment_desc, class: "form-control", rows: "3", placeholder: "E.g The theme was set around winter that's why I used gray and blue colors. I tried to use garments that are warm and used leaves for the print design.", required: true %>
         </div>
       </div>
+
+      <hr/>
 
       <div class="form-group">
         <input type='button' id='hideshow' value='Add Model Design' class="btn button_orange">
@@ -98,7 +101,6 @@
       <div id='model-design-view' style="display: none">
         <div class="wrapper">
           <h3>Model Design look</h3>
-          <h4>Upload your model design pictures below</h4>
 
           <div class="form-group">
             <%= f.label :first_garment_model_design, 'First Garment Model Picture', class: "control-label" %>
@@ -117,10 +119,12 @@
         </div>
       </div>
 
+      <hr/>
+
       <div class="form-group">
         <div class="checkbox">
           <label>
-            <%= f.check_box :competition, checked: (true unless @design.competition.in?([false, 'false', 0, '0'])) %> Include Design in ongoing competition
+            <%= f.check_box :competition, checked: (true unless @design.competition.in?([false, 'false', 0, '0'])) %> Include Design in the current competition
           </label>
         </div>
       </div>
