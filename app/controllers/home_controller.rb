@@ -6,12 +6,13 @@ class HomeController < ApplicationController
   end
 
   def leaderboard
-    designs = Design.for_competition
-    @designs = designs.first(10).sort { |designA, designB| designB.votes_for.size <=> designA.votes_for.size }
+    @designs = Design.for_competition.includes(:user).precount(:votes).sort { |designA, designB|
+      designB.votes.count <=> designA.votes.count
+    }.first(10)
   end
 
   def competition
-    @designs = Design.for_competition.page(params[:page]).per(DESIGNS_PER_COMPETITION_PAGE)
+    @designs = Design.for_competition.includes(:user).precount(:votes).page(params[:page]).per(DESIGNS_PER_COMPETITION_PAGE)
   end
 
   def contact

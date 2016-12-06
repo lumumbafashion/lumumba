@@ -11,8 +11,6 @@ Rails.application.configure do
     }
   else
     config.action_controller.perform_caching = false
-
-    config.cache_store = :null_store
   end
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_caching = false

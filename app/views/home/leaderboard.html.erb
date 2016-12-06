@@ -45,7 +45,7 @@
                         <%= design.user.first_name%> <%= design.user.last_name%>
                       </td>
                       <td><%= design.user.location %></td>
-                      <td><%= design.votes_for.size %></td>
+                      <td><%= design.votes.count %></td>
                     </tr>
                   <% end %>
                 </table>
@@ -107,7 +107,7 @@
                       </td>
                       <td>
                         <a class="" href="<%= user_path design.user.slug %>">
-                          <%= design.votes_for.size %>
+                          <%= design.votes.count %>
                         </a>
                       </td>
                     </tr>

@@ -1,10 +1,11 @@
 class Article < ApplicationRecord
 
   extend FriendlyId
+  acts_as_votable
+  mount_uploader :image, ImageUploader
 
   belongs_to :user
-  mount_uploader :image, ImageUploader
-  acts_as_votable
+  has_many :votes, class_name: ActsAsVotable::Vote, as: :votable
 
   validates :title, presence: true, length: { minimum: 20 }
   validates :description, presence: true, length: { minimum: 500 }
