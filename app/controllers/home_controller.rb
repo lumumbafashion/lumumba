@@ -12,6 +12,7 @@ class HomeController < ApplicationController
   end
 
   def competition
+    prepare_designs_voted_by_current_user
     @designs = Design.for_competition.includes(:user).precount(:votes).page(params[:page]).per(DESIGNS_PER_COMPETITION_PAGE)
   end
 

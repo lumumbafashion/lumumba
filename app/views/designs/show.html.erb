@@ -15,9 +15,7 @@
           <p><%= @design.image_desc %>
             <p>
               <div class="like-icon">
-                <%= link_to like_design_path(@design), method: :put do %>
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                <% end %>
+                <%= render 'designs/vote', design: @design %>
               </div>
             </p>
           </p>

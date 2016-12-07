@@ -56,6 +56,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def prepare_designs_voted_by_current_user
+    @designs_voted_by_current_user = if current_user
+      User.joins(:votes).where(votes: {votable_type: 'Design'}, id: current_user.id).pluck(:votable_id)
+    else
+      []
+    end
+  end
+
   private
 
   def after_sign_in_path_for(resource)
