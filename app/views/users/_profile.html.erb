@@ -6,12 +6,10 @@
   <div class="profile-details">
     <div class="row account-avatar">
       <div class="col-xs-12">
-        <% if @user.image != "upload" %>
-        <%= image_tag @user.image, class: "account-avatar-photo" %>
-        <% elsif @user.status == "upload" %>
-        <%= image_tag @user.image, class: "account-avatar-photo" %>
+        <% if @user.image != "upload" || (@user.status == "upload") && @user.image.present? %>
+          <%= image_tag @user.image, class: "account-avatar-photo" %>
         <% else %>
-        <div class="account-avatar-photo" ></div>
+          <div class="account-avatar-photo" ></div>
         <% end %>
       </div>
     </div>
