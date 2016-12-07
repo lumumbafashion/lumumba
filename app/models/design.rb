@@ -1,7 +1,9 @@
 class Design < ApplicationRecord
 
-  belongs_to :user
   acts_as_votable
+
+  belongs_to :user
+  has_many :votes, class_name: ActsAsVotable::Vote, as: :votable
 
   mount_uploader :image, ImageUploader
 

@@ -181,7 +181,7 @@ RSpec.describe ArticlesController, type: :controller do
         expect {
           put :upvote, params: {id: article.id}
         }.to change {
-          article.reload.votes_for.size
+          article.reload.votes.count
         }.by(1)
       end
 
@@ -195,7 +195,7 @@ RSpec.describe ArticlesController, type: :controller do
           expect {
             put :upvote, params: {id: article.id}
           }.to_not change {
-            article.reload.votes_for.size
+            article.reload.votes.count
           }
           expect(flash[:warning]).to include("You already liked this article")
         end
@@ -209,7 +209,7 @@ RSpec.describe ArticlesController, type: :controller do
         expect {
           put :upvote, params: {id: article.id}
         }.to_not change {
-          article.reload.votes_for.size
+          article.reload.votes.count
         }
         expect_unauthorized
       end

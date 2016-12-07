@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :articles
   has_many :addresses
   has_many :orders
+  has_many :votes, class_name: ActsAsVotable::Vote, as: :voter
 
   extend FriendlyId
   friendly_id :first_name, use: [:slugged, :finders, :history]

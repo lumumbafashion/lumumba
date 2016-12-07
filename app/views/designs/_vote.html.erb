@@ -1,0 +1,8 @@
+<% liked = @designs_voted_by_current_user.include?(design.id) %>
+<%= link_to (liked ? unlike_design_path(design) : like_design_path(design)), method: :put do %>
+  <% if liked %>
+    <i class="fa fa-heart" aria-hidden="true"></i>
+  <% else %>
+    <i class="fa fa-heart-o" aria-hidden="true"></i>
+  <% end %>
+<% end %>

@@ -346,12 +346,16 @@ section#competition {
   margin: 0 5px;
   font-size: 1.5em;
   cursor: pointer;
+  display: block;
+  padding: 0 10px;
 }
 
 .designer-name {
-  font-size: 1.1em;
-  font-weight: 500;
-  word-break: break-all;
+  font-size: 1em;
+  padding: 0 10px;
+  a {
+    text-decoration: none;
+  }
 }
 
 .design-name p {

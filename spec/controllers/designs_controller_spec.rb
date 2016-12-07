@@ -167,7 +167,7 @@ RSpec.describe DesignsController, type: :controller do
           expect {
             put :upvote, params: {id: design.id}
           }.to change {
-            design.reload.votes_for.size
+            design.reload.votes.count
           }.by(1)
         end
 
@@ -181,7 +181,7 @@ RSpec.describe DesignsController, type: :controller do
             expect {
               put :upvote, params: {id: design.id}
             }.to_not change {
-              design.reload.votes_for.size
+              design.reload.votes.count
             }
             expect(flash[:warning]).to include("You already liked this design")
           end
@@ -195,7 +195,7 @@ RSpec.describe DesignsController, type: :controller do
           expect {
             put :upvote, params: {id: design.id}
           }.to_not change {
-            design.reload.votes_for.size
+            design.reload.votes.count
           }
           expect_unauthorized
         end
@@ -221,7 +221,7 @@ RSpec.describe DesignsController, type: :controller do
             expect {
               put :undo_upvote, params: {id: design.id}
             }.to change {
-              design.reload.votes_for.size
+              design.reload.votes.count
             }.by(-1)
           end
 
@@ -233,7 +233,7 @@ RSpec.describe DesignsController, type: :controller do
             expect {
               put :undo_upvote, params: {id: design.id}
             }.to_not change {
-              design.reload.votes_for.size
+              design.reload.votes.count
             }
           end
 
@@ -246,7 +246,7 @@ RSpec.describe DesignsController, type: :controller do
           expect {
             put :undo_upvote, params: {id: design.id}
           }.to_not change {
-            design.reload.votes_for.size
+            design.reload.votes.count
           }
           expect_unauthorized
         end

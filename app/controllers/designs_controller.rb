@@ -26,6 +26,7 @@ class DesignsController < ApplicationController
   end
 
   def show
+    prepare_designs_voted_by_current_user
     @design = Design.find(params[:id])
   end
 
@@ -74,7 +75,7 @@ class DesignsController < ApplicationController
     else
       design.upvote_by current_user
       first_vote(design)
-      flash[:success] = 'You have successfully voted!'
+      flash[:success] = 'Thanks for your vote!'
     end
     redirect_back(fallback_location: root_path)
   end
