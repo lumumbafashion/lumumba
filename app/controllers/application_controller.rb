@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
       hostname = Lumumba::Application.host
       protocol = Lumumba::Application.protocol
       if request.host != hostname
-        redirect_to "#{protocol}://#{hostname}#{request.fullpath}"
+        redirect_to "#{protocol}://#{hostname}#{request.fullpath}", status: :moved_permanently
       end
     end
   end
