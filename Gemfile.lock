@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/lumumbafashion/rails_admin.git
-  revision: 83025922a034b6045157ddab18f6ebb8066c0c10
+  revision: fa0579e76aa455f959e935bec76865ead7ecf76e
   branch: lumumba
   specs:
     rails_admin (1.1.0)
