@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-  ARTICLES_PER_PAGE = 5
+  ARTICLES_PER_PAGE = 10
 
   before_action :authenticate_admin!, except: [:index, :show]
 
