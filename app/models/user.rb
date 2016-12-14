@@ -21,7 +21,7 @@ class User < ApplicationRecord
 
   validates :gender, inclusion: GENDERS, allow_blank: true
 
-  def self.from_omniauth(auth)
+  def self.find_or_initialize_from_omniauth(auth)
     _email = auth.info.email.presence
     _image = auth.info.image.presence
     instance = find_by(email: _email) || where(provider: auth.provider, uid: auth.uid).first_or_initialize
@@ -46,7 +46,6 @@ class User < ApplicationRecord
           user.send("#{attr}=", value)
         end
       end
-      user.save!
     end
   end
 
