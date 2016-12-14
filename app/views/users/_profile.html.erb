@@ -7,7 +7,7 @@
     <div class="row account-avatar">
       <div class="col-xs-12">
         <% if @user.image != "upload" || (@user.status == "upload") && @user.image.present? %>
-          <%= image_tag @user.image, class: "account-avatar-photo" %>
+          <%= image_tag(@user.image, class: "account-avatar-photo") rescue nil %>
         <% else %>
           <div class="account-avatar-photo" ></div>
         <% end %>
