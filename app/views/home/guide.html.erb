@@ -96,39 +96,17 @@
         </div>
       </div>
     </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading" role="tab" id="headingSeven">
-        <h4 class="panel-title">
-          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-            7. What is the prize?
-          </a>
-        </h4>
-      </div>
-      <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-        <div class="panel-body">
-          <ul>
-            <li class="li_guide">
-              10% of the net income (Revenue of your clothes - Cost of your clothes). The winners will be showcased on the platform and our social media profiles.
-            </li>
-            <li class="li_guide">
-              We will interview them and create content with their ideas. They will also be invited to publish content on the platform.
-            </li>
-            <li class="li_guide">
-              The clothes will be sold internationally and the label will feature your name like this: "Your Name x Lumumba".
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
   </div>
 
   <div class="row" style='margin-bottom: 40px'>
-    <div class="col-md-6">
+    <div class="col-md-4">
       <%= link_to "View Mannequin", design_guide_path, class: "btn btn-lg button_blue upcase no-decorate button_become_right"%>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-3" style="text-align:center">
       <%= render "join_competition_button"%>
+    </div>
+    <div class="col-md-5">
+      <a href="<%= competition_path %>" class="btn btn-lg button_blue upcase no-decorate">Back To Competition Page</a>
     </div>
   </div>
 </div>

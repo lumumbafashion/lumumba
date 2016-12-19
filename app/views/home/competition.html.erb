@@ -1,6 +1,11 @@
+<% if user_signed_in? %>
 <div class="default-container">
-
-  <%= render "home/countdown_timer" %>
+<ul class="nav nav-pills nav-justified secondary-nav">
+  <li role="presentation"><a href="<%= leaderbord_path %>">LeaderBoard</a></li>
+  <li role="presentation"><a href="<%= prize_path %>">Prize</a></li>
+  <li role="presentation"><a href="<%= new_design_path %>">New Design</a></li>
+  <li role="presentation"><a href="<%= guide_path %>">Design Guide</a></li>
+</ul>
 
   <div class="row contestants">
     <% @designs.each do |design| %>
@@ -28,3 +33,14 @@
     <% end %>
   </div>
 </div>
+<% else %>
+<div class="competition-prompt">
+  <div class="competition-instruction">
+    <p>Welcome to Lumumba. Join us and you will be able to check and vote in the competition. Are you a designer? Register and request to join the competition."</p>
+    <p>
+      <a href="<%= new_user_registration_path%>" class="btn btn-lg button_orange" style="margin: 5px 20px">Sign Up</a>
+      <a href="/" class="btn btn-lg button_orange" style="margin: 5px 20px">Home</a>
+    </p>
+  </div>
+</div>
+<% end %>

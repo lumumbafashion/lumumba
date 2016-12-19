@@ -12,8 +12,7 @@
     <!-- Render orders div start-->
     <div id="design-info" class="col-md-8">
       <div class="profile-top">
-        <h1 class="title_h1">My dashboard</h1>
-        <p class="page-description">Welcome to your dashboard. You can set up your account, check your orders and manage your designs here.</p>
+        <%= render "profile_top"%>
       </div>
       <% if @orders.empty? %>
       <p class="button__text"> You have no orders </p>

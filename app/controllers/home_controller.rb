@@ -44,6 +44,10 @@ class HomeController < ApplicationController
       formats: 'txt')
   end
 
+  def prize
+
+  end
+
   private
 
   def message_params

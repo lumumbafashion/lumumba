@@ -29,7 +29,8 @@ module ApplicationHelper
       new_user_session_path,
       new_user_registration_path,
       new_user_password_path,
-      new_user_confirmation_path
+      new_user_confirmation_path,
+      prize_path
     ]
   end
 
