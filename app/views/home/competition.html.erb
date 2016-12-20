@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
   <div class="default-container">
   <ul class="nav nav-pills nav-justified secondary-nav">
-    <li role="presentation"><a href="<%= leaderbord_path %>">LeaderBoard</a></li>
+    <li role="presentation"><a href="<%= leaderbord_path %>">Leaderboard</a></li>
     <li role="presentation"><a href="<%= prize_path %>">Prize</a></li>
     <li role="presentation"><a href="<%= new_design_path %>">New Design</a></li>
     <li role="presentation"><a href="<%= guide_path %>">Design Guide</a></li>
@@ -39,7 +39,7 @@
       <p>Welcome to Lumumba. Join us and you will be able to check and vote in the competition. Are you a designer? Register and request to join the competition."</p>
       <p>
         <a href="<%= new_user_registration_path%>" class="btn btn-lg button_orange" style="margin: 5px 20px">Sign Up</a>
-        <a href="/" class="btn btn-lg button_orange" style="margin: 5px 20px">Home</a>
+        <a href="<%= root_path %>" class="btn btn-lg button_orange" style="margin: 5px 20px">Home</a>
       </p>
     </div>
   </div>
