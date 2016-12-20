@@ -1,30 +1,30 @@
 <div class="default-container">
 
-  <div class="row theme-page-title">
-    <h1>Theme of the Month: Banjara Culture from India.</h1>
+  <div class="row theme-page-title lato">
+    <h2>Culture of the Month: <span class="label label-warning">Banjara Culture from India</span></h2>
   </div>
-
   <div class="theme-video">
-    <div class="embed-responsive embed-responsive-16by9">
+    <div class="video-container">
       <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/q-eiR64vxfs"></iframe>
     </div>
   </div>
 
-  <div class="row">
+  <div class="container">
 
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-6 col-md-4 theme-thumbnail">
       <%= link_to(article_path id: 'blog-fun-facts-banjara') do %>
         <div class="thumbnail">
           <img src="<%= asset_path "fun_facts.jpg", size: "350x350"%>" alt="...">
           <div class="caption">
             <h3>Fun Facts</h3>
             <p>Fun facts of Banjara culture. Did you know about the mysterious Bhaul? The magic, the dance and more.</p>
+            <p class="theme-read-more-button"><span class="btn button_orange">Read More</span></p>
           </div>
         </div>
       <% end %>
     </div>
 
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-6 col-md-4 theme-thumbnail">
       <%= link_to(article_path id: 'blog-history-banjara') do %>
         <div class="thumbnail">
           <img src="<%= asset_path "themes/2.jpg", size: "350x350"%>" alt="...">
@@ -35,63 +35,64 @@
             <p>
               Discover the history of the Banjara. Where do they come from? How is it to live like a nomad?
             </p>
+            <p class="theme-read-more-button"><span class="btn button_orange">Read More</span></p>
           </div>
         </div>
       <% end %>
     </div>
 
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-6 col-md-4 theme-thumbnail">
       <%= link_to(article_path id: 'blog-clothing-banjara') do %>
         <div class="thumbnail">
           <img src="<%= asset_path "themes/3.jpg", size: "175x175"%>" alt="...">
           <div class="caption">
             <h3>Clothing</h3>
             <p>Banjara clothing is heavy, complex and colourful. It is their way to connect with the gods and keep bad omens away.</p>
+            <p class="theme-read-more-button"><span class="btn button_orange">Read More</span></p>
           </div>
         </div>
       <% end %>
     </div>
 
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-6 col-md-4 theme-thumbnail">
       <%= link_to(article_path id: 'blog-tattoos-banjara') do %>
         <div class="thumbnail">
           <img src="<%= asset_path "themes/5.jpg", size: "175x175"%>" alt="...">
           <div class="caption">
             <h3>Tattoos</h3>
             <p>Did you know the Banjara have a long tradition of tattoos? It's a fascinating read.</p>
+            <p class="theme-read-more-button"><span class="btn button_orange">Read More</span></p>
           </div>
         </div>
       <% end %>
     </div>
 
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-6 col-md-4 theme-thumbnail">
       <%= link_to(article_path id: 'blog-jewelry-banjara') do %>
         <div class="thumbnail">
           <img src="<%= asset_path "themes/6.jpg", size: "175x175"%>" alt="...">
           <div class="caption">
             <h3>Jewelry</h3>
             <p>As you might seen by the pictures, the Banjara people love turning simple objects like coins into elaborate jewelry.</p>
+            <p class="theme-read-more-button"><span class="btn button_orange">Read More</span></p>
           </div>
         </div>
       <% end %>
     </div>
 
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-6 col-md-4 theme-thumbnail">
       <%= link_to(article_path id: 'blog-embroidery-banjara') do %>
         <div class="thumbnail">
           <img src="<%= asset_path "themes/7.jpg", size: "175x175"%>" alt="...">
           <div class="caption">
             <h3>Embroidery</h3>
             <p>For the Banjaras, clothing can't be perfect as only the gods are perfect. Discover more here.</p>
+            <p class="theme-read-more-button"><span class="btn button_orange">Read More</span></p>
           </div>
         </div>
       <% end %>
     </div>
 
-  </div>
-
-  <div class="row">
-    <%= render "home/countdown_timer" %>
   </div>
 
 </div>

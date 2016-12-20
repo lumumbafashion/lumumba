@@ -52,6 +52,15 @@ $(document).ready(function(){
   }).mouseout(function(){
     $(this).find(".garment-desc").hide();
   });
+
+
+  $(".theme-thumbnail").mouseover(function(){
+    $(this).find('.caption').css("margin-top", "-45px")
+    $(this).find(".theme-read-more-button").show()
+  }).mouseout(function(){
+    $(this).find(".theme-read-more-button").hide();
+    $(this).find('.caption').css("margin-top", "0")
+  });
 });
 
 $(document).ready(function(){
