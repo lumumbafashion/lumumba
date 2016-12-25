@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   get '/faq', to: 'home#faq', as: :faq
   get '/privacy', to: 'home#privacy', as: :privacy
   get '/design-guide', to: 'home#design_guide', as: :design_guide
+  get '/prize', to: 'home#prize', as: :prize
 
   post '/checkout', to: 'orders#checkout', as: :checkout
   post 'orders/shipping/:id', to: 'orders#shipping', as: :shipping
