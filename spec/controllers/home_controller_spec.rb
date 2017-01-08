@@ -16,7 +16,7 @@ RSpec.describe HomeController, type: :controller do
           controller_ok
         end
       end
-      
+
       describe '#design_guide' do
         it 'loads correctly' do
           get :design_guide
@@ -92,6 +92,13 @@ RSpec.describe HomeController, type: :controller do
       describe '#contact' do
         it 'loads correctly' do
           get :contact
+          controller_ok
+        end
+      end
+
+      describe '#brand_ambassadors' do
+        it 'loads correctly' do
+          get :brand_ambassadors
           controller_ok
         end
       end

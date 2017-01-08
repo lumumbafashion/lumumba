@@ -1436,18 +1436,18 @@ body {
 	color: #EDEFF1 !important;
 }
 .footer-bottom {
-	background: rgb(191, 55, 28);
-	border-top: 1px solid rgb(191, 55, 28);
+  background: rgb(191, 55, 28);
+  border-top: 1px solid rgb(191, 55, 28);
 
   & p {
     font-size: 12px;
   }
 }
 .footer-bottom p.pull-left {
-	padding-top: 8px;
+  padding-top: 8px;
 }
 .payments {
-	font-size: 1.2em;
+  font-size: 1.2em;
   padding-top: 5px;
 }
 
@@ -1459,7 +1459,6 @@ body {
   width: 50%;
   text-align: center;
 }
-
 
 .competition-prompt {
   position: fixed;
