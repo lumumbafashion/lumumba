@@ -48,6 +48,9 @@ class HomeController < ApplicationController
 
   end
 
+  def brand_ambassadors
+  end
+
   private
 
   def message_params

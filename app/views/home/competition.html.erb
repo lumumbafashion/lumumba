@@ -1,36 +1,15 @@
 <% if user_signed_in? %>
   <div class="default-container">
-  <ul class="nav nav-pills nav-justified secondary-nav">
-    <li role="presentation"><a href="<%= leaderbord_path %>">Leaderboard</a></li>
-    <li role="presentation"><a href="<%= prize_path %>">Prize</a></li>
-    <li role="presentation"><a href="<%= new_design_path %>">New Design</a></li>
-    <li role="presentation"><a href="<%= guide_path %>">Design Guide</a></li>
-  </ul>
+    <ul class="nav nav-tabs nav-justified secondary-nav">
+      <li role="presentation"><a href="<%= leaderbord_path %>">Leaderboard</a></li>
+      <li role="presentation"><a href="<%= prize_path %>">Prize</a></li>
+      <li role="presentation"><a href="<%= new_design_path %>">New Design</a></li>
+      <li role="presentation"><a href="<%= guide_path %>">Design Guide</a></li>
+      <li role="presentation"><a href="<%= brand_ambassadors_path %>" style="border-right-styl: none;">Brand Ambassadors</a></li>
+    </ul>
 
-    <div class="row contestants">
-      <% @designs.each do |design| %>
-        <div class="col-xs-12 col-md-3">
-          <div class="thumbnail thumbnail-custom">
-            <img src="<%= asset_path design.image_url(:product) %>" alt="" />
-            <div class="caption">
-              <div class="row design-detail">
-                <p class="designer-name">
-                  <a href="<%= design_path design %>">
-                    <%= design.user.to_s %>
-                  </a>
-                </p>
-                <span class="like-design">
-                  <%= render 'designs/vote', design: design %>
-                </span>
-              </div>
-
-              <div class="design-votes">
-                <%= design.votes.count %>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
+    <div class="row" style="margin: 50px 0;">
+      <%= render "countdown_timer" %>
     </div>
   </div>
 <% else %>

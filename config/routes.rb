@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   get '/privacy', to: 'home#privacy', as: :privacy
   get '/design-guide', to: 'home#design_guide', as: :design_guide
   get '/prize', to: 'home#prize', as: :prize
+  get '/brand-ambassadors', to: 'home#brand_ambassadors', as: :brand_ambassadors
 
   post '/checkout', to: 'orders#checkout', as: :checkout
   post 'orders/shipping/:id', to: 'orders#shipping', as: :shipping
