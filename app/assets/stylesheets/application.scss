@@ -11,8 +11,15 @@
 @import "./vars";
 @import "./design";
 @font-face {
- font-family: 'Avenir Regular';
- src:font-url('fonts/AvenirNextLTPro.otf');
+   font-family: 'Avenir Regular';
+   src:font-url('fonts/AvenirNextLTPro.otf');
+   src: font-url('fonts/AvenirNextLTPro.eot');
+   src: font-url('fonts/AvenirNextLTPro.eot?#iefix') format('embedded-opentype'),
+   font-url('fonts/AvenirNextLTPro.woff') format('woff'),
+   font-url('fonts/AvenirNextLTPro.ttf') format('truetype'),
+   font-url('fonts/AvenirNextLTPro.svg#avenir_regular') format('svg');
+   font-weight: normal;
+   font-style: normal;
 }
 
 // ------------------------------------ MAIN.CSS
