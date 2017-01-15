@@ -266,8 +266,8 @@
 .carousel-inner>.item>a>img, .carousel-inner>.item>img {
   width: 100%;
   height: 446px;
-  @media screen and (max-width: 412px){
-    height: 220px !important;
+  @media screen and (max-width: 425px){
+    height: 100% !important;
   }
 }
 
@@ -284,6 +284,9 @@
   line-height: 1;
   overflow: hidden;
   margin-bottom: 18px;
+  @media screen and (max-width: 425px){
+    font-size: 1.3em;
+  }
 }
 
 .add-to-cart {
