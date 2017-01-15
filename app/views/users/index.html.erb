@@ -7,23 +7,20 @@
 
   <ul class="users-list">
     <% @users.each do |user| %>
-    <li>
-      <div class="user-image-wrapper">
-        <% if user.image_status == "upload" %>
-        <div class="user-image" style="background-image: url(<%=  asset_path user.avatar_url %>);"></div>
-        <% elsif user.image != nil%>
-        <div class="user-image" ></div>
-        <% else %>
-        <div class="user-image" ></div>
+      <li>
+    
+        <div class="user-image-wrapper">
+          <% if user.image_status == "upload" && user.avatar_url.present? %>
+            <div class="user-image" style="background-image: url(<%=  asset_path user.avatar_url %>);"></div>
+          <% else %>
+            <div class="user-image" ></div>
+          <% end %>
+        </div>
+        <div class="user-details">
+          <a href="<%= user_path user.slug %>"><%= user.first_name  %> <%= user.last_name  %> </a>
+        </div>
 
-        <% end %>
-
-      </div>
-      <div class="user-details">
-        <a href="<%= user_path user.slug %>"><%= user.first_name  %> <%= user.last_name  %> </a>
-      </div>
-
-    </li>
+      </li>
     <% end %>
   </ul>
 
